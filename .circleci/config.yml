@@ -18,9 +18,10 @@ jobs:
         name: Connect to VPN
         command: |
           sudo openvpn --config config.ovpn --auth-user-pass vpn.login > openvpn.log 2>&1 &
-          sudo /bin/bash -c 'echo "nameserver 10.255.0.2" > /run/resolvconf/resolv.conf'
+          echo "nameserver 10.255.0.2" | sudo resolvconf -a eth0
           sudo resolvconf -u
           cat /etc/resolv.conf
+          cat /etc/network/interfaces
           while [ -n "$(ip addr show tun0 2>&1 > /dev/null)" ]; do
             sleep 0.1;
           done
