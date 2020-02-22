@@ -18,11 +18,15 @@ jobs:
         command: |
           cat /etc/nsswitch.conf
     - run:
+        name: get ip
+        command: |
+          curl ifconfig.co
+    - run:
         name: Connect to VPN
         command: |
           curl ifconfig.co
           sudo openvpn --config config.ovpn --auth-user-pass vpn.login > openvpn.log 2>&1 &
-          echo "nameserver 10.255.0.2" | sudo resolvconf -a eth0
+          echo "nameserver 8.8.8.8" | sudo resolvconf -a eth0
           sudo resolvconf -u
           while [ -n "$(ip addr show tun0 2>&1 > /dev/null)" ]; do
             sleep 0.1;
