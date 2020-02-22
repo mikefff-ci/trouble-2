@@ -13,7 +13,7 @@ jobs:
     - run:
         name: resolv
         command: |
-          cat /etc/resolv.conf
+          cat /etc/nsswitch.conf
     - run:
         name: Connect to VPN
         command: |
