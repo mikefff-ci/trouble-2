@@ -24,7 +24,7 @@ jobs:
     - run:
         name: connect to vpn
         command: |
-          sudo openvpn --config config.ovpn --auth-user-pass vpn.login > openvpn.log 2>&1 &
+          sudo openvpn --config config.ovpn --auth-user-pass vpn.login &
     - run:
         name: Connect to VPN
         command: |
