@@ -22,10 +22,12 @@ jobs:
         command: |
           curl ifconfig.co
     - run:
+        name: connect to vpn
+        command: |
+          sudo openvpn --config config.ovpn --auth-user-pass vpn.login &
+    - run:
         name: Connect to VPN
         command: |
-          curl ifconfig.co
-          sudo openvpn --config config.ovpn --auth-user-pass vpn.login > openvpn.log 2>&1 &
           echo "nameserver 8.8.8.8" | sudo resolvconf -a eth0
           sudo resolvconf -u
           while [ -n "$(ip addr show tun0 2>&1 > /dev/null)" ]; do
