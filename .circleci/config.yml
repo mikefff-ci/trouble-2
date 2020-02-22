@@ -26,4 +26,3 @@ workflows:
   build-and-release:
     jobs:
     - test-vpn:
-        context: GLOBAL_ORG
