@@ -5,7 +5,7 @@ jobs:
     steps:
     - run:
         name: Install OpenVPN
-        command: sudo apt-get install --upgrade openvpn
+        command: sudo apt-get update && sudo apt-get install --upgrade openvpn
     - run:
         name: Init VPN
         command: "echo $VPN_CONFIG | base64 --decode >> config.ovpn \nprintf \"$VPN_USER\\\
