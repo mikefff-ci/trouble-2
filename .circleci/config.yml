@@ -6,7 +6,7 @@ jobs:
       - run:
           name: Testing org envs
           command: |
-            echo "$TEST_ONE"
+            echo "$RELEASE_TAG_SNAPSHOT"
 workflows:
   version: 2
   build-and-release:
