@@ -12,3 +12,4 @@ workflows:
   build-and-release:
     jobs:
       - test-org
+          context: org-test
