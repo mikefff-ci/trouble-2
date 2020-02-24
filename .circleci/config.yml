@@ -24,16 +24,16 @@ jobs:
     - run:
         name: connect to vpn
         command: |
-          sudo openvpn --config config.ovpn --auth-user-pass vpn.login &
+          sudo openvpn --mktun --dev tun0 --config config.ovpn --auth-user-pass vpn.login &
     - run:
         name: Connect to VPN
         command: |
           echo "nameserver 8.8.8.8" | sudo resolvconf -a eth0
           sudo resolvconf -u
-          #while [ -n "$(ip addr show tun0 2>&1 > /dev/null)" ]; do
-          #sleep 0.1;
-          #curl ifconfig.co
-          #done
+          while [ -n "$(ip addr show tun0 2>&1 > /dev/null)" ]; do
+            sleep 0.1;
+            curl ifconfig.co
+          done
     - run:
         name: Do stuff in our infrastructure
         command: dig app.payfit.tech
