@@ -6,6 +6,7 @@ jobs:
       - run:
           name: Testing org envs
           command: |
+            echo "before"
             echo "$RELEASE_TAG_SNAPSHOT"
 workflows:
   version: 2
