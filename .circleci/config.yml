@@ -1,44 +1,14 @@
 version: 2
 jobs:
-  test-vpn:
+  test-org:
     machine: true
     steps:
-    - run:
-        name: Install OpenVPN
-        command: sudo apt-get update && sudo apt-get install --upgrade openvpn
-    - run:
-        name: Init VPN
-        command: |
-
-          echo $VPN_CONFIG | base64 --decode > config.ovpn
-          echo $VPN_USER > vpn.login
-          echo $VPN_PASSWORD >> vpn.login
-    - run:
-        name: resolv
-        command: |
-          cat /etc/nsswitch.conf
-    - run:
-        name: get ip
-        command: |
-          curl ifconfig.co
-    - run:
-        name: connect to vpn
-        command: |
-          sudo openvpn --mktun --dev tun0 --config config.ovpn --auth-user-pass vpn.login &
-    - run:
-        name: Connect to VPN
-        command: |
-          echo "nameserver 8.8.8.8" | sudo resolvconf -a eth0
-          sudo resolvconf -u
-          while [ -n "$(ip addr show tun0 2>&1 > /dev/null)" ]; do
-            sleep 0.1;
-            curl ifconfig.co
-          done
-    - run:
-        name: Do stuff in our infrastructure
-        command: dig app.payfit.tech
+      - run:
+          name: Testing org envs
+          command: |
+            echo "$TEST_ONE"
 workflows:
   version: 2
   build-and-release:
     jobs:
-      - test-vpn
+      - test-org
