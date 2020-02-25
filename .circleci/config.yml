@@ -8,6 +8,10 @@ jobs:
           command: |
             echo "before"
             echo "$RELEASE_TAG_SNAPSHOT"
+      - run:
+          name: What am i
+          command: |
+            uname -a
 workflows:
   version: 2
   build-and-release:
