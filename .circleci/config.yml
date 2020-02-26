@@ -19,7 +19,7 @@ jobs:
             uname -a
       - mem/remember:
           env_var: TESTING_MEM
-          value: '$(cat stuff.txt | tr -d)'
+          value: "$(cat stuff.txt | tr -d '\n')"
   test-recall:
     docker:
       - image: 'circleci/python:3.7'
