@@ -32,3 +32,4 @@ workflows:
     jobs:
       - test-org:
           context: org-test
+      - test-recall
