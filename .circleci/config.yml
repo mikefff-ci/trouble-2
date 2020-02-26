@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 
 orbs:
   mem: circleci/rememborb@0.0.1
@@ -28,7 +28,6 @@ jobs:
           env_var: TESTING_MEM
       - run: echo $TESTING_MEM
 workflows:
-  version: 2
   build-and-release:
     jobs:
       - test-org:
