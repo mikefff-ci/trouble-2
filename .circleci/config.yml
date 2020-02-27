@@ -1,8 +1,5 @@
 version: 2.1
 
-orbs:
-  mem: circleci/rememborb@0.0.1
-
 jobs:
   test-org:
     machine: true
@@ -17,16 +14,24 @@ jobs:
           name: What am i
           command: |
             uname -a
-      - mem/remember:
-          env_var: TESTING_MEM
-          value: "$(cat stuff.txt | tr -d '\n')"
+      - run:
+          name: Make files
+          command: |
+            mkdir -p /tmp/testone/two
+            touch /tmp/testone/test_{0..25}
+            touch /tmp/testone/two/ttwo_{0..10}
+      - persist_to_workspace:
+          root: /tmp
+          paths:
+            - '*'
   test-recall:
     docker:
       - image: 'circleci/python:3.7'
     steps:
-      - mem/recall:
-          env_var: TESTING_MEM
-      - run: echo $TESTING_MEM
+      - run: mkdir ~/mnt
+      - attach_workspace:
+          at: ~/mnt
+      - run: ls ~/mnt
 workflows:
   build-and-release:
     jobs:
