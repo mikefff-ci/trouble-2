@@ -31,7 +31,7 @@ jobs:
       - run: mkdir ~/mnt
       - attach_workspace:
           at: ~/mnt
-      - run: ls ~/mnt
+      - run: ls -R ~/mnt
 workflows:
   build-and-release:
     jobs:
