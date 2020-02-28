@@ -4,6 +4,7 @@ parameters:
   test:
     type: string
     default: "true"
+
 jobs:
   test-org:
     docker:
@@ -16,7 +17,7 @@ jobs:
             echo "before"
             echo "$RELEASE_TAG_SNAPSHOT"
       - when:
-          condition: << parameters.test >>
+          condition: << pipeline.parameters.test >>
           steps:
             - run: echo "It ran"
       - run:
