@@ -1,8 +1,13 @@
 version: 2.1
 
+parameters:
+  test:
+    type: string
+    default: "true"
 jobs:
   test-org:
-    machine: true
+    docker:
+      - image: 'circleci/python:3.7'
     steps:
       - checkout
       - run:
@@ -10,6 +15,10 @@ jobs:
           command: |
             echo "before"
             echo "$RELEASE_TAG_SNAPSHOT"
+      - when:
+          condition: << parameters.test >>
+          steps:
+            - run: echo "It ran"
       - run:
           name: What am i
           command: |
