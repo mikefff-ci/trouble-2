@@ -21,9 +21,9 @@ jobs:
             touch /tmp/testone/test_{0..25}
             touch /tmp/testone/two/ttwo_{0..10}
       - persist_to_workspace:
-          root: /tmp
+          root: /tmp/testone
           paths:
-            - './'
+            - '*'
   test-recall:
     docker:
       - image: 'circleci/python:3.7'
