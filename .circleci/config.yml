@@ -23,7 +23,7 @@ jobs:
       - persist_to_workspace:
           root: /tmp
           paths:
-            - '*'
+            - './'
   test-recall:
     docker:
       - image: 'circleci/python:3.7'
