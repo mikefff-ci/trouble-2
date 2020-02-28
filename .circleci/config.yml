@@ -17,7 +17,7 @@ jobs:
             echo "before"
             echo "$RELEASE_TAG_SNAPSHOT"
       - when:
-          condition: << pipeline.parameters.test >>
+          condition: '[[ << pipeline.parameters.test >> == "true" ]]'
           steps:
             - run: echo "It ran"
       - run:
