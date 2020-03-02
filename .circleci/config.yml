@@ -8,9 +8,15 @@ parameters:
 jobs:
   test-org:
     docker:
-      - image: 'circleci/python:3.7'
+      - image: 'gcr.io/google-containers/busybox:1.24'
     steps:
       - checkout
+      - run:
+          name: Step one
+          command: TESTFILES="123"
+      - run:
+          name: step two
+          command: echo $TESTFILES
       - run:
           name: Testing org envs
           command: |
