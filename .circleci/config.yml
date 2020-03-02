@@ -21,7 +21,7 @@ jobs:
           name: step three
           command: |
             TESTFILESS="231"
-            echo $TESTFILES
+            echo "$TESTFILESS"
       - run:
           name: Testing org envs
           command: |
