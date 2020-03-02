@@ -18,6 +18,11 @@ jobs:
           name: step two
           command: echo $TESTFILES
       - run:
+          name: step three
+          command: |
+            TESTFILESS="231"
+            echo $TESTFILES
+      - run:
           name: Testing org envs
           command: |
             echo "before"
