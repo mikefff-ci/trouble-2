@@ -5,46 +5,25 @@ parameters:
     type: string
     default: "false"
 
+commands:
+  custom-run:
+    parameters:
+      ex:
+        type: string
+    steps:
+      - ex: |
+          set +e
+          set -xv
+          << parameters.run >>
+
 jobs:
   test-org:
     docker:
       - image: 'gcr.io/google-containers/busybox:1.24'
     steps:
       - checkout
-      - run:
-          name: Step one
-          command: TESTFILES="123"
-      - run:
-          name: step two
-          command: echo $TESTFILES
-      - run:
-          name: step three
-          command: |
-            TESTFILESS="231"
-            echo "$TESTFILESS"
-      - run:
-          name: Testing org envs
-          command: |
-            echo "before"
-            echo "$RELEASE_TAG_SNAPSHOT"
-      - when:
-          condition: '[[ << pipeline.parameters.test >> == "true" ]]'
-          steps:
-            - run: echo "It ran"
-      - run:
-          name: What am i
-          command: |
-            uname -a
-      - run:
-          name: Make files
-          command: |
-            mkdir -p /tmp/testone/two
-            touch /tmp/testone/test_{0..25}
-            touch /tmp/testone/two/ttwo_{0..10}
-      - persist_to_workspace:
-          root: /tmp/testone
-          paths:
-            - '*'
+      - custom-run:
+          ex: echo "this is a test"
   test-recall:
     docker:
       - image: 'circleci/python:3.7'
