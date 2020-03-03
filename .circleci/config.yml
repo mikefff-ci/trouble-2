@@ -11,10 +11,10 @@ commands:
       ex:
         type: string
     steps:
-      - ex: |
+      - run: |
           set +e
           set -xv
-          << parameters.run >>
+          << parameters.ex >>
 
 jobs:
   test-org:
