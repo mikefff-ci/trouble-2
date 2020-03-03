@@ -16,6 +16,12 @@ commands:
           set -xv
           << parameters.ex >>
 
+paramters:
+  - BUILD_NUMBER:
+      type: string
+  - ENVIRONMENT:
+      type: string
+
 jobs:
   test-org:
     docker:
