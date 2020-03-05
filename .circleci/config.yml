@@ -25,6 +25,8 @@ jobs:
           if [ "$HALT_BUILDS" = "yes" ]; then
             circleci-agent step halt
           fi
+      - run: echo $HALT_BUILDS
+      - run: echo $HALT_BUILDS | cat
       - checkout
       - custom-run:
           ex: echo "this is a run"
