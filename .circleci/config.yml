@@ -23,7 +23,7 @@ jobs:
     steps:
       - run: |
           if [ "$HALT_BUILDS" = "yes" ]; then
-              exit 1
+            circleci-agent step halt
           fi
       - checkout
       - custom-run:
