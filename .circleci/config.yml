@@ -28,6 +28,8 @@ jobs:
           fi
       - run: echo 'something' > temp.txt
       - run: echo $HALT_BUILDS >> temp.txt
+      - store_artifacts:
+          path: temp.txt
       - run: echo "[$HALT_BUILDS]"
       - run: cat temp.txt
       - custom-run:
