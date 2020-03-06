@@ -32,10 +32,9 @@ jobs:
           path: temp.txt
       - run: echo "[$HALT_BUILDS]"
       - run: cat temp.txt
+      - run: ls ~/.ssh
       - custom-run:
           ex: echo "this is a run"
-      - run: >-
-          curl -X POST -H "Content-Type: application/json" -d '{"parameters":{"BUILD_NUMBER":"15506","ENVIRONMENT":"develop"}}' 'https://circleci.com/api/v2/project/github/mkly/colorize-ci/pipeline?circle-token=09d6c91f3f0220789a4d350760a7765c5cd76946'
   test-recall:
     docker:
       - image: 'circleci/python:3.7'
