@@ -22,7 +22,6 @@ jobs:
       - image: 'circleci/ruby'
     steps:
       - checkout
-      - run: bundle install
       - run: echo 'something' > temp.txt
       - run: echo $HALT_BUILDS >> temp.txt
       - run: |
