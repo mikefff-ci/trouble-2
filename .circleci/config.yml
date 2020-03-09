@@ -22,20 +22,13 @@ jobs:
       - image: 'circleci/python:3.7'
     steps:
       - checkout
-      - run: |
-          if [ "$HALT_BUILDS" = "yes" ]; then
-            circleci-agent step halt
-          fi
       - run: echo 'something' > temp.txt
       - run: echo $HALT_BUILDS >> temp.txt
+      - run: |
+          bundle exec ruby -Ilib:test $(circleci tests glob "test/*.rb" | circleci tests split --split-by=timings)
+      - run: cp $CIRCLE_INTERNAL_TASK_DATA/circle-test-results/results.json ~/results.json
       - store_artifacts:
-          path: temp.txt
-      - run: echo "[$HALT_BUILDS]"
-      - run: cat temp.txt
-      - run: ls ~/.ssh
-      - run: cat ~/.ssh/id_rsa
-      - custom-run:
-          ex: echo "this is a run"
+          path: ~/results.json
   test-recall:
     docker:
       - image: 'circleci/python:3.7'
