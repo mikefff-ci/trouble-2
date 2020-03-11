@@ -13,4 +13,4 @@ jobs:
 workflows:
   build-and-release:
     jobs:
-      - test-org:
+      - test-org
