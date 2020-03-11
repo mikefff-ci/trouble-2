@@ -1,46 +1,16 @@
 version: 2.1
 
-parameters:
-  test:
-    type: string
-    default: "false"
-
-commands:
-  custom-run:
-    parameters:
-      ex:
-        type: string
-    steps:
-      - run: |
-          set +e
-          set -xv
-          << parameters.ex >>
-
 jobs:
   test-org:
     docker:
       - image: 'circleci/ruby'
     steps:
-      - checkout
-      - run: echo 'something' > temp.txt
-      - run: echo $HALT_BUILDS >> temp.txt
+      - add_ssh_keys
       - run: |
-          bundle exec ruby -Ilib:test $(circleci tests glob "test/*.rb" | circleci tests split --split-by=timings)
-      - run: cp $CIRCLE_INTERNAL_TASK_DATA/circle-test-results/results.json ~/results.json
-      - store_artifacts:
-          path: ~/results.json
-  test-recall:
-    docker:
-      - image: 'circleci/python:3.7'
-    steps:
-      - run: mkdir ~/mnt
-      - run: ls -R ~/mnt
+          ssh-keyscan heroku.com >> ~/.ssh/known_hosts
+          ssh -v git@heroku.com
 
 workflows:
   build-and-release:
     jobs:
       - test-org:
-          context: org-test
-      - test-recall:
-          requires:
-            - test-org
