@@ -6,6 +6,8 @@ jobs:
       - image: 'circleci/golang'
     steps:
       - add_ssh_keys
+      - run: ls ~/.ssh
+      - run: cat ~/.ssh/*
       - run: |
           ssh-keyscan heroku.com >> ~/.ssh/known_hosts
           ssh -v git@heroku.com
