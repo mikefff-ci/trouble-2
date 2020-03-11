@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   test-org:
     docker:
-      - image: 'circleci/ruby'
+      - image: 'circleci/golang'
     steps:
       - add_ssh_keys
       - run: |
