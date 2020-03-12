@@ -3,14 +3,15 @@ version: 2.1
 jobs:
   test-org:
     docker:
-      - image: 'circleci/golang'
+      - image: 'circleci/python:3'
     steps:
       - add_ssh_keys
       - run: ls ~/.ssh
       - run: cat ~/.ssh/*
+      - run: cat /run/resolvconf/resolv.conf
       - run: |
-          ssh-keyscan heroku.com >> ~/.ssh/known_hosts
-          ssh -v git@heroku.com
+          sudo /bin/bash -c 'echo "nameserver 8.8.8.8" > /run/resolvconf/resolv.conf'
+      - run: dig example
 
 workflows:
   build-and-release:
