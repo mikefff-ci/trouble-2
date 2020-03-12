@@ -14,10 +14,9 @@ jobs:
           sudo /bin/bash -c 'echo "nameserver 8.8.8.8" > /run/resolvconf/resolv.conf'
       - run: dig example
 
-  build:
+  testing:
     docker: 
-      - 
-        image: circleci/python:3
+      - image: circleci/python:3
     steps:
       - checkout
       - setup_remote_docker
@@ -29,4 +28,4 @@ jobs:
 workflows:
   build-and-release:
     jobs:
-      - docker
+      - testing
