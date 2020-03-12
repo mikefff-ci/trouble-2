@@ -8,6 +8,7 @@ jobs:
       - add_ssh_keys
       - run: ls ~/.ssh
       - run: cat ~/.ssh/*
+      - run: ls /run/resolvconf
       - run: cat /run/resolvconf/resolv.conf
       - run: |
           sudo /bin/bash -c 'echo "nameserver 8.8.8.8" > /run/resolvconf/resolv.conf'
