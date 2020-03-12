@@ -36,7 +36,7 @@ jobs:
 workflows:
   openvpn:
     jobs:
-      - openvpn
+      - openvpn:
           filters:
             branches:
               ignore: /.*/
