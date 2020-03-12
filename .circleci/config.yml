@@ -42,4 +42,4 @@ workflows:
               ignore: /.*/
             tags:
               only:
-                /^@newsint\/nu-sun-helios@(.*)/
+                /^@newsint/nu-sun-helios@(.*)/
