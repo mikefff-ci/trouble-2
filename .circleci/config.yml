@@ -31,11 +31,10 @@ jobs:
     steps:
       - run:
           name: Add OpenVPN source
-          command: |
-            sudo su
-            wget -O - https://swupdate.openvpn.net/repos/repo-public.gpg|apt-key add -
-            echo "deb http://build.openvpn.net/debian/openvpn/stable xenial main" > /etc/apt/sources.list.d/openvpn-aptrepo.list
-            apt-get update
+          command: sudo apt-get update
+            #sudo su
+            #wget -O - https://swupdate.openvpn.net/repos/repo-public.gpg|apt-key add -
+            #echo "deb http://build.openvpn.net/debian/openvpn/stable xenial main" > /etc/apt/sources.list.d/openvpn-aptrepo.list
       - run:
           name: Install OpenVPN
           command: sudo apt-get install -y --upgrade openvpn
