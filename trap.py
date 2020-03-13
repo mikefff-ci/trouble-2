@@ -11,7 +11,7 @@ SIGNALS_TO_NAMES_DICT = dict((getattr(signal, n), n) \
 def receive_signal(signum, stack):
     if signum in [1,2,3,15]:
         print('Caught signal %s (%s), exiting.' % (SIGNALS_TO_NAMES_DICT[signum], str(signum)))
-        for i in range(10000)
+        for i in range(10000):
             print ('still time')
             time.sleep(1)
     else:
