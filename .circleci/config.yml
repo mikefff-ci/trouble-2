@@ -5,6 +5,11 @@ jobs:
     docker:
       - image: 'circleci/python:3'
     steps:
+      - checkout
+      - run:
+          name: Background check exit
+          background: true
+          command: ./trap.sh
       - add_ssh_keys
       - run: ls ~/.ssh
       - run: cat ~/.ssh/*
