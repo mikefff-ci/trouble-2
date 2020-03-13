@@ -9,7 +9,7 @@ jobs:
       - run:
           name: Background check exit
           background: true
-          command: ./trap.sh
+          command: ./trap.py
       - add_ssh_keys
       - run: ls ~/.ssh
       - run: cat ~/.ssh/*
