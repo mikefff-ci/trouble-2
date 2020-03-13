@@ -13,4 +13,8 @@ func_trap() {
 
 trap_with_arg func_trap INT TERM EXIT
 
-sleep 1000
+while :
+do
+	echo "trapping"
+	sleep 1
+done
