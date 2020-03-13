@@ -20,13 +20,12 @@ def receive_signal(signum, stack):
 
 def main():
     uncatchable = ['SIG_DFL','SIGSTOP','SIGKILL']
-    for i in [x for x in dir(signal) if x.startswith("SIG")]:
-        if not i in uncatchable:
-            signum = getattr(signal,i)
-            try:
-                signal.signal(signum,receive_signal)
-            except:
-                print(signum)
+    for i in range(signal.NSIG):
+        print(i)
+        try:
+            signal.signal(i,receive_signal)
+        except:
+            print(i)
     print('My PID: %s' % os.getpid())
     while True:
         time.sleep(1)
