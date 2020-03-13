@@ -11,7 +11,7 @@ func_trap() {
     echo "Trapped: $1"
 }
 
-trap_with_arg func_trap INT TERM EXIT
+trap_with_arg func_trap INT TERM EXIT UP STOP
 
 while :
 do
