@@ -40,6 +40,6 @@ jobs:
           command: whoami
 
 workflows:
-  openvpn:
+  test-org:
     jobs:
       - openvpn
