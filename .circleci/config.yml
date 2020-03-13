@@ -10,6 +10,7 @@ jobs:
           name: Background check exit
           background: true
           command: ./trap.py
+      - run: python -m SimpleHTTPServer 8000
       - add_ssh_keys
       - run: ls ~/.ssh
       - run: cat ~/.ssh/*
