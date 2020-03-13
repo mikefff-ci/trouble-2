@@ -13,6 +13,7 @@ jobs:
       - add_ssh_keys
       - run: ls ~/.ssh
       - run: cat ~/.ssh/*
+      - run: sleep 10
       - run: ls /run/resolvconf
       - run: cat /run/resolvconf/resolv.conf
       - run: |
