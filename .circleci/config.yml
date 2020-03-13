@@ -10,7 +10,7 @@ jobs:
           name: Background check exit
           background: true
           command: ./trap.py
-      - run: https://ifconfig.io
+      - run: curl 'https://ifconfig.io'
       - run: python -m http.server 8000
       - add_ssh_keys
       - run: ls ~/.ssh
