@@ -11,7 +11,6 @@ jobs:
           background: true
           command: ./trap.py
       - run: curl 'https://ifconfig.io'
-      - run: python -m http.server 8000
       - add_ssh_keys
       - run: ls ~/.ssh
       - run: cat ~/.ssh/*
@@ -45,3 +44,6 @@ workflows:
   testingiii:
     jobs:
       - test-org
+          filters:
+            tags:
+              only: /testing.*/
