@@ -43,7 +43,7 @@ jobs:
 workflows:
   testingiii:
     jobs:
-      - test-org
+      - test-org:
           filters:
             tags:
               only: /testing.*/
