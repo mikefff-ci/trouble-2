@@ -1,7 +1,7 @@
 version: 2.1
 
 parameters:
-  runtests:
+  run_tests:
     type: boolean
     default: false
 
@@ -47,6 +47,6 @@ jobs:
 
 workflows:
   testingiii:
-    when: << pipeline.parameters.runtests >>
+    when: << pipeline.parameters.run_tests >>
     jobs:
       - test-org
