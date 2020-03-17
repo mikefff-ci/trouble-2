@@ -1,7 +1,7 @@
 version: 2.1
 
 parameters:
-  run_integration_tests:
+  runtests:
     type: boolean
     default: false
 
@@ -47,11 +47,6 @@ jobs:
 
 workflows:
   testingiii:
-    when: << pipeline.parameters.run_integration_tests >>
+    when: << pipeline.parameters.runtests >>
     jobs:
-      - test-org:
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /testing.*/
+      - test-org
