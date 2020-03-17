@@ -47,7 +47,7 @@ jobs:
 
 workflows:
   testingiii:
-    when: << pipeline.parameters.run_integration_tests >>
+    when: << parameters.run_integration_tests >>
     jobs:
       - test-org:
           filters:
