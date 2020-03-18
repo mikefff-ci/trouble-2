@@ -41,12 +41,17 @@ jobs:
     machine:
       image: ubuntu-1604:201903-01
     steps:
+      - checkout
+      - run:
+          name: Test jq
+          command: |
+            $UPDATE_ID=$(cat testjson.json | jq '.id.name')
+            echo $UPDATE_ID
       - run:
           name: Test branch regex
-          command:
-            cat sdaf.yml
-            | sed "s/%JOB_NAME%/${JOB_NAME}/g"
-            | tee test.yml
+          command: |
+            sed -i "" "s/%JOB_NAME%/${JOB_NAME}/g" test.yml
+            cat test.yml
 
 workflows:
   testingiii:

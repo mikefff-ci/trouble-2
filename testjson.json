@@ -1,0 +1,23 @@
+{
+    "update": {
+        "status": "InProgress", 
+        "errors": [], 
+        "params": [
+            {
+                "type": "EndpointPublicAccess", 
+                "value": "true"
+            }, 
+            {
+                "type": "EndpointPrivateAccess", 
+                "value": "true"
+            }, 
+            {
+                "type": "PublicAccessCidrs", 
+                "value": "[\"3.212.203.219/32\",\"3.209.227.10/32\",\"34.230.124.110/32\",\"34.236.248.225/32\",\"52.55.27.206/32\",\"35.223.195.250/32\",\"3.94.250.34/32\"]"
+            }
+        ], 
+        "type": "EndpointAccessUpdate", 
+        "id": "464127e0-6f85-462b-a53b-c1c700ee5e29", 
+        "createdAt": 1584289512.852
+    }
+}
