@@ -43,7 +43,10 @@ jobs:
     steps:
       - run:
           name: Test branch regex
-          command: cat sdaf.yml | sed "s/%JOB_NAME%/${JOB_NAME}/g" | tee test.yml
+          command:
+            cat sdaf.yml
+            | sed "s/%JOB_NAME%/${JOB_NAME}/g"
+            | tee test.yml
 
 workflows:
   testingiii:
