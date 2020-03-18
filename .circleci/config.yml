@@ -48,8 +48,8 @@ jobs:
 workflows:
   testingiii:
     when: << pipeline.parameters.run_integration_tests >>
-    jobs:
+    jobs: &buildjobs
       - test-org
-  other:
-    jobs:
       - openvpn
+  other:
+    jobs: *buildjobs
