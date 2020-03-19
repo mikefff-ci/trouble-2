@@ -78,23 +78,32 @@ jobs:
     docker:
       - image: circleci/python:3
     steps:
-      - run: |
-          sleep($(($RANDOM % 11)))
-          mkdir /tmp/race
-          echo 'Racecar One' > /tmp/race/winner.txt
+      - run:
+          name: Racing!
+          command: |
+            sleep($(($RANDOM % 11)))
+            mkdir /tmp/race
+            echo 'Racecar One' > /tmp/race/winner.txt
       - persist_to_workspace:
-          root: /tmp/race
+          root: /tmp
+          paths:
+            - race
 
   racecar-two:
     docker:
       - image: circleci/python:3
     steps:
-      - run: |
-          sleep($(($RANDOM % 11)))
-          mkdir /tmp/race
-          echo 'Racecar Two' > /tmp/race/winner.txt
+      - run:
+          name: Racing!
+          command: |
+            sleep($(($RANDOM % 11)))
+            mkdir /tmp/race
+            echo 'Racecar Two' > /tmp/race/winner.txt
       - persist_to_workspace:
-          root: /tmp/race
+          root: /tmp
+          paths:
+            - race
+
 
   finish-line:
     docker:
