@@ -111,7 +111,7 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp/finishline
-      - run: ls -l /tmp/finishline
+      - run: ls -l /tmp/finishline/race
 
 workflows:
   racing:
