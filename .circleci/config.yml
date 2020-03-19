@@ -83,7 +83,7 @@ jobs:
           command: |
             sleep $(($RANDOM % 11))
             mkdir /tmp/race
-            echo 'Racecar One' > /tmp/race/winner.txt
+            echo 'Racecar One' > /tmp/race/winner1.txt
       - persist_to_workspace:
           root: /tmp
           paths:
@@ -98,7 +98,7 @@ jobs:
           command: |
             sleep $(($RANDOM % 11))
             mkdir /tmp/race
-            echo 'Racecar Two' > /tmp/race/winner.txt
+            echo 'Racecar Two' > /tmp/race/winner2.txt
       - persist_to_workspace:
           root: /tmp
           paths:
@@ -111,7 +111,7 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp/finishline
-      - run: cat /tmp/finishline/winner.txt
+      - run: ls -l /tmp/finishline
 
 workflows:
   racing:
