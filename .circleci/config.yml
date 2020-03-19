@@ -6,6 +6,27 @@ parameters:
     default: false
 
 jobs:
+  googpy:
+    docker:
+      - image: google/cloud-sdk:284.0.0-slim
+    steps:
+      - run:
+          name: Set Python3.7 as default
+          command: update-alternatives --install /usr/bin/python python /usr/bin/python3.7 1
+      - run:
+          name: Install Docker Compose
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/1.25.4/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            mv ~/docker-compose /usr/local/bin/docker-compose
+      - run:
+          name: Fix openssl issue
+          command: |
+            apt-get install python3-openssl
+            openssl version
+            python3 -c "import _ssl; print(_ssl._OPENSSL_API_VERSION)"
+            pip3 install --upgrade gcloud
+      - run:
   test-org:
     docker:
       - image: 'circleci/python:3'
@@ -53,11 +74,51 @@ jobs:
             sed -i "" "s/%JOB_NAME%/${JOB_NAME}/g" test.yml
             cat test.yml
 
+  racecar-one:
+    docker:
+      - image: circleci/python:3
+    steps:
+      - run: |
+          sleep($(($RANDOM % 11)))
+          mkdir /tmp/race
+          echo 'Racecar One' > /tmp/race/winner.txt
+      - persist_to_workspace:
+          root: /tmp/race
+
+  racecar-two:
+    docker:
+      - image: circleci/python:3
+    steps:
+      - run: |
+          sleep($(($RANDOM % 11)))
+          mkdir /tmp/race
+          echo 'Racecar Two' > /tmp/race/winner.txt
+      - persist_to_workspace:
+          root: /tmp/race
+
+  finish-line:
+    docker:
+      - image: circleci/python:3
+    steps:
+      - attach_wordpace:
+          at: /tmp/finishline
+      - run: cat /tmp/finishline/winner.txt
+
 workflows:
+  racing:
+    jobs:
+      - race-one
+      - race-two
+      - finish-line:
+          requires:
+            - race-one
+            - race-two
+
   testingiii:
-    when: << pipeline.parameters.run_integration_tests >>
+    when: false
     jobs: &buildjobs
       - test-org
       - openvpn
   other:
+    when: false
     jobs: *buildjobs
