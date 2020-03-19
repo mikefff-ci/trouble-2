@@ -81,7 +81,7 @@ jobs:
       - run:
           name: Racing!
           command: |
-            sleep($(($RANDOM % 11)))
+            sleep $(($RANDOM % 11))
             mkdir /tmp/race
             echo 'Racecar One' > /tmp/race/winner.txt
       - persist_to_workspace:
@@ -96,7 +96,7 @@ jobs:
       - run:
           name: Racing!
           command: |
-            sleep($(($RANDOM % 11)))
+            sleep $(($RANDOM % 11))
             mkdir /tmp/race
             echo 'Racecar Two' > /tmp/race/winner.txt
       - persist_to_workspace:
