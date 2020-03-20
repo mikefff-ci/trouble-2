@@ -9,6 +9,7 @@ jobs:
   npxtest:
     docker:
       - image: circleci/node:10
+    steps:
       - run: npm install
       - run: npx gatsby --version
       - run: npx firebase --version
@@ -120,7 +121,10 @@ jobs:
       - run: ls -l /tmp/finishline/race
 
 workflows:
+  npx:
+    - npxtest
   racing:
+    when: false
     jobs:
       - racecar-one
       - racecar-two
