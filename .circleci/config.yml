@@ -122,7 +122,8 @@ jobs:
 
 workflows:
   npx:
-    - npxtest
+    jobs:
+      - npxtest
   racing:
     when: false
     jobs:
