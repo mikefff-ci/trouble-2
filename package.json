@@ -1,0 +1,27 @@
+{
+  "name": "trouble",
+  "version": "1.0.0",
+  "description": "Troublddd",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkly/trouble.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mkly/trouble/issues"
+  },
+  "homepage": "https://github.com/mkly/trouble#readme",
+  "dependencies": {
+    "firebase-tools": "^7.15.1",
+    "gatsby": "^2.20.2"
+  }
+}

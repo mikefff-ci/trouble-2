@@ -6,6 +6,12 @@ parameters:
     default: false
 
 jobs:
+  npxtest:
+    docker:
+      - image: circleci/node:10
+      - run: npm install
+      - run: npx gatsby --version
+      - run: npx firebase --version
   googpy:
     docker:
       - image: google/cloud-sdk:284.0.0-slim
