@@ -14,8 +14,7 @@ jobs:
       - run: npm install
       - run: npx gatsby --version
       - run: npx firebase --version
-      - run: systemctl start docker
-      - run: docker run --rm php:7.2 php -r 'echo("test");'
+      - run: ls -R
   googpy:
     docker:
       - image: google/cloud-sdk:284.0.0-slim
