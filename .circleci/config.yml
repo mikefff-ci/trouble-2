@@ -14,6 +14,7 @@ jobs:
       - run: npm install
       - run: npx gatsby --version
       - run: npx firebase --version
+      - run: sudo dockerd
       - run: docker run --rm php:7.2 php -r 'echo("test");'
   googpy:
     docker:
