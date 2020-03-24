@@ -10,7 +10,7 @@ jobs:
     docker:
       - image: circleci/node:10
     steps:
-      - sleep 1000
+      - run: sleep 1000
       - checkout
       - run: npm install
       - run: npx gatsby --version
