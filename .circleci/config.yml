@@ -112,7 +112,10 @@ jobs:
 workflows:
   npx:
     jobs:
-      - googpy
+      - googpy:
+          filters:
+            tags:
+              only: /.*/
 
   racing:
     when: false
