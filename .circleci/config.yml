@@ -22,7 +22,9 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: docker-compose up
+      - run: docker-compose up -d
+      - run: docker cp ./test/test.txt tester:/tmp/test.txt
+      - run: docker-compose exec cat /tmp/test.txt
 
   test-org:
     docker:
