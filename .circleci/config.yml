@@ -21,6 +21,7 @@ jobs:
       - image: circleci/python
     steps:
       - checkout
+      - run: circleci step halt
       - run: echo "Testing"
 
   test-org:
