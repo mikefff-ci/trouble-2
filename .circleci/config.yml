@@ -24,7 +24,7 @@ jobs:
       - setup_remote_docker
       - run: docker-compose up -d
       - run: docker cp ./test/test.txt project_tester_1:/tmp/test.txt
-      - run: docker-compose exec cat /tmp/test.txt
+      - run: docker-compose exec project_tester_1 cat /tmp/test.txt
 
   test-org:
     docker:
