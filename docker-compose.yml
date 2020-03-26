@@ -6,3 +6,6 @@ services:
   dns:
     - 8.8.8.8
   network_mode: "bridge"
+  volumes:
+    - ./test:/tmp/test
+
