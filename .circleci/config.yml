@@ -18,24 +18,15 @@ jobs:
       - run: ls -R
   googpy:
     docker:
-      - image: google/cloud-sdk:284.0.0-slim
+      - image: circleci/python
     steps:
-      - run:
-          name: Set Python3.7 as default
-          command: update-alternatives --install /usr/bin/python python /usr/bin/python3.7 1
       - run:
           name: Install Docker Compose
           command: |
             curl -L https://github.com/docker/compose/releases/download/1.25.4/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
             chmod +x ~/docker-compose
             mv ~/docker-compose /usr/local/bin/docker-compose
-      - run:
-          name: Fix openssl issue
-          command: |
-            apt-get install python3-openssl
-            openssl version
-            python3 -c "import _ssl; print(_ssl._OPENSSL_API_VERSION)"
-            pip3 install --upgrade gcloud
+      - run: docker-compose up
 
   test-org:
     docker:
@@ -126,7 +117,7 @@ jobs:
 workflows:
   npx:
     jobs:
-      - npxtest
+      - googpy
   racing:
     when: false
     jobs:
