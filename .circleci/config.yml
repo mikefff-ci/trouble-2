@@ -24,10 +24,6 @@ jobs:
       - run: echo "ttesting" > ./test/test.txt
       - setup_remote_docker
       - run: docker-compose up
-    steps:
-      - checkout
-      - run: circleci step halt
-      - run: echo "Testing"
 
   test-org:
     docker:
