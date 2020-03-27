@@ -20,7 +20,8 @@ jobs:
     docker:
       - image: circleci/python
     steps:
-      - run: read
+      - checkout
+      - run: ./readd.sh
   test-org:
     docker:
       - image: 'circleci/python:3'
