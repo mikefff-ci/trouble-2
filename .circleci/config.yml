@@ -25,7 +25,7 @@ jobs:
       - run: echo "ttesting" > ./test/test.txt
       - setup_remote_docker
       - run: docker-compose up --no-start
-      - run: docker cp ./test/test.txt testing:/tmp/test/test.txt
+      - run: docker cp ./test/test.txt tester:/tmp/test/test.txt
       - run: docker-compose up --no-recreate
 
   test-org:
