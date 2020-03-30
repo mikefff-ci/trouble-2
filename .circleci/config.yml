@@ -23,11 +23,11 @@ jobs:
     executor:
       name: win/default
     steps:
+      - run: 
+          commnd: fsutil.exe 8dot3name set 0
+          shell: cmd.exe
       - run:
-          name: Testing Escape
-          command: |
-            fsutil.exe 8dot3name set 0
-            dir "C:\Program Files (x86)" 
+          command: dir "C:\Program Files (x86)" 
           shell: cmd.exe
   googpy:
     docker:
