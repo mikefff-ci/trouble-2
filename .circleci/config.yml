@@ -25,7 +25,7 @@ jobs:
     steps:
       - run:
           name: Testing Escape
-          command: cd "C:\Program File" & dir
+          command: dir "C:\Program Files (x86)" 
           shell: cmd.exe
   googpy:
     docker:
