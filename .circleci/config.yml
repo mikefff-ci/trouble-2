@@ -23,13 +23,12 @@ jobs:
     executor:
       name: win/default
     steps:
-      - run: 
-          name: Set
-          command: fsutil.exe 8dot3name set 0
-          shell: cmd.exe
       - run:
           name: Execute
-          command: dir "C:\Program Files (x86)" 
+          command: |
+            fsutil.exe 8dot3name set 0
+            dir "C:\\"
+            dir "C:\\Program Files (x86)" 
           shell: cmd.exe
   googpy:
     docker:
