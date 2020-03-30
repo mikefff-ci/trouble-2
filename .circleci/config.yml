@@ -26,9 +26,7 @@ jobs:
       - run:
           name: Execute
           command: |
-            fsutil.exe 8dot3name set 0
-            dir "C:\\"
-            dir "C:\\Program Files (x86)" 
+            dir C:\Program Files (x86)
           shell: cmd.exe
   googpy:
     docker:
