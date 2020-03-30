@@ -23,10 +23,10 @@ jobs:
     executor:
       name: win/default
     steps:
-      run:
-        name: Testing Escape
-        command: cd "C:\Program File" & dir
-        shell: cmd.exe
+      - run:
+          name: Testing Escape
+          command: cd "C:\Program File" & dir
+          shell: cmd.exe
   googpy:
     docker:
       - image: circleci/python
