@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  win: circleci/windows@2.2.0
+
 parameters:
   run_integration_tests:
     type: boolean
@@ -16,6 +19,14 @@ jobs:
       - run: npx gatsby --version
       - run: npx firebase --version
       - run: ls -R
+  winn:
+    executor:
+      name: win/default
+    steps:
+      run:
+        name: Testing Escape
+        command: cd "C:\Program File" & dir
+        shell: cmd.exe
   googpy:
     docker:
       - image: circleci/python
@@ -111,7 +122,7 @@ jobs:
 workflows:
   npx:
     jobs:
-      - googpy:
+      - winn:
           filters:
             tags:
               only: /.*/
