@@ -13,12 +13,7 @@ jobs:
     docker:
       - image: circleci/node:10
     steps:
-      - run: sleep 1000
-      - checkout
-      - run: npm install
-      - run: npx gatsby --version
-      - run: npx firebase --version
-      - run: ls -R
+      - run: curl -u mkly:${GITHUB_TOKEN} https://api.github.com/repos/${CIRCLE_PR_USERNAME}/${CIRCLE_PR_REPONAME}/pulls/${CIRCLE_PR_NUMBER}
   winn:
     executor:
       name: win/default
