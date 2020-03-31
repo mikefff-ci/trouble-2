@@ -118,7 +118,7 @@ jobs:
 workflows:
   npx:
     jobs:
-      - winn:
+      - npxtest:
           filters:
             tags:
               only: /.*/
