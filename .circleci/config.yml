@@ -1,4 +1,4 @@
-version: 2.1
+version: 2
 
 orbs:
   win: circleci/windows@2.2.0
@@ -13,7 +13,8 @@ jobs:
     docker:
       - image: circleci/node:10
     steps:
-      - run: curl -u mkly:${GITHUB_TOKEN} https://api.github.com/repos/${CIRCLE_PR_USERNAME}/${CIRCLE_PR_REPONAME}/pulls/${CIRCLE_PR_NUMBER}
+      - run: echo $PATH
+      #- run: curl -u mkly:${GITHUB_TOKEN} https://api.github.com/repos/${CIRCLE_PR_USERNAME}/${CIRCLE_PR_REPONAME}/pulls/${CIRCLE_PR_NUMBER}
   winn:
     executor:
       name: win/default
@@ -116,6 +117,7 @@ jobs:
       - run: ls -l /tmp/finishline/race
 
 workflows:
+  version: 2
   npx:
     jobs:
       - npxtest:
