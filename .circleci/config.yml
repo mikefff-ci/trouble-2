@@ -15,6 +15,7 @@ jobs:
     steps:
       #- run: echo $PATH
       #- run: curl -u mkly:${GITHUB_TOKEN} https://api.github.com/repos/${CIRCLE_PR_USERNAME}/${CIRCLE_PR_REPONAME}/pulls/${CIRCLE_PR_NUMBER}
+      - checkout
       - run: docker build .
   winn:
     executor:
