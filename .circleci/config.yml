@@ -13,8 +13,9 @@ jobs:
     docker:
       - image: circleci/node:10
     steps:
-      - run: echo $PATH
+      #- run: echo $PATH
       #- run: curl -u mkly:${GITHUB_TOKEN} https://api.github.com/repos/${CIRCLE_PR_USERNAME}/${CIRCLE_PR_REPONAME}/pulls/${CIRCLE_PR_NUMBER}
+      - run: docker build .
   winn:
     executor:
       name: win/default
