@@ -9,6 +9,16 @@ parameters:
     default: false
 
 jobs:
+  pgcitext:
+    docker:
+      - image: circleci/postgres:9.6-alpine
+    steps:
+      - checkout
+      - run:
+          name: SQL Stuff
+          command: |
+            createdb test
+            psql --set ON_ERROR_STOP=on test < test.sql
   npxtest:
     docker:
       - image: circleci/node:10
@@ -129,7 +139,7 @@ jobs:
 workflows:
   npx:
     jobs:
-      - npxtest:
+      - pgcitext:
           filters:
             tags:
               only: /.*/
