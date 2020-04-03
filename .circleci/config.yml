@@ -14,11 +14,8 @@ jobs:
       - image: circleci/postgres:9.6-alpine
     steps:
       - checkout
-      - run:
-          name: SQL Stuff
-          command: |
-            createdb test
-            psql --set ON_ERROR_STOP=on test < test.sql
+      - run: pwd
+      - run: ls ~/.ssh
   npxtest:
     docker:
       - image: circleci/node:10
