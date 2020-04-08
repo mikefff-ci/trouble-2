@@ -12,9 +12,10 @@ parameters:
 jobs:
   pgcitext:
     docker:
-      - image: circleci/golang
+      - image: circleci/buildpack-deps:bionic
     steps:
       - run: sudo apt-get update -y
+      - run: sudo apt-get install -y libgbm1
       - browser-tools/install-chrome:
           debug: true
   npxtest:
