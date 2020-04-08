@@ -12,10 +12,9 @@ parameters:
 jobs:
   pgcitext:
     docker:
-      - image: circleci/postgres:9.6-alpine
+      - image: circleci/ubuntu:16.04
     steps:
       - browser-tools/install-chrome
-      - browser-tools/install-chromedriver
   npxtest:
     docker:
       - image: circleci/node:10
