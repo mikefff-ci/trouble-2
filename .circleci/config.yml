@@ -14,9 +14,10 @@ jobs:
     docker:
       - image: circleci/buildpack-deps:bionic
     steps:
-      - run: sudo apt-get update -y
-      - run: sudo apt-get install -y libgbm1
+      - run: sudo apt-get update -y && sudo apt-get install -y libgbm1
       - browser-tools/install-chrome:
+          debug: true
+      - browser-tools/install-chromedriver:
           debug: true
   npxtest:
     docker:
