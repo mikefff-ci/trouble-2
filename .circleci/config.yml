@@ -15,7 +15,7 @@ jobs:
       - image: circleci/postgres:9.6-alpine
     steps:
       - browser-tools/install-chrome
-      - browser-tools/install-chromedrive
+      - browser-tools/install-chromedriver
   npxtest:
     docker:
       - image: circleci/node:10
