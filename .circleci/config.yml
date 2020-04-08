@@ -14,7 +14,8 @@ jobs:
     docker:
       - image: circleci/golang
     steps:
-      - browser-tools/install-chrome
+      - browser-tools/install-chrome:
+          debug: true
   npxtest:
     docker:
       - image: circleci/node:10
