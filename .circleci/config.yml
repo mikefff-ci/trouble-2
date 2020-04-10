@@ -9,16 +9,53 @@ parameters:
     type: boolean
     default: false
 
+orbs:
+  github-pull-request-info:
+    description: >
+      Pulls in Github pull request data from the Github API
+      https://developer.github.com/v3/pulls/#get-a-single-pull-request
+    commands:
+      inject:
+        if [ -z "$CIRCLE_PULL_REQUEST" ]
+          echo "Not a pull request. Skipping"
+          exit 0
+        fi
+
+        if ! [ -x "$(command -v curl)" ]; then
+          echo "Error: curl is not installed" >&2
+          exit 1
+        fi
+
+        if ! [ -x "$(command -v jq)" ]; then
+          echo "Error: jq is not installed" >&2
+          exit 1
+        fi
+
+        if [ -z "$GITHUB_PR_INFO_USERNAME" ]
+          echo "Error: \$GITHUB_PR_INFO_USERNAME is not set"
+          exit 1
+        fi
+
+        if [ -z "$GITHUB_PR_INFO_TOKEN" ]
+          echo "Error: \$GITHUB_PR_INFO_TOKEN is not set"
+          exit 1
+        fi
+
+        echo $CIRCLE_PULL_REQUEST
+
+        #curl https://api.github.com/repos/${OWNER}/${REPO}/pulls/${PULL_NUMBER} \
+        #  -u ${GITHUB_PR_INFO_USERNAME}:${GITHUB_PR_INFO_TOKEN} \
+        #  -H "Content-type: application/json" \
+        #  -i
+
+
 jobs:
   pgcitext:
     docker:
       - image: circleci/buildpack-deps:bionic
     steps:
-      #- run: sudo apt-get update -y && sudo apt-get install -y libgbm1
-      - browser-tools/install-chrome:
-          debug: true
-      - browser-tools/install-chromedriver:
-          debug: true
+      - github-pull-request-info/inject
+      - run: echo "the end"
   npxtest:
     docker:
       - image: circleci/node:10
