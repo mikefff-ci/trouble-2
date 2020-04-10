@@ -60,11 +60,9 @@ orbs:
                 -u ${GITHUB_PR_INFO_USERNAME}:${GITHUB_PR_INFO_TOKEN} \
                 -H "Content-type: application/json")
 
-              echo $RESULT | jq -r $'leaf_paths as $p | {k: ($p | "GITHUB_PR_INFO_" + join("_")), v: getpath($p)} | "echo \'export " + .k + "=\\"" + (.v|tostring) + "\\"\' >> $BASH_ENV"' | tr -d '\015'
+              EXPORT=$(echo $RESULT | jq -r $'leaf_paths as $p | {k: ($p | "GITHUB_PR_INFO_" + join("_")), v: getpath($p)} | "echo \'export " + .k + "=\\"" + (.v|tostring) + "\\"\' >> $BASH_ENV"')
 
-              echo $RESULT
-
-              eval $RESULT
+              eval $EXPORT
 
           - run: echo $GITHUB_PR_INFO_labels_0_id
 
