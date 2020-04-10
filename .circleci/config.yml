@@ -17,7 +17,7 @@ orbs:
       inject:
         steps:
         - run: |
-            if [ -z "$CIRCLE_PULL_REQUEST" ]
+            if [ -z "$CIRCLE_PULL_REQUEST" ]; then
               echo "Not a pull request. Skipping"
               exit 0
             fi
@@ -32,12 +32,12 @@ orbs:
               exit 1
             fi
 
-            if [ -z "$GITHUB_PR_INFO_USERNAME" ]
+            if [ -z "$GITHUB_PR_INFO_USERNAME" ]; then
               echo "Error: \$GITHUB_PR_INFO_USERNAME is not set"
               exit 1
             fi
 
-            if [ -z "$GITHUB_PR_INFO_TOKEN" ]
+            if [ -z "$GITHUB_PR_INFO_TOKEN" ]; then
               echo "Error: \$GITHUB_PR_INFO_TOKEN is not set"
               exit 1
             fi
