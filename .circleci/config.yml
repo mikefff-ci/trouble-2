@@ -56,7 +56,7 @@ orbs:
             echo $REPO
             echo $PULL_NUMBER
 
-            echo curl https://api.github.com/repos/${OWNER}/${REPO}/pulls/${PULL_NUMBER} \
+            curl https://api.github.com/repos/${OWNER}/${REPO}/pulls/${PULL_NUMBER} \
               -u ${GITHUB_PR_INFO_USERNAME}:${GITHUB_PR_INFO_TOKEN} \
               -H "Content-type: application/json" \
               -i
