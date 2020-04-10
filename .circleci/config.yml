@@ -65,7 +65,7 @@ orbs:
               cat $BASH_ENV
               echo '--------------'
 
-              bash <(echo $RESULT | jq $'leaf_paths as $p | {k: ($p | "GITHUB_PR_INFO_" + join("_")), v: getpath($p)} | "echo \'export " + .k + "=\\"" + (.v|tostring) + "\\"\' >> $BASH_ENV"');
+              bash <(touch $BASH_ENV | echo $RESULT | jq $'leaf_paths as $p | {k: ($p | "GITHUB_PR_INFO_" + join("_")), v: getpath($p)} | "echo \'export " + .k + "=\\"" + (.v|tostring) + "\\"\' >> $BASH_ENV"');
 
               env
 
