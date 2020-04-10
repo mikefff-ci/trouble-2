@@ -62,8 +62,11 @@ orbs:
 
               for ex in $(echo $RESULT | jq -r $'leaf_paths as $p | {k: ($p | "GITHUB_PR_INFO_" + join("_")), v: getpath($p)} | "export " + .k + "=\'" + (.v|tostring) + "\'"')
               do
+                echo '================='
                 echo $ex
+                echo '-----------------'
                 echo $ex >> $BASH_ENV
+                echo '*****************;
               done
 
               env
