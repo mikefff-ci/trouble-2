@@ -16,55 +16,53 @@ orbs:
     commands:
       inject:
         steps:
-        - run: |
-            if [ -z "$CIRCLE_PULL_REQUEST" ]; then
-              echo "Not a pull request. Skipping"
-              exit 0
-            fi
+          - run: |
+              if [ -z "$CIRCLE_PULL_REQUEST" ]; then
+                echo "Not a pull request. Skipping"
+                exit 0
+              fi
 
-            if ! [ -x "$(command -v curl)" ]; then
-              echo "Error: curl is not installed" >&2
-              exit 1
-            fi
+              if ! [ -x "$(command -v curl)" ]; then
+                echo "Error: curl is not installed" >&2
+                exit 1
+              fi
 
-            if ! [ -x "$(command -v jq)" ]; then
-              echo "Error: jq is not installed" >&2
-              exit 1
-            fi
+              if ! [ -x "$(command -v jq)" ]; then
+                echo "Error: jq is not installed" >&2
+                exit 1
+              fi
 
-            if ! [ -x "$(command -v cut)" ]; then
-              echo "Error: cut is not installed" >&2
-              exit 1
-            fi
+              if ! [ -x "$(command -v cut)" ]; then
+                echo "Error: cut is not installed" >&2
+                exit 1
+              fi
 
-            if [ -z "$GITHUB_PR_INFO_USERNAME" ]; then
-              echo "Error: \$GITHUB_PR_INFO_USERNAME is not set"
-              exit 1
-            fi
+              if [ -z "$GITHUB_PR_INFO_USERNAME" ]; then
+                echo "Error: \$GITHUB_PR_INFO_USERNAME is not set"
+                exit 1
+              fi
 
-            if [ -z "$GITHUB_PR_INFO_TOKEN" ]; then
-              echo "Error: \$GITHUB_PR_INFO_TOKEN is not set"
-              exit 1
-            fi
+              if [ -z "$GITHUB_PR_INFO_TOKEN" ]; then
+                echo "Error: \$GITHUB_PR_INFO_TOKEN is not set"
+                exit 1
+              fi
 
-            echo $CIRCLE_PULL_REQUEST
-            OWNER=$(echo $CIRCLE_PULL_REQUEST | cut -d '/' -f 4)
-            REPO=$(echo $CIRCLE_PULL_REQUEST | cut -d '/' -f 5)
-            PULL_NUMBER=$(echo $CIRCLE_PULL_REQUEST | cut -d '/' -f 7)
+              echo $CIRCLE_PULL_REQUEST
+              OWNER=$(echo $CIRCLE_PULL_REQUEST | cut -d '/' -f 4)
+              REPO=$(echo $CIRCLE_PULL_REQUEST | cut -d '/' -f 5)
+              PULL_NUMBER=$(echo $CIRCLE_PULL_REQUEST | cut -d '/' -f 7)
 
-            echo $OWNER
-            echo $REPO
-            echo $PULL_NUMBER
+              echo $OWNER
+              echo $REPO
+              echo $PULL_NUMBER
 
-            RESULT=$(curl https://api.github.com/repos/${OWNER}/${REPO}/pulls/${PULL_NUMBER} \
-              -u ${GITHUB_PR_INFO_USERNAME}:${GITHUB_PR_INFO_TOKEN} \
-              -H "Content-type: application/json")
+              RESULT=$(curl https://api.github.com/repos/${OWNER}/${REPO}/pulls/${PULL_NUMBER} \
+                -u ${GITHUB_PR_INFO_USERNAME}:${GITHUB_PR_INFO_TOKEN} \
+                -H "Content-type: application/json")
 
-            echo $RESULT
+              echo $RESULT | jq -r 'leaf_paths as $p | {k: ($p | "GITHUB_PR_INFO_" + join("_")), v: getpath($p)} | "export " + .k + "=\"" + (.v|tostring) + "\""'
 
-            echo $RESULT | jq -r 'leaf_paths as $p | {k: ($p | "GITHUB_PR_INFO_" + join("_")), v: getpath($p)} | "export " + .k + "=\"" + (.v|tostring) + "\""'
-
-            env
+          - run: echo $GITHUB_PR_INFO_labels_0_id
 
 
 jobs:
