@@ -75,7 +75,7 @@ orbs:
 jobs:
   pgcitext:
     docker:
-      - image: circleci/buildpack-deps:bionic
+      - image: circleci/golang
     steps:
       - run: touch $BASH_ENV
       - run: cat $BASH_ENV
