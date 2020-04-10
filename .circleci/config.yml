@@ -62,6 +62,8 @@ orbs:
 
               EXPORT=$(echo $RESULT | jq -r $'leaf_paths as $p | {k: ($p | "GITHUB_PR_INFO_" + join("_")), v: getpath($p)} | "echo \'export " + .k + "=\\"" + (.v|tostring) + "\\"\' >> $BASH_ENV"')
 
+              echo $EXPORT
+
               eval $EXPORT
 
           - run: echo $GITHUB_PR_INFO_labels_0_id
