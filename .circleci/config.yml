@@ -32,6 +32,11 @@ orbs:
               exit 1
             fi
 
+            if ! [ -x "$(command -v cut)" ]; then
+              echo "Error: cut is not installed" >&2
+              exit 1
+            fi
+
             if [ -z "$GITHUB_PR_INFO_USERNAME" ]; then
               echo "Error: \$GITHUB_PR_INFO_USERNAME is not set"
               exit 1
@@ -43,11 +48,18 @@ orbs:
             fi
 
             echo $CIRCLE_PULL_REQUEST
+            $OWNER = $(echo $CIRCLE_PULL_REQUEST | cut -d '\' -f 4)
+            $REPO = $(echo $CIRCLE_PULL_REQUEST | cut -d '\' -f 5)
+            $PULL_NUMBER = $(echo $CIRCLE_PULL_REQUEST | cut -d '\' -f 7)
 
-            #curl https://api.github.com/repos/${OWNER}/${REPO}/pulls/${PULL_NUMBER} \
-            #  -u ${GITHUB_PR_INFO_USERNAME}:${GITHUB_PR_INFO_TOKEN} \
-            #  -H "Content-type: application/json" \
-            #  -i
+            echo $OWNER
+            echo $REPO
+            echo $PULL_NUMBER
+
+            echo curl https://api.github.com/repos/${OWNER}/${REPO}/pulls/${PULL_NUMBER} \
+              -u ${GITHUB_PR_INFO_USERNAME}:${GITHUB_PR_INFO_TOKEN} \
+              -H "Content-type: application/json" \
+              -i
 
 
 jobs:
