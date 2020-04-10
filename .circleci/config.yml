@@ -62,7 +62,9 @@ orbs:
 
             echo $RESULT
 
-            #eval $(echo $RESULT | jq -r 'leaf_paths as $p | {k: ($p | "GITHUB_PR_INFO_" + join("_")), v: getpath($p)} | "export " + .k + "=" + (.v|tostring)')
+            echo
+
+            echo $RESULT | jq -r 'leaf_paths as $p | {k: ($p | "GITHUB_PR_INFO_" + join("_")), v: getpath($p)} | "export " + .k + "=" + (.v|tostring)'
 
             #env
 
