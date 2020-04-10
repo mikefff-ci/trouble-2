@@ -63,7 +63,7 @@ orbs:
                 while read ex; do
                   echo $ex
                   echo $ex >> $BASH_ENV
-                done <($RESULT | jq -r $'leaf_paths as $p | {k: ($p | "GITHUB_PR_INFO_" + join("_")), v: getpath($p)} | "export " + .k + "=\\"" + (.v|tostring) + "\\""')
+                done <(echo $RESULT | jq -r $'leaf_paths as $p | {k: ($p | "GITHUB_PR_INFO_" + join("_")), v: getpath($p)} | "export " + .k + "=\\"" + (.v|tostring) + "\\""')
 
               env
 
