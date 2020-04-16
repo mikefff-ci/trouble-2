@@ -13,7 +13,7 @@ orbs:
             type: string
         steps:
           - store_artifacts:
-              path: $CIRCLE_INTERNAL_TASK_DATA/circle-test-results
+              path: /.circleci-task-data/circle-test-results
           - store_artifacts:
               path: <<parameters.test_results_path>>
 
@@ -34,6 +34,7 @@ jobs:
           source env/bin/activate
           pip install -r requirements.txt
           pytest $(ls -1 test_* | circleci tests split) --junitxml=test/results.xml
+      - run: env
       - store_test_results:
           path: test
       - test-splitting-debug/artifacts:
