@@ -26,13 +26,14 @@ jobs:
   pgcitext:
     docker:
       - image: circleci/python:3.8
+    parallelism: 2
     steps:
       - checkout
       - run: |
           python3 -m venv env
           source env/bin/activate
           pip install -r requirements.txt
-          pytest --junitxml=test/results.xml
+          pytest $(ls -1 test_* | circleci tests split) --junitxml=test/results.xml
       - test-splitting-debug/artifacts:
           test_results_path: test
   npxtest:
