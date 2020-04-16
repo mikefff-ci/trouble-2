@@ -3,6 +3,19 @@ version: 2.1
 orbs:
   win: circleci/windows@2.2.0
   browser-tools: circleci/browser-tools@0.1.4
+  test-splitting-debug:
+    commands:
+      artifacts:
+        parameters:
+          test_results_path:
+            description: The path of the directory containing the test results
+            type: string
+            required: true
+        steps:
+          - store_artifacts:
+              - path: $CIRCLE_INTERNAL_TASK_DATA/circle-test-results
+          - store_artifacts:
+              - path: <<parameters.test_results_path>>
 
 parameters:
   run_integration_tests:
@@ -12,13 +25,15 @@ parameters:
 jobs:
   pgcitext:
     docker:
-      - image: circleci/buildpack-deps:bionic
+      - image: circleci/python:3.8
     steps:
-      #- run: sudo apt-get update -y && sudo apt-get install -y libgbm1
-      - browser-tools/install-chrome:
-          debug: true
-      - browser-tools/install-chromedriver:
-          debug: true
+      - checkout
+      - run: |
+          python3 -m venv env
+          source env/bin/activate
+          pip install -r requirements.txt
+      - run: pytest
+      - test-splitting-debug/artifacts
   npxtest:
     docker:
       - image: circleci/node:10
