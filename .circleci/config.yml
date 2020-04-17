@@ -11,6 +11,12 @@ parameters:
     default: false
 
 jobs:
+  next:
+    machine:
+      image: ubuntu-1604:201903-01
+    steps:
+      - run: which pip3
+      - run: pip3 install pytest
   pgcitext:
     docker:
       - image: circleci/python:3.8
@@ -145,7 +151,11 @@ jobs:
       - run: ls -l /tmp/finishline/race
 
 workflows:
+  next:
+    jobs:
+      - next
   npx:
+    when false
     jobs:
       - pgcitext:
           filters:
