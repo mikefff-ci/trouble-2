@@ -154,8 +154,9 @@ workflows:
   next:
     jobs:
       - next
+
   npx:
-    when false
+    when: false
     jobs:
       - pgcitext:
           filters:
