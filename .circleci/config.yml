@@ -26,6 +26,8 @@ jobs:
     steps:
       - run: |
           echo $COMMAND
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
           echo ' ' > test.txt
           git init
           git add test.txt
