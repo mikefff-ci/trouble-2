@@ -23,19 +23,8 @@ jobs:
   pgcitext:
     docker:
       - image: circleci/python:3.8
-    parallelism: 2
     steps:
-      - checkout
-      - run: |
-          python3 -m venv env
-          source env/bin/activate
-          pip install -r requirements.txt
-          pytest $(ls -1 test_* | circleci tests split) --junitxml=test/results.xml
-      - run: env
-      - store_test_results:
-          path: test
-      - test-splitting-debug/artifacts:
-          test_results_path: test
+      - run: echo $SSH_CONFIG_DIR
   npxtest:
     docker:
       - image: circleci/node:10
@@ -155,11 +144,11 @@ jobs:
 
 workflows:
   next:
+    when: false
     jobs:
       - next
 
   npx:
-    when: false
     jobs:
       - pgcitext:
           filters:
