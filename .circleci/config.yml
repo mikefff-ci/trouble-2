@@ -24,7 +24,13 @@ jobs:
     docker:
       - image: circleci/python:3.8
     steps:
-      - run: echo $SSH_CONFIG_DIR
+      - run: |
+          echo $COMMAND
+          echo ' ' > test.txt
+          git init
+          git add test.txt
+          git commit -m "test"
+          GIT_SSH_COMMAND='$COMMAND' git push git@github.com:mkly/trouble.git master
   npxtest:
     docker:
       - image: circleci/node:10
