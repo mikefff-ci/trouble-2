@@ -27,16 +27,17 @@ jobs:
       - run: |
           curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
           sudo apt-get -y update && sudo apt-get install -y git-lfs
-      - run: |
-          echo $COMMAND
           git lfs install
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
-          echo ' ' > test.txt
-          git init
-          git add test.txt
-          git commit -m "test"
-          GIT_SSH_COMMAND='$COMMAND' git push git@github.com:mkly/trouble.git master
+      - checkout
+          #- run: |
+          #echo $COMMAND
+          #git config --global user.email "you@example.com"
+          #git config --global user.name "Your Name"
+          #echo ' ' > test.txt
+          #git init
+          #git add test.txt
+          #git commit -m "test"
+          #GIT_SSH_COMMAND='$COMMAND' git push git@github.com:mkly/trouble.git master
   npxtest:
     docker:
       - image: circleci/node:10
