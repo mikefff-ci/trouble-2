@@ -157,16 +157,28 @@ jobs:
           at: /tmp/finishline
       - run: ls -l /tmp/finishline/race
 
-executors:
-  jdk-browsers:
+  mavv:
     docker:
       - image: circleci/openjdk:13.0.1-jdk-buster-browsers
+    steps:
+      - checkout
+      - run: mkdir test-reports
+      - run:
+          name: Download Selenium
+          command: curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
+      - run:
+          name: Start Selenium
+          command: java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
+          background: true
+      - run: mvn test
+
+executors:
+  jdk-browsers:
 
 workflows:
   mavvv:
     jobs:
-      - maven/test:
-          executor: jdk-browsers
+      - mavv
 
   next:
     when: false
