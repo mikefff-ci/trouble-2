@@ -4,6 +4,7 @@ orbs:
   win: circleci/windows@2.2.0
   browser-tools: circleci/browser-tools@0.1.4
   test-splitting-debug: mkly/test-splitting-debug@0.1.0
+  maven: circleci/maven@1.0.1
 
 parameters:
   run_integration_tests:
@@ -11,13 +12,6 @@ parameters:
     default: false
 
 jobs:
-  mavv:
-    docker:
-      - image: circleci/node:jessie-browsers
-    steps:
-      - checkout
-      - run: mvn test
-
   next:
     machine:
       image: ubuntu-1604:201903-01
@@ -163,10 +157,17 @@ jobs:
           at: /tmp/finishline
       - run: ls -l /tmp/finishline/race
 
+executors:
+  maven:
+    docker:
+      - image: circleci/9.0.4-jdk-browsers
+
 workflows:
   mavvv:
     jobs:
-      - mavv
+      - maven/test
+          executor: maven
+
   next:
     when: false
     jobs:
