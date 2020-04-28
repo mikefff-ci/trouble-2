@@ -158,15 +158,15 @@ jobs:
       - run: ls -l /tmp/finishline/race
 
 executors:
-  maven:
+  jdk-browsers:
     docker:
       - image: circleci/9.0.4-jdk-browsers
 
 workflows:
   mavvv:
     jobs:
-      - maven/test
-          executor: maven
+      - maven/test:
+          executor: jdk-browsers
 
   next:
     when: false
