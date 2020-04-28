@@ -27,9 +27,7 @@ jobs:
       - run: python3
       - run: which pip3
       - run: pip3 install pytest
-  sellsell:
-    docker:
-      - image: https://circleci.slack.com/archives/CDVSM9R9S/p1587508444093400
+
   pgcitext:
     docker:
       - image: circleci/python:3.8
