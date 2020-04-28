@@ -1,161 +1,42 @@
-version: 2.1
-
-orbs:
-  win: circleci/windows@2.2.0
-  browser-tools: circleci/browser-tools@0.1.4
-
-parameters:
-  run_integration_tests:
-    type: boolean
-    default: false
-
+# Java Gradle CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-java/ for more details
+#
+version: 2
 jobs:
-  pgcitext:
-    machine:
-      image: ubuntu-1604:201903-01
-    steps:
-      #- run: sudo apt-get update -y && sudo apt-get install -y libgbm1
-      - run: cat ~/.bashrc
-  npxtest:
+  build:
     docker:
-      - image: circleci/node:10
-    steps:
-      #- run: echo $PATH
-      #- run: curl -u mkly:${GITHUB_TOKEN} https://api.github.com/repos/${CIRCLE_PR_USERNAME}/${CIRCLE_PR_REPONAME}/pulls/${CIRCLE_PR_NUMBER}
-      - run:
-          name: Install Docker client
-          command: |
-            set -x
-            VER="17.03.0-ce"
-            curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
-            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
-            sudo mv /tmp/docker/* /usr/bin
-      - checkout
-      - run: docker build .
-  winn:
-    executor:
-      name: win/default
-    steps:
-      - run:
-          name: Execute
-          command: |
-            dir C:\Program Files (x86)
-          shell: cmd.exe
-  googpy:
-    docker:
-      - image: circleci/python
-    steps:
-      - run: cat /etc/ssh/ssh_config
-      - run: cat ~/.ssh/config
-  test-org:
-    docker:
-      - image: 'circleci/python:3'
-    steps:
-      - checkout
-      - run:
-          name: Background check exit
-          background: true
-          command: ./trap.py
-      - run: curl 'https://ifconfig.io'
-      - add_ssh_keys
-      - run: ls ~/.ssh
-      - run: cat ~/.ssh/*
-      - run: sleep 10
-      - run: ls /run/resolvconf
-      - run: cat /run/resolvconf/resolv.conf
-      - run: |
-          sudo /bin/bash -c 'echo "nameserver 8.8.8.8" > /run/resolvconf/resolv.conf'
-      - run: dig example
+      # specify the version you desire here
+      - image: circleci/openjdk:8-jdk
 
-  testing:
-    docker: 
-      - image: circleci/python:3
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/postgres:9.4
+
+    working_directory: ~/repo
+
+    environment:
+      # Customize the JVM maximum heap limit
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+
     steps:
       - checkout
-      - setup_remote_docker
-      - run:
-          name: test
-          command: |
-            docker-compose run tester
 
-  openvpn:
-    machine:
-      image: ubuntu-1604:201903-01
-    steps:
-      - checkout
-      - run:
-          name: Test jq
-          command: |
-            $UPDATE_ID=$(cat testjson.json | jq '.id.name')
-            echo $UPDATE_ID
-      - run:
-          name: Test branch regex
-          command: |
-            sed -i "" "s/%JOB_NAME%/${JOB_NAME}/g" test.yml
-            cat test.yml
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
-  racecar-one:
-    docker:
-      - image: circleci/python:3
-    steps:
-      - run:
-          name: Racing!
-          command: |
-            sleep $(($RANDOM % 11))
-            mkdir /tmp/race
-            echo 'Racecar One' > /tmp/race/winner1.txt
-      - persist_to_workspace:
-          root: /tmp
+      - run: gradle dependencies
+
+      - save_cache:
           paths:
-            - race
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
 
-  racecar-two:
-    docker:
-      - image: circleci/python:3
-    steps:
-      - run:
-          name: Racing!
-          command: |
-            sleep $(($RANDOM % 11))
-            mkdir /tmp/race
-            echo 'Racecar Two' > /tmp/race/winner2.txt
-      - persist_to_workspace:
-          root: /tmp
-          paths:
-            - race
-
-
-  finish-line:
-    docker:
-      - image: circleci/python:3
-    steps:
-      - attach_workspace:
-          at: /tmp/finishline
-      - run: ls -l /tmp/finishline/race
-
-workflows:
-  npx:
-    jobs:
-      - pgcitext:
-          filters:
-            tags:
-              only: /.*/
-
-  racing:
-    when: false
-    jobs:
-      - racecar-one
-      - racecar-two
-      - finish-line:
-          requires:
-            - racecar-one
-            - racecar-two
-
-  testingiii:
-    when: false
-    jobs: &buildjobs
-      - test-org
-      - openvpn
-  other:
-    when: false
-    jobs: *buildjobs
+      # run tests!
+      - run: gradle test
