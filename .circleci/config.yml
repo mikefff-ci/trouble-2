@@ -160,7 +160,7 @@ jobs:
 executors:
   jdk-browsers:
     docker:
-      - image: circleci/9.0.4-jdk-browsers
+      - image: circleci/openjdk:13.0.1-jdk-buster-browsers
 
 workflows:
   mavvv:
