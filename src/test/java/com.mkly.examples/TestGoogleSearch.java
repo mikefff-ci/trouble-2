@@ -17,7 +17,7 @@ public class TestGoogleSearch {
   @Test
   public void google_Search()
   {
-      System.setProperty("webdriver.chrome.driver", "/Users/mikelay/Downloads/chromedriver");
+      //System.setProperty("webdriver.chrome.driver", "/Users/mikelay/Downloads/chromedriver");
       WebDriver driver;
       driver = new ChromeDriver();
       driver.get("http://www.google.com");
