@@ -17,7 +17,7 @@ jobs:
       - image: circleci/php:7.1-apache-stretch-node-browsers
     steps:
       - setup_remote_docker
-      - run ssh remote-docker 'df -i'
+      - run: ssh remote-docker 'df -i'
   next:
     machine:
       image: ubuntu-1604:201903-01
