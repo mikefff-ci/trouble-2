@@ -19,6 +19,7 @@ jobs:
       - run: |
           sudo apt-key adv --recv-keys --keyserver keys.gnupg.net 46925553
           sudo apt-key adv --recv-keys --keyserver keys.gnupg.net 65FFB764
+          sudo apt-get update
       - run: sudo apt-key list | grep expired
   next:
     machine:
