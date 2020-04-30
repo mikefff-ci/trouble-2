@@ -12,6 +12,11 @@ parameters:
     default: false
 
 jobs:
+  phhhp:
+    docker:
+      - image: circleci/php:7.1-apache-jessie-node-browsers
+    steps:
+      - run: sudo apt-key list | grep expired
   next:
     machine:
       image: ubuntu-1604:201903-01
@@ -180,7 +185,7 @@ executors:
 workflows:
   mavvv:
     jobs:
-      - mavv
+      - phhhp
 
   next:
     when: false
