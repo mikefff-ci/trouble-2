@@ -16,6 +16,9 @@ jobs:
     docker:
       - image: circleci/php:7.1-apache-jessie-node-browsers
     steps:
+      - run: |
+          sudo apt-key adv --recv-keys --keyserver keys.gnupg.net 46925553
+          sudo apt-key adv --recv-keys --keyserver keys.gnupg.net 65FFB764
       - run: sudo apt-key list | grep expired
   next:
     machine:
