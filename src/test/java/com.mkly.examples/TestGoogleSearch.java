@@ -22,7 +22,7 @@ public class TestGoogleSearch {
       driver = new ChromeDriver();
       driver.get("http://www.google.com");
 
-      Assert.equals(driver.getTitle(), "Google");
+      Assert.assertEquals(driver.getTitle(), "Google");
 
       driver.quit();
   }
