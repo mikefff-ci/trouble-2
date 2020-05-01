@@ -11,48 +11,18 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import org.testng.annotations.*;
+import org.testng.Assert;
 
 public class TestGoogleSearch {
 
   @Test
   public void google_Search()
   {
-      //System.setProperty("webdriver.chrome.driver", "/Users/mikelay/Downloads/chromedriver");
       WebDriver driver;
       driver = new ChromeDriver();
       driver.get("http://www.google.com");
-      System.out.println("Running here");
-      System.out.println("Running here");
-      System.out.println("Running here");
-      System.out.println("Running here");
-      System.out.println("Running here");
-      System.out.println("Running here");
-      System.out.println("Running here");
-      System.out.println("Running here");
-      System.out.println("Running here");
-      System.out.println("Running here");
-      System.out.println("Running here");
-      System.out.println("Running here");
-      System.out.println("Running here");
-      System.out.println("Running here");
-      System.out.println("Running here");
-      System.out.println("Running here");
-      System.out.println("Running here");
 
-      //WebElement element = driver.findElement(By.name("q"));
-      //element.sendKeys("Cheese!\n");
-      //element.submit();
-
-      //Wait until the google page shows the result
-      //WebElement myDynamicElement = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id("resultStats")));
-
-      //List<WebElement> findElements = driver.findElements(By.xpath("//*[@id='rso']//h3/a"));
-
-      //Get the url of third link and navigate to it
-      //String third_link = findElements.get(2).getAttribute("href");
-      //driver.navigate().to(third_link);
-
-      System.out.println(driver.getTitle());
+      Assert.equals(driver.getTitle(), "Google");
 
       driver.quit();
   }
