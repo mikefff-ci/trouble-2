@@ -20,9 +20,15 @@ jobs:
         type: string
       two:
         type: string
+      three:
+        type: string
+      other:
+        type: string
     steps:
       - run: echo <<parameters.test>>
       - run: echo <<parameters.two>>
+      - run: echo <<parameters.three>>
+      - run: echo <<parameters.other>>
   phhhp:
     docker:
       - image: circleci/php:7.1-apache-stretch-node-browsers
@@ -201,7 +207,9 @@ workflows:
           matrix:
             parameters:
               test: ["a", "b", "c"]
+              other: ["ll", "lll"]
               two: ["nn", "mm", "vv", "a"]
+              three: ["bb", "jj", "kk"]
             exclude:
               - test: "a"
                 two: "a"
