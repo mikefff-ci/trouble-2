@@ -12,6 +12,12 @@ parameters:
     default: false
 
 jobs:
+  keanu:
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      - run: echo <<parameters.test>>
+      - run: echo <<parameters.two>>
   phhhp:
     docker:
       - image: circleci/php:7.1-apache-stretch-node-browsers
@@ -184,6 +190,17 @@ executors:
   jdk-browsers:
 
 workflows:
+  maxt:
+    jobs:
+      - keanu:
+          matrix:
+            parameters:
+              test: ["a", "b", "c"]
+              two: ["nn", "mm", "vv"]
+            exclude:
+              - test: "a"
+                two: "vv"
+
   mavvv:
     jobs:
       - mavv
