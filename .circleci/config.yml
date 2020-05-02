@@ -213,6 +213,8 @@ workflows:
             exclude:
               - test: "a"
                 two: "a"
+                other: "ll"
+                three: "bb"
 
   mavvv:
     jobs:
