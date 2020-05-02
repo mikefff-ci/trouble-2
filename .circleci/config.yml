@@ -15,6 +15,11 @@ jobs:
   keanu:
     docker:
       - image: circleci/python:3.7
+    parameters:
+      test:
+        type: string
+      two:
+        type: string
     steps:
       - run: echo <<parameters.test>>
       - run: echo <<parameters.two>>
