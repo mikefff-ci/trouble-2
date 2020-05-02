@@ -201,10 +201,10 @@ workflows:
           matrix:
             parameters:
               test: ["a", "b", "c"]
-              two: ["nn", "mm", "vv"]
+              two: ["nn", "mm", "vv", "a"]
             exclude:
               - test: "a"
-                two: "vv"
+                two: "a"
 
   mavvv:
     jobs:
