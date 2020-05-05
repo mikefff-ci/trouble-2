@@ -20,7 +20,7 @@ public class TestGoogleSearch {
   {
       WebDriver driver;
       driver = new ChromeDriver();
-      driver.get("http://www.google.com");
+      driver.get("https://int-schomp.a2zsync.com");
 
       Assert.assertEquals(driver.getTitle(), "Google");
 
