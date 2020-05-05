@@ -12,6 +12,11 @@ parameters:
     default: false
 
 jobs:
+  macdocker:
+    macos:
+      xcode: 11.3.0
+    steps:
+      - run: docker build .
   keanu:
     docker:
       - image: circleci/python:3.7
@@ -217,7 +222,11 @@ workflows:
                 other: "ll"
                 three: "bb"
 
+  macdockerrr:
+    jobs:
+      - macdocker
   mavvv:
+    when: false
     jobs:
       - mavv
 
