@@ -190,6 +190,7 @@ jobs:
     docker:
       - image: circleci/openjdk:13.0.1-jdk-buster-browsers
     steps:
+      - sudo apt-get update && apt-get install dnsutils
       - checkout
       - run: mkdir test-reports
       - run:
