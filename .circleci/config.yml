@@ -224,10 +224,10 @@ workflows:
                 three: "bb"
 
   macdockerrr:
+    when: false
     jobs:
       - macdocker
   mavvv:
-    when: false
     jobs:
       - mavv
 
