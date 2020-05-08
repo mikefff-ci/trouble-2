@@ -18,12 +18,21 @@ jobs:
     steps:
       - checkout
       - run: |
-          curl -L 'https://download.docker.com/mac/static/stable/x86_64/docker-18.09.9.tgz' --output docker.tgz
-          mkdir /tmp/cci-docker
-          tar xzvf docker.tgz -C /tmp/cci-docker
-          sudo cp /tmp/cci-docker/docker/docker /usr/local/bin
-          sudo sudo chmod a+x /usr/local/bin/docker
-      - run: docker -H remote-docker build .
+          # Docker desktop after 31259 refuses to install using root
+          echo 'Installing Docker'
+          curl -o '/tmp/Docker.dmg' -sSL 'https://download.docker.com/mac/stable/31259/Docker.dmg'
+          open -W '/tmp/Docker.dmg' && cp -r '/Volumes/Docker/Docker.app' '/Applications'
+
+          echo 'Starting Docker'
+          sudo '/Applications/Docker.app/Contents/MacOS/Docker' --quit-after-install --unattended > /dev/null
+          nohup '/Applications/Docker.app/Contents/MacOS/Docker' --unattended &
+
+          echo 'Waiting for Docker'
+          while ! docker ps 2>/dev/null ; do
+            sleep 5
+            echo "Waiting for docker to come up: $(date)"
+          done
+      - run: docker build .
   keanu:
     docker:
       - image: circleci/python:3.7
