@@ -16,8 +16,7 @@ jobs:
     macos:
       xcode: 11.3.0
     steps:
-      - setup_remote_docker
-      - run: docker -H remote-docker build .
+      - run: docker build .
   keanu:
     docker:
       - image: circleci/python:3.7
