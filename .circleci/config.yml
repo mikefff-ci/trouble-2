@@ -23,7 +23,7 @@ jobs:
           tar xzvf docker.tgz -C /tmp/cci-docker
           sudo cp /tmp/cci-docker/docker/docker /usr/local/bin
           sudo sudo chmod a+x /usr/local/bin/docker
-      - run: docker -H remote-docker docker build .
+      - run: docker -H remote-docker build .
   keanu:
     docker:
       - image: circleci/python:3.7
