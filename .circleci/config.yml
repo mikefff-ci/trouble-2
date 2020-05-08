@@ -18,11 +18,11 @@ jobs:
     steps:
       - checkout
       - run: |
-        curl -L 'https://download.docker.com/mac/static/stable/x86_64/docker-18.09.9.tgz' --output docker.tgz
-        mkdir /tmp/cci-docker
-        tar xzvf docker.tar.gz -C /tmp/cci-docker
-        sudo cp /tmp/cci-docker/docker/docker /usr/local/bin
-        sudo sudo chmod a+x /usr/local/bin/docker
+          curl -L 'https://download.docker.com/mac/static/stable/x86_64/docker-18.09.9.tgz' --output docker.tgz
+          mkdir /tmp/cci-docker
+          tar xzvf docker.tar.gz -C /tmp/cci-docker
+          sudo cp /tmp/cci-docker/docker/docker /usr/local/bin
+          sudo sudo chmod a+x /usr/local/bin/docker
       - run: docker -H remote-docker docker build .
   keanu:
     docker:
