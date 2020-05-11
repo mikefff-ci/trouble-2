@@ -15,6 +15,7 @@ jobs:
   workdows:
     executor:
       name: win/default
+      shell: cmd.exe
     steps:
       - run: echo %PATH%
       - run: |
