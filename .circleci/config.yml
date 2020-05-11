@@ -18,7 +18,7 @@ jobs:
       shell: cmd.exe
     steps:
       - run: echo %PATH%
-      - run: setx PATH "%PATH%";"C:\Program Files\MySQL\MySQL Server 5.5\bin" /M
+      - run: setx PATH "C:\Program Files\MySQL\MySQL Server 5.5\bin;%PATH%" /M
       - run: echo %PATH%
   macdocker:
     macos:
