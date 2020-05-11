@@ -12,6 +12,19 @@ parameters:
     default: false
 
 jobs:
+  workdows:
+    machine:
+      image: 'windows-server-2019-vs2019:stable'
+    steps:
+      - run: echo %PATH%
+      - run: |
+          set PATH=%PATH%;C:\test\
+          echo %PATH%
+      - run: echo %PATH%
+      - run: |
+          setx PATH=%PATH%;C:\test\
+          echo %PATH%
+      - run: echo %PATH%
   macdocker:
     macos:
       xcode: 11.3.0
@@ -241,7 +254,11 @@ workflows:
                 other: "ll"
                 three: "bb"
 
+  worrrk:
+    jobs:
+      - workdows
   macdockerrr:
+    when: false
     jobs:
       - macdocker
   mavvv:
