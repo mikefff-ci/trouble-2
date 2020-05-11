@@ -13,8 +13,11 @@ parameters:
 
 jobs:
   workdows:
+    executor:
+      name: win/default
     machine:
       image: 'windows-server-2019-vs2019:stable'
+    shell: cmd.exe
     steps:
       - run: echo %PATH%
       - run: |
