@@ -19,10 +19,6 @@ jobs:
     steps:
       - run: echo %PATH%
       - run: |
-          set PATH "%PATH%";"C:\Program Files\MySQL\MySQL Server 5.5\bin" /M
-          echo %PATH%
-      - run: echo %PATH%
-      - run: |
           setx PATH "%PATH%";"C:\Program Files\MySQL\MySQL Server 5.5\bin" /M
           echo %PATH%
       - run: echo %PATH%
