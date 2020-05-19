@@ -12,6 +12,12 @@ parameters:
     default: false
 
 jobs:
+  mysql-ssh:
+    docker:
+      - image: circleci/python:3.7
+      - image: circleci/mysql:5.7
+    steps:
+      - run: echo 1
   workdows:
     executor:
       name: win/default
@@ -233,6 +239,9 @@ executors:
   jdk-browsers:
 
 workflows:
+  mysqlll:
+    jobs:
+      - mysql-ssh
   maxt:
     when: false
     jobs:
@@ -250,6 +259,7 @@ workflows:
                 three: "bb"
 
   worrrk:
+    when: false
     jobs:
       - workdows
   macdockerrr:
