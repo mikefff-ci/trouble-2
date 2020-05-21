@@ -24,8 +24,6 @@ jobs:
       shell: cmd.exe
     steps:
       - run: echo %PATH%
-      - run: setx PATH "C:\Program Files\test"
-      - run: echo %PATH%
   macdocker:
     macos:
       xcode: 11.3.0
@@ -240,6 +238,7 @@ executors:
 
 workflows:
   mysqlll:
+    when: false
     jobs:
       - mysql-ssh
   maxt:
@@ -259,7 +258,7 @@ workflows:
                 three: "bb"
 
   worrrk:
-    when: false
+    when: true
     jobs:
       - workdows
   macdockerrr:
