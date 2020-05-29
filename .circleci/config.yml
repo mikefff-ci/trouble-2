@@ -20,7 +20,7 @@ jobs:
       - image: circleci/python:3.7
     steps:
       - run: |
-          if ((<< pipeline.parameters.number_of_retries >> > 4)); then
+          if ((<< pipeline.parameters.number_of_retries >> < 4)); then
             curl -X POST https://circleci.com/api/v2/project/gh/exampleorg/exampleproject/pipeline \
               -H 'Content-Type: application/json' \
               -H 'Accept: application/json' \
