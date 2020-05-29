@@ -10,14 +10,22 @@ parameters:
   run_integration_tests:
     type: boolean
     default: false
+  number_of_retries:
+    type: integer
+    default: 0
 
 jobs:
-  mysql-ssh:
+  dull:
     docker:
       - image: circleci/python:3.7
-      - image: circleci/mysql:5.7
     steps:
-      - run: echo 1
+      - run: |
+          if ((<< pipeline.parameters.number_of_retries >> > 4)); then
+            curl -X POST https://circleci.com/api/v2/project/gh/exampleorg/exampleproject/pipeline \
+              -H 'Content-Type: application/json' \
+              -H 'Accept: application/json' \
+              -d "{\"parameters\": {\"number_of_retries\": $((<<pipeline.parameters.number_of_retries>> + 1))}}"
+          fi
   workdows:
     executor:
       name: win/default
@@ -223,10 +231,10 @@ executors:
   jdk-browsers:
 
 workflows:
-  mysqlll:
-    when: false
+  dull:
+    when: true
     jobs:
-      - mysql-ssh
+      - dull
   maxt:
     when: false
     jobs:
@@ -248,7 +256,7 @@ workflows:
     jobs:
       - workdows
   macdockerrr:
-    when: true
+    when: false
     jobs:
       - macdocker
   mavvv:
