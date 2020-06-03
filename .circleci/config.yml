@@ -15,7 +15,7 @@ parameters:
     default: 0
 
 jobs:
-  build-nums:
+  build-num:
     docker:
       - image: circleci/python3:7
     steps:
