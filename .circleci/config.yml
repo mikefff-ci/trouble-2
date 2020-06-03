@@ -15,6 +15,11 @@ parameters:
     default: 0
 
 jobs:
+  build-nums:
+    docker:
+      - image: circleci/python3:7
+    steps:
+      - run: echo 123
   dull:
     docker:
       - image: circleci/python:3.7
@@ -231,8 +236,13 @@ executors:
   jdk-browsers:
 
 workflows:
-  dull:
+  build-num:
     when: true
+    jobs:
+      - build-num
+
+  dull:
+    when: false
     jobs:
       - dull
   maxt:
