@@ -17,7 +17,7 @@ parameters:
 jobs:
   build-num:
     docker:
-      - image: circleci/python3:7
+      - image: circleci/python:3.7
     steps:
       - run: echo 123
   dull:
