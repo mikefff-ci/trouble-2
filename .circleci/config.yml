@@ -19,7 +19,9 @@ jobs:
     docker:
       - image: circleci/python:3.7
     steps:
-      - run: echo 333
+      - checkout
+      - setup_remote_docker
+      - run: docker build .
   dull:
     docker:
       - image: circleci/python:3.7
