@@ -30,6 +30,7 @@ jobs:
           echo "export PATH=`pwd`/test:$PATH" >> $BASH_ENV
           . $BASH_ENV
           echo "AFTER PATH:  $PATH"
+          head $BASH_ENV
       - run: |
           echo $BASH_ENV
           exec bash
