@@ -32,7 +32,7 @@ jobs:
           echo "AFTER PATH:  $PATH"
       - run: |
           echo $BASH_ENV
-          . $BASH_ENV
+          exec bash
           echo "#######################"
           echo $PATH
           pathtest
