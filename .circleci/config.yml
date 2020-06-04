@@ -16,6 +16,8 @@ parameters:
 
 jobs:
   build-num:
+    environment:
+      DOCKER_BUILDKIT: "1"
     docker:
       - image: circleci/python:3.7
     steps:
