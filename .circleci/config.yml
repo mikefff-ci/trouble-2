@@ -24,7 +24,7 @@ jobs:
     steps:
       - run: |
           mkdir ~/test
-          echo "#!/usr/bin/env bash\necho 123" ~/test/pathtest
+          echo "#!/usr/bin/env bash\necho 123" > ~/test/pathtest
           chmod a+x ~/test/run
           cat $BASH_ENV
           echo $BASH_ENV
