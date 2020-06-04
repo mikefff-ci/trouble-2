@@ -28,7 +28,7 @@ jobs:
           chmod a+x ~/test/pathtest
           cat $BASH_ENV
           echo $BASH_ENV
-          echo "export PATH=`pwd`/test/run:$PATH" >> $BASH_ENV
+          echo "export PATH=`pwd`/test:$PATH" >> $BASH_ENV
           cat $BASH_ENV
           echo $BASH_ENV
           source $BASH_ENV
