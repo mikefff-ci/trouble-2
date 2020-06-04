@@ -22,7 +22,7 @@ jobs:
       - image: circleci/python:3.7
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
           environment:
             DOCKER_BUILDKIT: "1"
       - run: docker build .
