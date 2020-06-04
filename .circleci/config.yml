@@ -23,8 +23,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker:
-          environment:
-            DOCKER_BUILDKIT: "1"
+          version: 18.09.3
       - run: docker build .
   dull:
     docker:
