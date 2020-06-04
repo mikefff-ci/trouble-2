@@ -34,6 +34,9 @@ jobs:
           source $BASH_ENV
           echo "AFTER PATH:  $PATH"
       - run: |
+          echo $BASH_ENV
+          source $BASH_ENV
+          cat $BASH_ENV
           pathtest
   build-num:
     environment:
