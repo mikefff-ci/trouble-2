@@ -25,7 +25,7 @@ jobs:
       - run: |
           mkdir ~/test
           echo "#!/usr/bin/env bash\necho 123" > ~/test/pathtest
-          chmod a+x ~/test/run
+          chmod a+x ~/test/pathtest
           cat $BASH_ENV
           echo $BASH_ENV
           echo 'export PATH=~/test/run:$PATH' >> $BASH_ENV
