@@ -15,6 +15,26 @@ parameters:
     default: 0
 
 jobs:
+  bash-env:
+    environment:
+      BASH_ENV: "/home/circleci/.bashrc"
+      CIRCLE_SHELL_ENV: "/home/circleci/.bashrc"
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      - run: |
+          mkdir ~/test
+          echo "#!/usr/bin/env bash\necho 123" ~/test/pathtest
+          chmod a+x ~/test/run
+          cat $BASH_ENV
+          echo $BASH_ENV
+          echo 'export PATH=~/test/run:$PATH' >> $BASH_ENV
+          cat $BASH_ENV
+          echo $BASH_ENV
+          source $BASH_ENV
+          echo "AFTER PATH:  $PATH"
+      - run: |
+          pathtest
   build-num:
     environment:
       DOCKER_BUILDKIT: "1"
@@ -242,9 +262,13 @@ executors:
 
 workflows:
   build-num:
-    when: true
+    when: false
     jobs:
       - build-num
+  test-run:
+    when: true
+    jobs:
+      - bash-env
 
   dull:
     when: false
