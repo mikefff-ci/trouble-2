@@ -33,6 +33,8 @@ jobs:
       - run: |
           echo $BASH_ENV
           source $BASH_ENV
+          echo "#######################"
+          echo $PATH
           pathtest
   build-num:
     environment:
