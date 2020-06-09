@@ -15,6 +15,11 @@ parameters:
     default: 0
 
 jobs:
+  climb:
+    docker:
+      - image: circleci/golang
+    steps:
+      - run: true
   badwhen:
     docker:
       - image: circleci/python:3.7
@@ -288,7 +293,7 @@ workflows:
   test-run:
     when: true
     jobs:
-      - badwhen
+      - climb
 
   dull:
     when: false
