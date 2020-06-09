@@ -15,6 +15,13 @@ parameters:
     default: 0
 
 jobs:
+  badwhen:
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      - when:
+          name: Test when validations
+          command: echo 123
   paause:
     docker:
       - image: circleci/python:3.7
@@ -275,7 +282,7 @@ workflows:
   test-run:
     when: true
     jobs:
-      - paause
+      - badwhen
 
   dull:
     when: false
