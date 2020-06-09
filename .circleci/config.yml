@@ -15,24 +15,11 @@ parameters:
     default: 0
 
 jobs:
-  climb:
-    docker:
-      - image: circleci/golang
-    steps:
-      - run: true
   badwhen:
     docker:
       - image: circleci/python:3.7
     steps:
-      - run:
-          name: Before
-          command: echo Before
-      - when:
-          name: Test when validations
-          command: echo When
-      - run:
-          name: After
-          command: echo After
+      - run: true
   paause:
     docker:
       - image: circleci/python:3.7
