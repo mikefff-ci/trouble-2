@@ -19,10 +19,15 @@ jobs:
     docker:
       - image: circleci/python:3.7
     steps:
-      - run: echo 123
+      - run:
+          name: Before
+          command: echo Before
       - when:
           name: Test when validations
-          command: echo 123
+          command: echo When
+      - run:
+          name: After
+          command: echo After
   paause:
     docker:
       - image: circleci/python:3.7
