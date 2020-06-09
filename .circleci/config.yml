@@ -19,6 +19,7 @@ jobs:
     docker:
       - image: circleci/python:3.7
     steps:
+      - run: echo 123
       - when:
           name: Test when validations
           command: echo 123
