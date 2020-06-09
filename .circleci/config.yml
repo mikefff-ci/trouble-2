@@ -19,7 +19,7 @@ jobs:
     docker:
       - image: circleci/python:3.7
     steps:
-      - run: true
+      - run: sleep 1
   paause:
     docker:
       - image: circleci/python:3.7
