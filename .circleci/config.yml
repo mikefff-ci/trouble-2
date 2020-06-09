@@ -22,7 +22,7 @@ jobs:
       - run: echo test
       - restore_cache:
           keys:
-            - test-{{ checksum << pipeline.project.git_url >> }}-two
+            - test-{{ checksum '<< pipeline.project.git_url >>' }}-two
   paause:
     docker:
       - image: circleci/python:3.7
