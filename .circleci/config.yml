@@ -15,7 +15,7 @@ parameters:
     default: 0
 
 jobs:
-  badwhen:
+  climb:
     docker:
       - image: circleci/python:3.7
     steps:
