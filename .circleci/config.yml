@@ -20,11 +20,14 @@ jobs:
     executor: python/default
     steps:
       - checkout
-      - python/load-cache:
-          key: v1112
+      - restore_cache:
+          key: v1-{{ checksum "requirements.txt" }}
       - python/install-deps
-      - python/save-cache:
-          key: v1112
+      - save_cache:
+          key: v1-{{ checksum "requirements.txt" }}
+          paths:
+            - /home/circleci/.local/bin
+            - /home/circleci/.local/lib
       - run: which pytest
       - run: ls /home/circleci/.local
       - run: echo $PATH
