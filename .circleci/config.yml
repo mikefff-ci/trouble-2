@@ -20,7 +20,8 @@ jobs:
     executor: python/default
     steps:
       - checkout
-      - python/load-cache
+      - python/load-cache:
+          key: v1
       - python/install-deps
       - python/save-cache:
           key: v1
