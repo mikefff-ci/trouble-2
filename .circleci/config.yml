@@ -21,11 +21,11 @@ jobs:
     steps:
       - checkout
       - python/load-cache:
-          key: v1
+          key: v11
       - python/install-deps
       - python/save-cache:
-          key: v1
-      - run: ls -a ~/.local/bin
+          key: v11
+      - run: echo $PATH
       - run: pytest -v
 
   climb:
