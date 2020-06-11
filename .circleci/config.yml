@@ -5,6 +5,7 @@ orbs:
   browser-tools: circleci/browser-tools@0.1.4
   test-splitting-debug: mkly/test-splitting-debug@0.1.0
   maven: circleci/maven@1.0.1
+  python: circleci/python@0.2.1
 
 parameters:
   run_integration_tests:
@@ -15,6 +16,15 @@ parameters:
     default: 0
 
 jobs:
+  pyyy:
+    executor: python/default
+    steps:
+      - checkout
+      - python/load-cache
+      - python/install-deps
+      - python/save-cache 
+      - run: pytest -v
+
   climb:
     docker:
       - image: circleci/python:3.7
@@ -280,10 +290,10 @@ workflows:
     when: false
     jobs:
       - build-num
-  test-run:
+  pyyy:
     when: true
     jobs:
-      - climb
+      - pyyy
 
   dull:
     when: false
