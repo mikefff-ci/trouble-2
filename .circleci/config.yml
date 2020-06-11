@@ -22,7 +22,9 @@ jobs:
       - checkout
       - python/load-cache
       - python/install-deps
-      - python/save-cache 
+      - python/save-cache:
+          key: v1
+      - run: ls -a ~/.local/bin
       - run: pytest -v
 
   climb:
