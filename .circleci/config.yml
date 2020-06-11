@@ -25,6 +25,7 @@ jobs:
       - python/install-deps
       - python/save-cache:
           key: v11
+      - run: ls /home/circleci/.local/bin
       - run: echo $PATH
       - run: pytest -v
 
