@@ -21,12 +21,12 @@ jobs:
     steps:
       - checkout
       - python/load-cache:
-          key: v111
+          key: v1112
       - python/install-deps
       - python/save-cache:
-          key: v111
+          key: v1112
       - run: which pytest
-      - run: ls /home/circleci/.local/bin
+      - run: ls /home/circleci/.local
       - run: echo $PATH
       - run: pytest -v
 
