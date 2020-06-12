@@ -1,4 +1,9 @@
 version: 2.1
+
+parameters:
+  apithing:
+    type: string
+    default: ""
 workflows:
   btd:
     jobs:
@@ -8,4 +13,4 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: $DOES_NOT_EXIST_SOMETIMES
+      - run: << pipeline.parameters.apithing >>
