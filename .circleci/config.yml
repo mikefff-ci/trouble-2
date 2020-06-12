@@ -10,5 +10,5 @@ jobs:
           command: |
             curl -sL https://deb.nodesource.com/setup_10.x | bash -
             apt-get -y install nodejs
-       - run: which noe
+       - run: which node
        - run: which npm
