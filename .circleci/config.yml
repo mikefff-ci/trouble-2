@@ -9,7 +9,7 @@ jobs:
           name: Install essentials (git/node)
           command: |
             curl -sL https://deb.nodesource.com/setup_10.x | bash -
-      - run: |
+       - run: |
           which node
           which npm
           bash
