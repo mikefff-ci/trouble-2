@@ -20,10 +20,10 @@ jobs:
     executor: python/default
     steps:
       - checkout
+      - run: apt-get update && apt-get install -y libpq-dev
       - python/load-cache
       - python/install-deps
       - python/save-cache
-      - run: apt-get update && apt-get install -y libpq-dev
       - run: which pytest
       - run: ls /home/circleci/.local
       - run: echo $PATH
