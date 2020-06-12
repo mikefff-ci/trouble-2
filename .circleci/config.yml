@@ -5,7 +5,7 @@ orbs:
   browser-tools: circleci/browser-tools@0.1.4
   test-splitting-debug: mkly/test-splitting-debug@0.1.0
   maven: circleci/maven@1.0.1
-  python: circleci/python@0.2.1
+  python: circleci/python@0.3.0
 
 parameters:
   run_integration_tests:
@@ -20,14 +20,10 @@ jobs:
     executor: python/default
     steps:
       - checkout
-      - restore_cache:
-          key: v123-{{ checksum "requirements.txt" }}
+      - load-cache
       - python/install-deps
-      - save_cache:
-          key: v123-{{ checksum "requirements.txt" }}
-          paths:
-            - /home/circleci/.local/bin
-            - /home/circleci/.local/lib
+      - save-cache
+      - run: apt-get update && apt-get install -y libpq-dev
       - run: which pytest
       - run: ls /home/circleci/.local
       - run: echo $PATH
