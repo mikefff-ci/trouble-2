@@ -1,15 +1,16 @@
-version: 2
+version: 2.1
 jobs:
-   build:
-     docker:
-       - image: google/cloud-sdk:latest
-     working_directory: ~/app
-     steps:
-       - run: 
-          name: Install essentials (git/node)
-          command: |
-            curl -sL https://deb.nodesource.com/setup_10.x | bash -
-            apt-get -y install nodejs
-            apt-get -y install npm
-       - run: which node
-       - run: which npm
+  build:
+    docker:
+      - image: google/cloud-sdk:latest
+      - image: circleci/python:3.7
+      - image: circleci/golang
+      - image: quay.io/bitnami/sealed-secrets-controller
+    working_directory: ~/app
+    steps:
+      - run: 
+
+workflows:
+  build:
+    jobs:
+      - build
