@@ -5,13 +5,14 @@ jobs:
       - image: google/cloud-sdk:latest
       - image: circleci/python:3.7
       - image: circleci/golang
-      - image: quay.io/bitnami/sealed-secrets-controller
       - image: circleci/python:3.4
       - image: circleci/python:3.5
       - image: circleci/python:3.6
       - image: selenium/node-chrome
       - image: selenium/node-firefox
+      - image: selenium/standalone-chrome
     steps:
+      - setup_remote_docker
       - run: echo 123
 
 workflows:
