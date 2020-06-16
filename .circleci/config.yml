@@ -40,4 +40,4 @@ workflows:
               projects: ""
             parameters:
               test: [lint1, lint2, lint3]
-              projects: ["<< pipeline.parameters.lint1 >>", "<< pipeline.parameters.lint2 >>", "<< pipeline.parameters.lint3 >>"]
+              projects: ["<< pipeline.parameters.lint1 >>", "<< pipeline.parameters.lint2 >>", "noop"]
