@@ -9,7 +9,7 @@ parameters:
     default: "t2"
   lint3:
     type: string
-    default: ""
+    default: "noop"
 
 jobs:
   test:
