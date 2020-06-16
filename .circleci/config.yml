@@ -21,6 +21,6 @@ workflows:
   workflow:
     jobs:
       - test:
-          when: << pipelines.parameters.should >>
+          when: << pipeline.parameters.should >>
           context: org-test
       - test2
