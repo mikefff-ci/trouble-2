@@ -9,7 +9,7 @@ parameters:
     default: "t2"
   lint3:
     type: string
-    default: ""
+    default: "noop"
 
 jobs:
   test:
@@ -33,11 +33,11 @@ workflows:
           matrix:
             exclude:
             - test: lint1
-              projects: ""
+              projects: "noop"
             - test: lint2
-              projects: ""
+              projects: "noop"
             - test: lint3
-              projects: ""
+              projects: "noop"
             parameters:
               test: [lint1, lint2, lint3]
               projects: ["<< pipeline.parameters.lint1 >>", "<< pipeline.parameters.lint2 >>", "<< pipeline.parameters.lint3 >>"]
