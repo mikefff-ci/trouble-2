@@ -33,9 +33,9 @@ workflows:
           matrix:
             exclude:
             - test: lint1
-              projects: ""
+              projects: "dd"
             - test: lint2
-              projects: ""
+              projects: "dd"
             - test: lint3
               projects: "noop"
             parameters:
