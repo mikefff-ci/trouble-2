@@ -10,7 +10,7 @@ jobs:
     docker:
       - image: circleci/python:3.7
     steps:
-      - run: echo 123
+      - run: echo "<< pipeline.project.git_url >>"
 
 workflows:
   workflow:
