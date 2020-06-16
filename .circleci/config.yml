@@ -1,18 +1,42 @@
 version: 2.1
 
+parameters:
+  lint1:
+    type: string
+    default: "t1"
+  lint2:
+    type: string
+    default: "t2"
+  lint3:
+    type: string
+    default: "t3"
+
 jobs:
   test:
+    parameters:
+      test:
+        type: string
+      projects:
+        type: string
     docker:
       - image: circleci/python:3.7
     steps:
-      - run: echo 123
+      - run: |
+          echo << matrix.test >>
+          echo << matrix.projects >>
 
 workflows:
-  testin:
+  workflow:
     jobs:
       - test:
-          name: build-v-<< matrix.version >>
           matrix:
+            exclude:
+            - test: lint1
+              projects: ""
+            - test: lint2
+              projects: ""
+            - test: lint3
+              projects: ""
             parameters:
-              version: ["0.1", "0.2", "0.3"]
-              platform: ["macos", "windows", "linux"]
+              test: [lint1, lint2, lint3]
+              projects: [<< pipeline.parameters.lint1 >>, << pipeline.parameters.lint2 >>, << pipeline.parameters.lint3 >>]
