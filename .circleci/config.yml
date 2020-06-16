@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/python:3.7
     steps:
-      - run: echo $(($TESTING == "testing"))
+      - run: echo $(($TEST_ONE == "testing"))
 
 workflows:
   workflow:
