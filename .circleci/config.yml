@@ -1,37 +1,14 @@
 version: 2.1
 
-parameters:
-  one:
-    type: string
-    default: "one"
-  noop:
-    type: string
-    default: "noop"
-
 jobs:
   test:
-    parameters:
-      test:
-        type: string
     docker:
       - image: circleci/python:3.7
     steps:
-      - run: echo << parameters.test >>
+      - run: echo $(($TESTING == "testing"))
 
 workflows:
   workflow:
     jobs:
-      - test:
-          name: with-params-<< matrix.test >>
-          matrix:
-            exclude:
-              - test: "noop"
-            parameters:
-              test: [<< pipeline.parameters.one >>, << pipeline.parameters.noop >>]
-      - test:
-          name: with-strings-<< matrix.test >>
-          matrix:
-            exclude:
-              - test: "noop"
-            parameters:
-              test: [one, noop]
+      test:
+        context: org-test
