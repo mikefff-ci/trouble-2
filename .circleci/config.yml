@@ -10,5 +10,5 @@ jobs:
 workflows:
   workflow:
     jobs:
-      test:
-        context: org-test
+      - test:
+          context: org-test
