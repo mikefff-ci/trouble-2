@@ -9,7 +9,7 @@ parameters:
     default: "t2"
   lint3:
     type: string
-    default: "t3"
+    default: ""
 
 jobs:
   test:
@@ -29,6 +29,7 @@ workflows:
   workflow:
     jobs:
       - test:
+          name: build-<< matrix.test >>-<< matrix.projects >>
           matrix:
             exclude:
             - test: lint1
