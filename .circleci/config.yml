@@ -1,13 +1,10 @@
 version: 2.1
 
 parameters:
-  lint1:
+  one:
     type: string
-    default: "t1"
-  lint2:
-    type: string
-    default: "t2"
-  lint3:
+    default: "one"
+  noop:
     type: string
     default: "noop"
 
@@ -32,12 +29,6 @@ workflows:
           name: build-<< matrix.test >>-<< matrix.projects >>
           matrix:
             exclude:
-            - test: lint1
-              projects: "dd"
-            - test: lint2
-              projects: "dd"
-            - test: lint3
-              projects: "noop"
+              - test: "noop"
             parameters:
-              test: [lint1, lint2, lint3]
-              projects: ["<< pipeline.parameters.lint1 >>", "<< pipeline.parameters.lint2 >>", "<< pipeline.parameters.lint3 >>"]
+              test: [<< pipeline.parameters.one >>, << pipeline.parameters.noop >>]
