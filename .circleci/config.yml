@@ -13,20 +13,16 @@ jobs:
     parameters:
       test:
         type: string
-      projects:
-        type: string
     docker:
       - image: circleci/python:3.7
     steps:
-      - run: |
-          echo << parameters.test >>
-          echo << parameters.projects >>
+      - run: echo << parameters.test >>
 
 workflows:
   workflow:
     jobs:
       - test:
-          name: build-<< matrix.test >>-<< matrix.projects >>
+          name: build-<< matrix.test >>
           matrix:
             exclude:
               - test: "noop"
