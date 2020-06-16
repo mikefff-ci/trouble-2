@@ -28,3 +28,10 @@ workflows:
               - test: "noop"
             parameters:
               test: [<< pipeline.parameters.one >>, << pipeline.parameters.noop >>]
+      - test:
+          name: build-<< matrix.test >>
+          matrix:
+            exclude:
+              - test: "noop"
+            parameters:
+              test: [one, noop]
