@@ -22,14 +22,14 @@ workflows:
   workflow:
     jobs:
       - test:
-          name: build-<< matrix.test >>
+          name: with-pipeline-parameters-<< matrix.test >>
           matrix:
             exclude:
               - test: "noop"
             parameters:
               test: [<< pipeline.parameters.one >>, << pipeline.parameters.noop >>]
       - test:
-          name: build-<< matrix.test >>
+          name: with-strings-<< matrix.test >>
           matrix:
             exclude:
               - test: "noop"
