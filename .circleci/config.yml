@@ -22,7 +22,7 @@ workflows:
   workflow:
     jobs:
       - test:
-          name: with-pipeline-parameters-<< matrix.test >>
+          name: with-params-<< matrix.test >>
           matrix:
             exclude:
               - test: "noop"
