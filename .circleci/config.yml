@@ -1,21 +1,17 @@
 version: 2.1
+
 jobs:
   build:
     docker:
-      - image: google/cloud-sdk:latest
       - image: circleci/python:3.7
-      - image: circleci/golang
-      - image: circleci/python:3.4
-      - image: circleci/python:3.5
-      - image: circleci/python:3.6
-      - image: selenium/node-chrome
-      - image: selenium/node-firefox
-      - image: selenium/standalone-chrome
     steps:
-      - setup_remote_docker
       - run: echo 123
 
 workflows:
-  build:
+  workflow:
     jobs:
-      - build
+      - build:
+          matrix:
+            parameters:
+              a: [1, 2, 3]
+              b: [4, 5, 6]
