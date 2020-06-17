@@ -1,26 +1,25 @@
 version: 2.1
 
-parameters:
-  should:
-    type: boolean
-    default: false
-
 jobs:
-  test:
+  main:
     docker:
-      - image: circleci/python:3.7
+      - image: cimg/base
     steps:
       - run: echo $(($TEST_ONE == "testing"))
-  test2:
+  forked:
     docker:
-      - image: circleci/python:3.7
+      - image: cimg/base
     steps:
-      - run: echo "<< pipeline.project.git_url >>"
+      - run: echo "forked"
 
 workflows:
   workflow:
-    when: << pipeline.parameters.should >>
     jobs:
-      - test:
+      - main:
           context: org-test
-      - test2
+          filters:
+            branch:
+              only:
+                - master
+                - /internal\/.*/
+      - forked
