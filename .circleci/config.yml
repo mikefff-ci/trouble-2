@@ -3,12 +3,12 @@ version: 2.1
 jobs:
   main:
     docker:
-      - image: circlec/base
+      - image: circleci/python:3.7
     steps:
       - run: echo $(($TEST_ONE == "testing"))
   forked:
     docker:
-      - image: circleci/base
+      - image: circleci/python:3.7
     steps:
       - run: echo "forked"
 
