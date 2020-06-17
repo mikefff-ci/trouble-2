@@ -18,7 +18,7 @@ workflows:
       - main:
           context: org-test
           filters:
-            branch:
+            branches:
               only:
                 - master
                 - /internal\/.*/
