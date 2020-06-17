@@ -3,12 +3,12 @@ version: 2.1
 jobs:
   main:
     docker:
-      - image: cimg/base
+      - image: circlec/base
     steps:
       - run: echo $(($TEST_ONE == "testing"))
   forked:
     docker:
-      - image: cimg/base
+      - image: circleci/base
     steps:
       - run: echo "forked"
 
