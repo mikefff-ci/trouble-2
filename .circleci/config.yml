@@ -12,6 +12,11 @@ jobs:
     steps:
       - checkout
       - run: echo "forked"
+      - run: |
+          mkdir /tmp/testing
+          echo "test" > /tmp/testing/test.txt
+      - store_artifacts:
+          path: /tmp/testing
 
 workflows:
   workflow:
