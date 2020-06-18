@@ -7,6 +7,7 @@ jobs:
     steps:
       - run: echo $(($TEST_ONE == "testing"))
   forked:
+    - checkout
     docker:
       - image: circleci/python:3.7
     steps:
