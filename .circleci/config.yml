@@ -1,31 +1,13 @@
 version: 2.1
 
 jobs:
-  main:
-    docker:
-      - image: circleci/python:3.7
+  mtu:
+    machine:
+      image: ubuntu-1604:201903-01 
     steps:
-      - run: echo $(($TEST_ONE == "testing"))
-  forked:
-    docker:
-      - image: circleci/python:3.7
-    steps:
-      - checkout
-      - run: echo "forked"
-      - run: |
-          mkdir /tmp/testing
-          echo "test" > /tmp/testing/test.txt
-      - store_artifacts:
-          path: /tmp/testing
+      - run: echo 123
 
 workflows:
   workflow:
     jobs:
-      - main:
-          context: org-test
-          filters:
-            branches:
-              only:
-                - master
-                - /internal\/.*/
-      - forked
+      - mtu
