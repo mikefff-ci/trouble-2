@@ -1,13 +1,18 @@
 version: 2.1
 
+orbs:
+  win: circleci/windows@2.2.0
+
 jobs:
-  mtu:
-    machine:
-      image: ubuntu-1604:201903-01 
+  build:
+    executor:
+      name: win/default
+      shell: powershell.exe
     steps:
-      - run: echo 123
+      - checkout
+      - run: systeminfo
 
 workflows:
-  workflow:
+  build:
     jobs:
-      - mtu
+      build
