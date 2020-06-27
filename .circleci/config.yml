@@ -5,8 +5,11 @@ jobs:
     docker:
       - image: circleci/python:3.7
       - image: circleci/python:3.8
+          command: 'echo $COMMAND'
+          environment:
+            - $COMMAND
     steps:
-      - run: docker ps
+      - run: echo 123
 
 workflows:
   workflow:
