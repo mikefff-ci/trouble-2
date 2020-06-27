@@ -7,7 +7,7 @@ jobs:
       - image: circleci/python:3.8
         command: 'env'
         environment:
-          - COMMAND1=$COMMAND
+          - $COMMAND1=
     steps:
       - run: echo 123
 
