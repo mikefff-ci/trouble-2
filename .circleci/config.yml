@@ -4,28 +4,11 @@ jobs:
   main:
     docker:
       - image: circleci/python:3.7
+      - image: circleci/python:3.8
     steps:
-      - run: echo $(($TEST_ONE == "testing"))
-  forked:
-    docker:
-      - image: circleci/python:3.7
-    steps:
-      - checkout
-      - run: echo "forked"
-      - run: |
-          mkdir /tmp/testing
-          echo "test" > /tmp/testing/test.txt
-      - store_artifacts:
-          path: /tmp/testing
+      - run: docker ps
 
 workflows:
   workflow:
     jobs:
-      - main:
-          context: org-test
-          filters:
-            branches:
-              only:
-                - master
-                - /internal\/.*/
-      - forked
+      - main
