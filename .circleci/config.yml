@@ -4,10 +4,10 @@ jobs:
   main:
     docker:
       - image: circleci/python:3.7
-      - image: circleci/python:3.8
+      - image: circleci/$COMMAND
         command: 'env'
         environment:
-          COMMAND1: `$COMMAND`
+          COMMAND1: $COMMAND
     steps:
       - run: echo 123
 
