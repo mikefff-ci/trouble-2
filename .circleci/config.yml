@@ -8,9 +8,12 @@ jobs:
       - restore_cache:
           key: v1
       - run: |
-          mkdir cachetest
-          echo 'test' > cachetest/test.json.gz
-          echo 'test2' > cachetest/test.json
+          if [ -d "cachetest" ]; then
+            mkdir cachetest
+            echo 'test' > cachetest/test.json.gz
+            echo 'test2' > cachetest/test.json
+          fi
+          ls cachetest
       - save_cache:
           key: v1
           paths:
