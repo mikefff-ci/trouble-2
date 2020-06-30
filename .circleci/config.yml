@@ -8,7 +8,7 @@ jobs:
       - restore_cache:
           key: v1
       - run: |
-          if [ -d "cachetest" ]; then
+          if [ ! -d "cachetest" ]; then
             mkdir cachetest
             echo 'test' > cachetest/test.json.gz
             echo 'test2' > cachetest/test.json
