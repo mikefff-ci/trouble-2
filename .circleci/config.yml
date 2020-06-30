@@ -3,13 +3,10 @@ version: 2.1
 jobs:
   main:
     docker:
-      - image: circleci/python:3.7
-      - image: circleci/$COMMAND
-        command: 'env'
-        environment:
-          COMMAND1: $COMMAND
+      - image: circleci/node
     steps:
-      - run: echo 123
+      - checkout
+      - run: npm install
 
 workflows:
   workflow:
