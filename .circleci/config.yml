@@ -6,16 +6,16 @@ jobs:
       - image: circleci/node
     steps:
       - restore_cache:
-          key: v2
+          key: v3
       - run: |
           if [ ! -d "cachetest" ]; then
             mkdir cachetest
             echo 'test2' > cachetest/test.json
-            gzip cachetest/test.json
+            gzip --keep cachetest/test.json
           fi
           ls cachetest
       - save_cache:
-          key: v2
+          key: v3
           paths:
             - cachetest
 
