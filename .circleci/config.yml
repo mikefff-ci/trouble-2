@@ -7,7 +7,7 @@ jobs:
       - image: cimg/python:3.7
     steps:
       - run: mkdir -p codecov
-      - run: echo 'test' > codecov-${CIRCLE_NODE_INDEX}.txt
+      - run: touch codecov-${CIRCLE_NODE_INDEX}.txt
       - persist_to_workspace:
           root: codecov
           paths: .
@@ -15,10 +15,10 @@ jobs:
     docker:
       - image: cimg/python:3.7
     steps:
-      - run: mkdir -p f
       - attach_workspace:
-          at: f
-          
+          at: coverage_results
+      - store_test_results:
+          path: coverage_results
 
 workflows:
   wf:
