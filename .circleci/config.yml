@@ -9,10 +9,19 @@ jobs:
       image: ubuntu-1604:201903-01
     steps:
       - run: |
-          sudo apt-get update && sudo apt-get install openjdk-14-jdk
+          curl https://download.java.net/java/GA/jdk14.0.1/664493ef4a6946b186ff29eb326336a2/7/GPL/openjdk-14.0.1_linux-x64_bin.tar.gz > java.tar.gz
+          sudo tar -xvzf java.tar.gz -C /opt/jdk
       - run: |
-          sudo update-alternatives --set  "java" "/usr/lib/jvm/java-14-openjdk-amd64/jre/bin/java"
-          sudo update-alternatives --set  "javac" "/usr/lib/jvm/java-14-openjdk-amd64/bin/javac"
-          sudo update-alternatives --set  "javadoc" "/usr/lib/jvm/java-14-openjdk-amd64/bin/javadoc"
+          sudo update-alternatives --install /usr/bin/java java /opt/jdk/jdk-14.0.1/bin/java 100
+          sudo update-alternatives --install /usr/bin/javac javac /opt/jdk/jdk-14.0.1/bin/javac 100
+          sudo update-alternatives --install /usr/bin/javadoc javadoc /opt/jdk/jdk-14.0.1/bin/javadoc 100
+          echo 'export JAVA_HOME="/opt/jdk"' >> $BASH_ENV
       - run: |
-          java --version
+          function as_user() {
+            $@
+          }
+          source /opt/circleci-provision-scripts/java.sh
+          export CIRCLECI_HOME=/home/circleci
+          install_maven
+      - run: |
+          java -version
