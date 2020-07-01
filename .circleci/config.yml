@@ -21,5 +21,6 @@ jobs:
           sudo update-alternatives --install /usr/bin/javac javac /opt/jdk/jdk-14.0.1/bin/javac 100
           sudo update-alternatives --install /usr/bin/javadoc javadoc /opt/jdk/jdk-14.0.1/bin/javadoc 100
           echo 'export JAVA_HOME="/opt/jdk"' >> $BASH_ENV
+          java -version
       - run: |
           java -version
