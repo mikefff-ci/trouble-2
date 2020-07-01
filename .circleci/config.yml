@@ -1,25 +1,18 @@
 version: 2.1
 
-jobs:
-  main:
-    docker:
-      - image: circleci/node
-    steps:
-      - restore_cache:
-          key: v3
-      - run: |
-          if [ ! -d "cachetest" ]; then
-            mkdir cachetest
-            echo 'test2' > cachetest/test.json
-            gzip --keep cachetest/test.json
-          fi
-          ls cachetest
-      - save_cache:
-          key: v3
-          paths:
-            - cachetest
+orbs:
+  maven: circleci/maven@1.0.1
 
-workflows:
-  workflow:
-    jobs:
-      - main
+jobs:
+  build:
+    machine:
+      image: ubuntu-1604:201903-01
+    steps:
+      - run: |
+          sudo apt-get update && sudo apt-get install openjdk-14
+      - run: |
+          sudo update-alternatives --set  "java" "/usr/lib/jvm/java-14-openjdk-amd64/jre/bin/java"
+          sudo update-alternatives --set  "javac" "/usr/lib/jvm/java-14-openjdk-amd64/bin/javac"
+          sudo update-alternatives --set  "javadoc" "/usr/lib/jvm/java-14-openjdk-amd64/bin/javadoc"
+      - run: |
+          java --version
