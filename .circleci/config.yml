@@ -1,29 +1,8 @@
 version: 2.1
 
-orbs:
-  maven: circleci/maven@1.0.1
-
 jobs:
   build:
-    machine:
-      image: ubuntu-1604:202004-01
+    docker:
+      - image: annapamela/test-path:latest
     steps:
-      - run: |
-          java -version
-      - run: |
-          mvn -version
-      - run: |
-          curl https://download.java.net/java/GA/jdk14.0.1/664493ef4a6946b186ff29eb326336a2/7/GPL/openjdk-14.0.1_linux-x64_bin.tar.gz > java.tar.gz
-          sudo mkdir -p /opt/jdk
-          sudo tar -xvzf java.tar.gz -C /opt/jdk
-      - run: |
-          sudo update-alternatives --install /usr/bin/java java /opt/jdk/jdk-14.0.1/bin/java 100
-          sudo update-alternatives --set java /opt/jdk/jdk-14.0.1/bin/java 
-          sudo update-alternatives --install /usr/bin/javac javac /opt/jdk/jdk-14.0.1/bin/javac 100
-          sudo update-alternatives --set javac /opt/jdk/jdk-14.0.1/bin/javac 
-          sudo update-alternatives --install /usr/bin/javadoc javadoc /opt/jdk/jdk-14.0.1/bin/javadoc 100
-          sudo update-alternatives --set javadoc /opt/jdk/jdk-14.0.1/bin/javadoc
-          echo 'export JAVA_HOME="/opt/jdk"' >> $BASH_ENV
-          java -version
-      - run: |
-          java -version
+      - run: echo $PATH
