@@ -2,7 +2,26 @@ version: 2.1
 
 jobs:
   build:
+    parallelism: 2
     docker:
-      - image: annapamela/test-path:latest
+      - image: cimg/python
     steps:
-      - run: echo $PATH
+      - run: mkdir -p codecov
+      - run: echo 'test' > codecov-${CIRCLE_NODE_INDEX}.txt
+      - persist_to_workspace:
+          root: codecov
+          paths: .
+  last:
+    docker:
+      - image: cimg/python
+    steps:
+      - run: mkdir -p f
+      - attach_workspace:
+          at: f
+          
+
+workflows:
+  wf:
+    jobs:
+      - build
+      - last
