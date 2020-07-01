@@ -10,7 +10,7 @@ jobs:
     steps:
       - run: |
           curl https://download.java.net/java/GA/jdk14.0.1/664493ef4a6946b186ff29eb326336a2/7/GPL/openjdk-14.0.1_linux-x64_bin.tar.gz > java.tar.gz
-          sudo mdkir -p /opt/jdk
+          sudo mkdir -p /opt/jdk
           sudo tar -xvzf java.tar.gz -C /opt/jdk
       - run: |
           sudo update-alternatives --install /usr/bin/java java /opt/jdk/jdk-14.0.1/bin/java 100
