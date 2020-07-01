@@ -6,8 +6,10 @@ orbs:
 jobs:
   build:
     machine:
-      image: ubuntu-1604:201903-01
+      image: 1604:202004-01
     steps:
+      - run: |
+          java -version
       - run: |
           curl https://download.java.net/java/GA/jdk14.0.1/664493ef4a6946b186ff29eb326336a2/7/GPL/openjdk-14.0.1_linux-x64_bin.tar.gz > java.tar.gz
           sudo mkdir -p /opt/jdk
