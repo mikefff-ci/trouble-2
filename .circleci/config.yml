@@ -18,8 +18,11 @@ jobs:
           sudo tar -xvzf java.tar.gz -C /opt/jdk
       - run: |
           sudo update-alternatives --install /usr/bin/java java /opt/jdk/jdk-14.0.1/bin/java 100
+          sudo udpate-alternatives --set java /opt/jdk/jdk-14.0.1/bin/java 
           sudo update-alternatives --install /usr/bin/javac javac /opt/jdk/jdk-14.0.1/bin/javac 100
+          sudo udpate-alternatives --set javac /opt/jdk/jdk-14.0.1/bin/javac 
           sudo update-alternatives --install /usr/bin/javadoc javadoc /opt/jdk/jdk-14.0.1/bin/javadoc 100
+          sudo udpate-alternatives --set javadoc /opt/jdk/jdk-14.0.1/bin/javadoc
           echo 'export JAVA_HOME="/opt/jdk"' >> $BASH_ENV
           java -version
       - run: |
