@@ -4,7 +4,7 @@ jobs:
   build:
     parallelism: 2
     docker:
-      - image: cimg/python
+      - image: cimg/python:3.7
     steps:
       - run: mkdir -p codecov
       - run: echo 'test' > codecov-${CIRCLE_NODE_INDEX}.txt
