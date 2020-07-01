@@ -13,7 +13,7 @@ jobs:
           paths: .
   last:
     docker:
-      - image: cimg/python
+      - image: cimg/python:3.7
     steps:
       - run: mkdir -p f
       - attach_workspace:
@@ -24,4 +24,6 @@ workflows:
   wf:
     jobs:
       - build
-      - last
+      - last:
+          requires:
+            - build
