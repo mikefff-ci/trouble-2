@@ -7,7 +7,7 @@ jobs:
       - image: cimg/python:3.7
     steps:
       - run: mkdir -p codecov
-      - run: touch codecov/results-${CIRCLE_NODE_INDEX}.txt
+      - run: echo ${CIRCLE_NODE_INDEX} > codecov/results-${CIRCLE_NODE_INDEX}.txt
       - persist_to_workspace:
           root: codecov
           paths: .
