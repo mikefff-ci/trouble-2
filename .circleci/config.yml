@@ -12,6 +12,10 @@ jobs:
           if (( $CIRCLE_NODE_INDEX == 0 ));then
             exit 99
           fi
+      - run:
+          command: echo "test"
+          when: on_fail
+
       - persist_to_workspace:
           root: codecov
           paths: .
