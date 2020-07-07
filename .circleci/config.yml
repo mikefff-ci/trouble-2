@@ -1,21 +1,11 @@
 version: 2.1
 
-orbs:
-  ts: mkly/test-splitting@dev:test/slashes
-
 jobs:
   build:
     docker:
       - image: circleci/python:3.7
     steps:
       - run: echo 123
-      - ts/split:
-          test_files_command: |
-            echo 123
-          test_results_path: |
-            testing
-          test_run_command: |
-            echo 321
 workflows:
   wf:
     jobs:
