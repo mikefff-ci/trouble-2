@@ -2,7 +2,7 @@ version: 2.1
 
 jobs:
   build:
-    dockr:
+    docker:
      - image: arm32v7/ubuntu
     steps:
       - run: echo "test commit to master with build job."
