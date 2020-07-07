@@ -4,5 +4,6 @@ jobs:
   build:
     docker:
       - image: circleci/python:3.7
+    resource_class: large
     steps:
       - run: cat /sys/fs/cgroup/cpuset/cpuset.cpus
