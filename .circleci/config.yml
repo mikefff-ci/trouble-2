@@ -2,38 +2,11 @@ version: 2.1
 
 jobs:
   build:
-    parallelism: 2
     docker:
       - image: cimg/python:3.7
     steps:
-      - run: mkdir -p codecov
-      - run: echo ${CIRCLE_NODE_INDEX} > codecov/results-${CIRCLE_NODE_INDEX}.txt
-      - run: |
-          if (( $CIRCLE_NODE_INDEX == 0 ));then
-            exit 99
-          fi
-      - run:
-          command: echo "test"
-          when: on_fail
-
-      - persist_to_workspace:
-          root: codecov
-          paths: .
-  last:
-    docker:
-      - image: cimg/python:3.7
-    steps:
-      - attach_workspace:
-          at: coverage_results
-      - store_artifacts:
-          path: coverage_results
-      - store_test_results:
-          path: coverage_results
-
+      - run: curl -o- -L https://yarnpkg.com/install.sh | bash
 workflows:
   wf:
     jobs:
       - build
-      - last:
-          requires:
-            - build
