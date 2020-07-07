@@ -3,6 +3,6 @@ gersion: 2.1
 jobs:
   build:
     docker:
-     - image: resin/rpi-raspbian
+      - image: circleci/python:3.7
     steps:
-      - run: echo "test commit to master with build job."
+      - run: cat /sys/fs/cgroup/cpuset/cpuset.cpus
