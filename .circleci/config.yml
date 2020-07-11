@@ -1,14 +1,19 @@
 version: 2.1
 
+orbs:
+  win: circleci/windows@2.2.0
+
 jobs:
   build:
-    macos:
-      xcode: 11.5.0
+    executor:
+      name: win/default
+      shell: powershell.exe
     steps:
       - checkout
-      - run: echo 123
-
-workflows:
-  wf:
-    jobs:
-      - build
+      - run: systeminfo
+      - run:
+          name: "Check docker"
+          shell: powershell.exe
+          command: |
+            docker info
+            docker run hello-world:nanoserver-1809
