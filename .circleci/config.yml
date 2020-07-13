@@ -7,3 +7,6 @@ jobs:
     steps:
       - checkout
       - run: go test
+workflows:
+  wf:
+    - build
