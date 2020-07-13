@@ -4,8 +4,7 @@ jobs:
   build:
     docker:
       - image: circleci/golang:1.13.8
-        environment:
-          IMPORTED: $TEST_VALUE
+      - image: circleci/postgres:latest
     steps:
       - run: echo $TEST_VALUE
 
