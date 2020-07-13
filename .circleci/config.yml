@@ -7,7 +7,7 @@ jobs:
         environment:
           IMPORTED: ${TEST_VALUE}
     steps:
-      - run: exit $IMPORTED
+      - run: echo $IMPORTED
 
 workflows:
   wf:
