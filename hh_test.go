@@ -23,9 +23,10 @@ kKZFmKNqjIMAlge66QtYlYiq0IGy9ytN/icLWHqCSXFOORP9R33s4lUVAkAOOirJ
 J7UZls5Ru0UtG4/BAkBFSmZRgKvHyW0l/60HbJaJSH4xFhjnNFOCMt9s/TEps79l
 0hhiNYsgjueoRfoJ1eXR6gU3y8cgpt48YcEzFqrB
 -----END RSA PRIVATE KEY-----`)
-var decKeyPass []byte
+//var decKeyPass nil
 log.Print(runtime.Version())
-_, err := ssh.ParseRawPrivateKeyWithPassphrase(decKey, decKeyPass)
+_, err := ssh.ParseRawPrivateKeyWithPassphrase(decKey, nil)
+//_, err := ssh.ParseRawPrivateKey(decKey)
 if err != nil {
   log.Fatal(err)
 }
