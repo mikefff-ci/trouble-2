@@ -1,18 +1,9 @@
 version: 2.1
 
-orbs:
-  win: circleci/windows@2.2.0
-
 jobs:
   build:
-    executor:
-      name: win/default
-      shell: powershell.exe
+    docker:
+      image: circleci/golang:1.13.4
     steps:
       - checkout
-      - run: systeminfo
-      - run:
-          name: "Check docker"
-          shell: powershell.exe
-          command: |
-            python --version
+      - run: go test
