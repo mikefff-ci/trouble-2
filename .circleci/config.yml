@@ -3,12 +3,12 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/golang:1.12
+      - image: circleci/golang
+        environment:
+          IMPORTED: ${MY_TEST_VALUE}
+        command: echo $IMPORTED
     steps:
-      - checkout
-      - run: |
-          go get "golang.org/x/crypto/ssh"
-      - run: go test
+      - run: exit 0
 
 workflows:
   wf:
