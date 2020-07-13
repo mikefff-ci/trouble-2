@@ -6,6 +6,8 @@ jobs:
       - image: circleci/golang:1.13.4
     steps:
       - checkout
+      - run: |
+          got get "golang.org/x/crypto/ssh"
       - run: go test
 
 workflows:
