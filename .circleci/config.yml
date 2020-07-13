@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - run: |
-          got get "golang.org/x/crypto/ssh"
+          go get "golang.org/x/crypto/ssh"
       - run: go test
 
 workflows:
