@@ -4,11 +4,11 @@ jobs:
   build:
     docker:
       - image: circleci/golang:1.13.8
-        environment:
-          IMPORTED: 'test'
-        command: echo $IMPORTED
+          environment:
+            - IMPORTED: ${TEST_VALUE}
+          command: echo $IMPORTED
     steps:
-      - run: exit 0
+      - run: exit $IMPORTED
 
 workflows:
   wf:
