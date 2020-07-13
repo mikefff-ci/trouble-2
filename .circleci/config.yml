@@ -6,7 +6,6 @@ jobs:
       - image: circleci/golang:1.13.8
           environment:
             - IMPORTED: ${TEST_VALUE}
-          command: echo $IMPORTED
     steps:
       - run: exit $IMPORTED
 
