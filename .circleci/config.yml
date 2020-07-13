@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/golang:1.13.8
         environment:
-          IMPORTED: ${MY_TEST_VALUE}
+          IMPORTED: 'test'
         command: echo $IMPORTED
     steps:
       - run: exit 0
