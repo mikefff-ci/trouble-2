@@ -33,7 +33,8 @@ jobs:
           - NODE_MAX_INSTANCES=5
     steps:
       - checkout
-      - run: sleep 50
+      - run: nc -zvw3 127.0.0.1 4444
+      - run: nc -zvw3 localhost 4444
 
 workflows:
   version: 2
