@@ -6,7 +6,7 @@ jobs:
       - image: circleci/golang:1.13.8
     steps:
       - setup_remote_docker
-      - run: echo $TEST_VALUE
+      - run: docker version
 
 workflows:
   wf:
