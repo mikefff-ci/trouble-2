@@ -10,26 +10,25 @@ jobs:
         name: selenium-hub
         environment:
           - GRID_MAX_SESSION=15
-          - GRID_HUB_PORT=7654
           - GRID_HUB_HOST=localhost
       - image: selenium/node-chrome:3.141.59-20200525
         environment:
           - HUB_HOST=selenium-hub
-          - HUB_PORT=7654
+          - HUB_PORT=4444
           - NODE_PORT=5555
           - NODE_MAX_SESSION=5
           - NODE_MAX_INSTANCES=5
       - image: selenium/node-firefox:3.141.59-20200525
         environment:
           - HUB_HOST=selenium-hub
-          - HUB_PORT=7654
+          - HUB_PORT=4444
           - NODE_PORT=5556
           - NODE_MAX_SESSION=5
           - NODE_MAX_INSTANCES=5
       - image: selenium/node-opera:3.141.59-20200525
         environment:
           - HUB_HOST=selenium-hub
-          - HUB_PORT=7654
+          - HUB_PORT=4444
           - NODE_PORT=5557
           - NODE_MAX_SESSION=5
           - NODE_MAX_INSTANCES=5
