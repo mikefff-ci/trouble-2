@@ -11,6 +11,7 @@ jobs:
         environment:
           - GRID_MAX_SESSION=15
           - GRID_HUB_PORT=7654
+          - GRID_HUB_HOST=localhost
       - image: selenium/node-chrome:3.141.59-20200525
         environment:
           - HUB_HOST=selenium-hub
