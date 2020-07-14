@@ -10,7 +10,6 @@ jobs:
         name: selenium-hub
         environment:
           - GRID_MAX_SESSION=15
-          - SE_OPTS="-port 7654"
           - GRID_HUB_PORT=7654
       - image: selenium/node-chrome:3.141.59-20200525
         environment:
