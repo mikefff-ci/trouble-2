@@ -35,8 +35,7 @@ jobs:
     steps:
       - checkout
       - run: apt-get update && apt-get install -y netcat
-      - run: nc -zvw3 127.0.0.1 4444
-      - run: nc -zvw3 localhost 4444
+      - run: nc -zvw3 selenium-hub 4444
 
 workflows:
   version: 2
