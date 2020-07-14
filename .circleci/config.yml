@@ -1,14 +1,42 @@
 version: 2.1
 
 jobs:
-  build:
+  javascript:
     docker:
-      - image: circleci/golang:1.13.8
+      - image: cypress/base:12
+        environment:
+          TERM: xterm
+      - image: selenium/hub:3.141.59-20200525
+        name: selenium-hub
+        environment:
+          - GRID_MAX_SESSION=15
+      - image: selenium/node-chrome:3.141.59-20200525
+        environment:
+          - HUB_HOST=selenium-hub
+          - HUB_PORT=4444
+          - NODE_PORT=5555
+          - NODE_MAX_SESSION=5
+          - NODE_MAX_INSTANCES=5
+      - image: selenium/node-firefox:3.141.59-20200525
+        environment:
+          - HUB_HOST=selenium-hub
+          - HUB_PORT=4444
+          - NODE_PORT=5556
+          - NODE_MAX_SESSION=5
+          - NODE_MAX_INSTANCES=5
+      - image: selenium/node-opera:3.141.59-20200525
+        environment:
+          - HUB_HOST=selenium-hub
+          - HUB_PORT=4444
+          - NODE_PORT=5557
+          - NODE_MAX_SESSION=5
+          - NODE_MAX_INSTANCES=5
     steps:
-      - setup_remote_docker
-      - run: docker version
+      - checkout
+      - run: sleep 50
 
 workflows:
-  wf:
+  version: 2
+  all_builds:
     jobs:
-      - build
+      - javascript
