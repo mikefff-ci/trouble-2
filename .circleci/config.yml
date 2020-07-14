@@ -10,7 +10,7 @@ jobs:
         name: selenium-hub
         environment:
           - GRID_MAX_SESSION=15
-          - GRID_HUB_HOST=localhost
+          - GRID_HUB_HOST=127.0.0.1
       - image: selenium/node-chrome:3.141.59-20200525
         environment:
           - HUB_HOST=selenium-hub
