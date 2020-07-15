@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/python:jessie-node-browsers
+      - image: circleci/python:buster-node-browsers
     steps:
       - checkout
       - run: pip install -v -r requirements.txt
