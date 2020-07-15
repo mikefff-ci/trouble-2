@@ -27,4 +27,4 @@ workflows:
       - mactoday
       - mactonight:
           requires:
-            - mactonight
+            - mactoday
