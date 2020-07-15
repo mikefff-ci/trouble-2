@@ -6,6 +6,7 @@ jobs:
       - image: circleci/python:jessie-node-browsers
     steps:
       - checkout
+      - run: pip install -r requirements.txt
       - run:
           name: Install Sauce Labs and Set Up Tunnel
           background: true
