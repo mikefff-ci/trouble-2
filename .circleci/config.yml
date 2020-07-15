@@ -4,6 +4,7 @@ jobs:
   build:
     docker:
       - image: circleci/python:buster-node-browsers
+    resource_class: large
     steps:
       - checkout
       - run: pip install -v -r requirements.txt
