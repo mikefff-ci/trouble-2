@@ -10,7 +10,7 @@ jobs:
       - persist_to_workspace:
           root: /Users/distiller/
           paths:
-            - check
+            - check/test
 
   mactonight:
     macos:
