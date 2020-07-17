@@ -18,7 +18,8 @@ jobs:
           echo "q $quota"
           quota_interval=$(cat /sys/fs/cgroup/cpu/cpu.cfs_period_us)
           echo "qi $quota_interval"
-          available_per_micro_second=$(($quota * $quota_interval))
+          percent=$(echo "scale = 2; $total_used / $total_available" | bc)
+          available_per_micro_second=$(echo "scale = 2; $quota / $quota_interval" | bc)
 
           # take time sample and cpu USER_HZ
           sample_1=$(cat /sys/fs/cgroup/cpuacct/cpuacct.usage_user)
@@ -44,7 +45,7 @@ jobs:
           echo "ti $time_interval"
 
 
-          total_available=$(($available_per_micro_second * $time_interval))
+          total_available=$(echo "scale = 2; $available_per_micro_second * $time_interval" | bc)
           echo "ta $total_available"
           total_used=$(($sample_2 - $sample_1))
           echo "tu $total_used"
