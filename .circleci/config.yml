@@ -4,7 +4,7 @@ jobs:
   cpu:
     docker:
       - image: circleci/python:3.7
-    step:
+    steps:
       - run: |
           # Get quota and cfs period
           #quota=$(cat /sys/fs/cgroup/cpu/cpu.cfs_quota_us)
