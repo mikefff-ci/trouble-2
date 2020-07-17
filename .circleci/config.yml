@@ -6,8 +6,12 @@ jobs:
       - image: circleci/python:3.7
     steps:
       - run: |
-          sudo apt update && sudo apt-get install -y bc
+          sudo apt update && sudo apt-get install -y bc stress
+      - run:
+          command: stress
+          background: true
       - run: |
+          sleep 2;
           # Get quota and cfs period
           #quota=$(cat /sys/fs/cgroup/cpu/cpu.cfs_quota_us)
           quota=10000000
