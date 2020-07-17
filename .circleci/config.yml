@@ -13,9 +13,7 @@ jobs:
           start_delay: 1
       - run:
           command: |
-            sleep 1
-            pip install -r requirements.txt
-            sleep 5
+            sleep 12
 
 workflows:
   wf:
