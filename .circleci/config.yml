@@ -7,56 +7,58 @@ jobs:
     steps:
       - run: |
           sudo apt update && sudo apt-get install -y bc stress
-      - run:
-          command: stress --cpu 2 --timeout 3s
-          background: true
       - run: |
-          sleep 2;
-          # Get quota and cfs period
-          cpu_shares=$(cat /sys/fs/cgroup/cpu/cpu.shares)
-          cpus=$(echo "scale = 2; $cpu_shares / 1024" | bc)
-          quota=$(cat /sys/fs/cgroup/cpu/cpu.cfs_quota_us)
-          #quota=10000000
-          echo "q $quota"
-          quota_interval=$(cat /sys/fs/cgroup/cpu/cpu.cfs_period_us)
-          echo "qi $quota_interval"
-          percent=$(echo "scale = 2; $total_used / $total_available" | bc)
-          available_per_micro_second=$(echo "scale = 2; $quota / $quota_interval" | bc)
+          background: true
+          command: |
+            sleep 3;
+            # Get quota and cfs period
+            cpu_shares=$(cat /sys/fs/cgroup/cpu/cpu.shares)
+            cpus=$(echo "scale = 2; $cpu_shares / 1024" | bc)
+            quota=$(cat /sys/fs/cgroup/cpu/cpu.cfs_quota_us)
+            #quota=10000000
+            echo "q $quota"
+            quota_interval=$(cat /sys/fs/cgroup/cpu/cpu.cfs_period_us)
+            echo "qi $quota_interval"
+            percent=$(echo "scale = 2; $total_used / $total_available" | bc)
+            available_per_micro_second=$(echo "scale = 2; $quota / $quota_interval" | bc)
 
-          # take time sample and cpu USER_HZ
-          sample_1=$(cat /sys/fs/cgroup/cpuacct/cpuacct.usage_user)
-          echo "s1 $sample_1"
-          time_1=$(date "+%s")
+            # take time sample and cpu USER_HZ
+            sample_1=$(cat /sys/fs/cgroup/cpuacct/cpuacct.usage_user)
+            echo "s1 $sample_1"
+            time_1=$(date "+%s")
 
-          sleep 5;
+            sleep 5;
 
-          sample_2=$(cat /sys/fs/cgroup/cpuacct/cpuacct.usage_user)
-          echo "s2 $sample_2"
-          time_2=$(date "+%s")
-
-
-          # convert to microseconds
-          time_1=$(($time_1 * 1000000))
-          echo "t1 $time_1"
-          time_2=$(($time_2 * 1000000))
-          echo "t2 $time_2"
+            sample_2=$(cat /sys/fs/cgroup/cpuacct/cpuacct.usage_user)
+            echo "s2 $sample_2"
+            time_2=$(date "+%s")
 
 
-          # convert seconds to microseconds
-          time_interval=$(($time_2 - $time_1))
-          echo "ti $time_interval"
+            # convert to microseconds
+            time_1=$(($time_1 * 1000000))
+            echo "t1 $time_1"
+            time_2=$(($time_2 * 1000000))
+            echo "t2 $time_2"
 
 
-          total_available=$(echo "scale = 2; $available_per_micro_second * $time_interval" | bc)
-          echo "ta $total_available"
-          total_used=$(($sample_2 - $sample_1))
-          echo "tu $total_used"
-          #total_used=$(($total_used * 100))
+            # convert seconds to microseconds
+            time_interval=$(($time_2 - $time_1))
+            echo "ti $time_interval"
 
-          percent=$(echo "scale = 2; $total_used / $total_available / $cpus" | bc)
-          echo "pe $percent"
 
-          echo $percent
+            total_available=$(echo "scale = 2; $available_per_micro_second * $time_interval" | bc)
+            echo "ta $total_available"
+            total_used=$(($sample_2 - $sample_1))
+            echo "tu $total_used"
+            #total_used=$(($total_used * 100))
+
+            percent=$(echo "scale = 2; $total_used / $total_available / $cpus" | bc)
+            echo "pe $percent"
+
+            echo $percent
+
+      - run:
+          command: stress --cpu 2 --timeout 10s
 
 workflows:
   wf:
