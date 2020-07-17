@@ -13,14 +13,13 @@ jobs:
             sleep 3;
             # Get quota and cfs period
             cpu_shares=$(cat /sys/fs/cgroup/cpu/cpu.shares)
-            cpus=$(echo " = 2; $cpu_shares / 1024" | jq -nf /dev/stdin)
+            cpus=$(echo "$cpu_shares / 1024" | jq -nf /dev/stdin)
             quota=$(cat /sys/fs/cgroup/cpu/cpu.cfs_quota_us)
             #quota=10000000
             echo "q $quota"
             quota_interval=$(cat /sys/fs/cgroup/cpu/cpu.cfs_period_us)
             echo "qi $quota_interval"
-            percent=$(echo " = 2; $total_used / $total_available" | jq -nf /dev/stdin)
-            available_per_micro_second=$(echo " = 2; $quota / $quota_interval" | jq -nf /dev/stdin)
+            available_per_micro_second=$(echo "$quota / $quota_interval" | jq -nf /dev/stdin)
 
             # take time sample and cpu USER_HZ
             sample_1=$(cat /sys/fs/cgroup/cpuacct/cpuacct.usage_user)
@@ -46,13 +45,13 @@ jobs:
             echo "ti $time_interval"
 
 
-            total_available=$(echo " = 2; $available_per_micro_second * $time_interval" | jq -nf /dev/stdin)
+            total_available=$(echo "$available_per_micro_second * $time_interval" | jq -nf /dev/stdin)
             echo "ta $total_available"
             total_used=$(($sample_2 - $sample_1))
             echo "tu $total_used"
             #total_used=$(($total_used * 100))
 
-            percent=$(echo " = 2; $total_used / $total_available / $cpus" | jq -nf /dev/stdin)
+            percent=$(echo "$total_used / $total_available / $cpus" | jq -nf /dev/stdin)
             echo "pe $percent"
 
             echo $percent
