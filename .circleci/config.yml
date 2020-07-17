@@ -7,7 +7,7 @@ jobs:
     steps:
       - run: |
           sudo apt update && sudo apt-get install -y bc stress
-      - run: |
+      - run:
           background: true
           command: |
             sleep 3;
