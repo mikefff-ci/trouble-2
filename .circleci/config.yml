@@ -8,7 +8,7 @@ jobs:
       - run: |
           sudo apt update && sudo apt-get install -y bc stress
       - run:
-          command: stress --cpu 2 --timeout 20s
+          command: stress --cpu 2 --timeout 2s
           background: true
       - run: |
           sleep 2;
