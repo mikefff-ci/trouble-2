@@ -13,6 +13,8 @@ jobs:
       - run: |
           sleep 2;
           # Get quota and cfs period
+          cpu_shares=$(cat /sys/fs/cgroup/cpu/cpu.shares)
+          cpus=$(echo "scale = 2; $cpu_shares / 1024" | bc)
           quota=$(cat /sys/fs/cgroup/cpu/cpu.cfs_quota_us)
           #quota=10000000
           echo "q $quota"
@@ -51,7 +53,7 @@ jobs:
           echo "tu $total_used"
           #total_used=$(($total_used * 100))
 
-          percent=$(echo "scale = 2; $total_used / $total_available" | bc)
+          percent=$(echo "scale = 2; $total_used / $total_available / $cpu_shares" | bc)
           echo "pe $percent"
 
           echo $percent
