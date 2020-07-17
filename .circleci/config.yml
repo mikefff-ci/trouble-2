@@ -26,7 +26,7 @@ jobs:
             sleep $SAMPLE_LENGTH;
             sample_2=$(cat /sys/fs/cgroup/cpuacct/cpuacct.usage_user)
 
-            sample_length=$($SAMPLE_LENGTH * 1000000)
+            sample_length=$(($SAMPLE_LENGTH * 1000000))
 
 
             total_available=$(echo "$available_per_micro_second * $sample_length" | jq -nf /dev/stdin)
@@ -36,7 +36,7 @@ jobs:
             echo $percent
 
       - run:
-          command: npm install
+          command: CI=false npm install
 
 workflows:
   wf:
