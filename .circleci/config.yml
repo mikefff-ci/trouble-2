@@ -1,41 +1,15 @@
 version: 2.1
 
+orbs:
+  docker-cpu-profiling: mkly/docker-cpu-profiling@dev:0.1.0
+
 jobs:
   cpu:
     docker:
       - image: circleci/node:13.10
     steps:
       - checkout
-      - run:
-          name: Profiling CPU
-          background: true
-          command: |
-            START_DELAY=${CPU_PROFILE_START_DELAY:-3}
-            SAMPLE_LENGTH=${CPU_SAMPLE_LENGTH:-5}
-
-            sleep $START_DELAY
-
-            # Get quota and cfs period
-            cpu_shares=$(cat /sys/fs/cgroup/cpu/cpu.shares)
-            cpus=$(echo "$cpu_shares / 1024" | jq -nf /dev/stdin)
-            quota=$(cat /sys/fs/cgroup/cpu/cpu.cfs_quota_us)
-            quota_interval=$(cat /sys/fs/cgroup/cpu/cpu.cfs_period_us)
-            available_per_micro_second=$(echo "$quota / $quota_interval" | jq -nf /dev/stdin)
-
-            # take time sample and cpu USER_HZ
-            sample_1=$(cat /sys/fs/cgroup/cpuacct/cpuacct.usage_user)
-            sleep $SAMPLE_LENGTH;
-            sample_2=$(cat /sys/fs/cgroup/cpuacct/cpuacct.usage_user)
-
-            sample_length=$(($SAMPLE_LENGTH * 1000000))
-
-
-            total_available=$(echo "$available_per_micro_second * $sample_length" | jq -nf /dev/stdin)
-            total_used=$(($sample_2 - $sample_1))
-            percent=$(echo "$total_used / $total_available / $cpus" | jq -nf /dev/stdin)
-
-            echo "CPU: ${percent}%"
-
+      - docker-cpu-profiling
       - run:
           command: CI=false npm install
 
