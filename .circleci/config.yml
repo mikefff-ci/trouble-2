@@ -1,12 +1,12 @@
 version: 2.1
 
 orbs:
-  docker-cpu-profiling: mkly/docker-cpu-profiling@dev:awkjq7
+  docker-cpu-profiling: mkly/docker-cpu-profiling@0.2.0
 
 jobs:
   cpu:
     docker:
-      - image: circleci/python:3.7
+      - image: ubuntu:18.04
     steps:
       - checkout
       - docker-cpu-profiling/profile:
