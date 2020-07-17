@@ -7,9 +7,9 @@ jobs:
     steps:
       - run: |
           sudo apt update && sudo apt-get install -y bc stress
-#      - run:
-#          command: stress --cpu 1 --timeout 20s
-#          background: true
+      - run:
+          command: stress --cpu 2 --timeout 20s
+          background: true
       - run: |
           sleep 2;
           # Get quota and cfs period
