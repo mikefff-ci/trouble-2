@@ -5,59 +5,38 @@ jobs:
     docker:
       - image: circleci/python:3.7
     steps:
-      - run: |
-          sudo apt update && sudo apt-get install -y stress
+      - checkout
       - run:
           background: true
           command: |
-            sleep 3;
+            START_DELAY=${CPU_PROFILE_START_DELAY:-3}
+            SAMPLE_LENGTH=${CPU_SAMPLE_LENGTH:-5}
+
+            sleep $START_DELAY
+
             # Get quota and cfs period
             cpu_shares=$(cat /sys/fs/cgroup/cpu/cpu.shares)
             cpus=$(echo "$cpu_shares / 1024" | jq -nf /dev/stdin)
             quota=$(cat /sys/fs/cgroup/cpu/cpu.cfs_quota_us)
-            #quota=10000000
-            echo "q $quota"
             quota_interval=$(cat /sys/fs/cgroup/cpu/cpu.cfs_period_us)
-            echo "qi $quota_interval"
             available_per_micro_second=$(echo "$quota / $quota_interval" | jq -nf /dev/stdin)
 
             # take time sample and cpu USER_HZ
             sample_1=$(cat /sys/fs/cgroup/cpuacct/cpuacct.usage_user)
-            echo "s1 $sample_1"
-            time_1=$(date "+%s")
-
-            sleep 5;
-
+            sleep $SAMPLE_LENGTH;
             sample_2=$(cat /sys/fs/cgroup/cpuacct/cpuacct.usage_user)
-            echo "s2 $sample_2"
-            time_2=$(date "+%s")
+
+            sample_length=$($SAMPLE_LENGTH * 1000000)
 
 
-            # convert to microseconds
-            time_1=$(($time_1 * 1000000))
-            echo "t1 $time_1"
-            time_2=$(($time_2 * 1000000))
-            echo "t2 $time_2"
-
-
-            # convert seconds to microseconds
-            time_interval=$(($time_2 - $time_1))
-            echo "ti $time_interval"
-
-
-            total_available=$(echo "$available_per_micro_second * $time_interval" | jq -nf /dev/stdin)
-            echo "ta $total_available"
+            total_available=$(echo "$available_per_micro_second * $sample_length" | jq -nf /dev/stdin)
             total_used=$(($sample_2 - $sample_1))
-            echo "tu $total_used"
-            #total_used=$(($total_used * 100))
-
             percent=$(echo "$total_used / $total_available / $cpus" | jq -nf /dev/stdin)
-            echo "pe $percent"
 
             echo $percent
 
       - run:
-          command: stress --cpu 2 --timeout 10s
+          command: npm install
 
 workflows:
   wf:
