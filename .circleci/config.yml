@@ -9,7 +9,7 @@ jobs:
       - image: circleci/node:13.10
     steps:
       - checkout
-      - docker-cpu-profiling
+      - docker-cpu-profiling/profile
       - run:
           command: CI=false npm install
 
