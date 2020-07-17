@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  docker-cpu-profiling: mkly/docker-cpu-profiling@dev:ajq2
+  docker-cpu-profiling: mkly/docker-cpu-profiling@dev:ajq3
 
 jobs:
   cpu:
