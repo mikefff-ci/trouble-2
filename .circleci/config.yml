@@ -34,7 +34,7 @@ jobs:
             total_used=$(($sample_2 - $sample_1))
             percent=$(echo "$total_used / $total_available / $cpus" | jq -nf /dev/stdin)
 
-            echo $percent
+            echo "CPU: ${percent}%"
 
       - run:
           command: CI=false npm install
