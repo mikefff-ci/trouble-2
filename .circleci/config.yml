@@ -6,12 +6,12 @@ orbs:
 jobs:
   cpu:
     docker:
-      - image: circleci/node:13.10
+      - image: circleci/python:3.7
     steps:
       - checkout
       - docker-cpu-profiling/profile
       - run:
-          command: CI=false npm install
+          command: pip install -r requirements.txt
 
 workflows:
   wf:
