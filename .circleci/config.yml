@@ -13,8 +13,8 @@ jobs:
       - run: |
           sleep 2;
           # Get quota and cfs period
-          #quota=$(cat /sys/fs/cgroup/cpu/cpu.cfs_quota_us)
-          quota=10000000
+          quota=$(cat /sys/fs/cgroup/cpu/cpu.cfs_quota_us)
+          #quota=10000000
           echo "q $quota"
           quota_interval=$(cat /sys/fs/cgroup/cpu/cpu.cfs_period_us)
           echo "qi $quota_interval"
