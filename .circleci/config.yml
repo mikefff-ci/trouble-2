@@ -9,8 +9,6 @@ jobs:
       - image: ubuntu:18.04
     steps:
       - checkout
-      - docker-cpu-profiling/profile:
-          start_delay: 1
       - run:
           command: |
             sleep 15
@@ -18,4 +16,8 @@ jobs:
 workflows:
   wf:
     jobs:
-      - cpu
+      - hold:
+          type: approval
+      - cpu:
+          requires:
+            - hold
