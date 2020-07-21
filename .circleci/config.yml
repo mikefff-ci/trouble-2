@@ -13,7 +13,7 @@ jobs:
           start_delay: 1
       - run:
           command: |
-            sleep 12
+            sleep 15
 
 workflows:
   wf:
