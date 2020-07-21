@@ -4,6 +4,11 @@ orbs:
   docker-cpu-profiling: mkly/docker-cpu-profiling@0.2.1
 
 jobs:
+  prehold:
+    docker:
+      - image: ubuntu:18.04
+    steps:
+      - run: echo 123
   cpu:
     docker:
       - image: ubuntu:18.04
@@ -16,8 +21,12 @@ jobs:
 workflows:
   wf:
     jobs:
+      - prehold:
+          context: org-test
       - hold:
           type: approval
+          requires:
+            - prehold
       - cpu:
           requires:
             - hold
