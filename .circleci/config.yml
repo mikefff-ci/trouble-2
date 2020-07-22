@@ -8,7 +8,7 @@ jobs:
     docker:
       - image: ubuntu:18.04
     steps:
-      - run: echo 123
+      - run: echo ${CIRCLE_BUILD_URL}
   cpu:
     docker:
       - image: ubuntu:18.04
