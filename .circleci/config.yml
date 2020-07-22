@@ -23,7 +23,7 @@ workflows:
   wf:
     jobs:
       - end-of-the-jobs/execute_on_end:
-          pipeline_id: << pipeline.in >>
+          pipeline_id: << pipeline.id >>
           command: |
             echo 123
             echo "done!"
