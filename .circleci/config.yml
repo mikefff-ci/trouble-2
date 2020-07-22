@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   docker-cpu-profiling: mkly/docker-cpu-profiling@0.2.1
-  end-of-the-jobs: mkly/end-of-the-jobs@dev:0.4.4
+  end-of-the-jobs: mkly/end-of-the-jobs@dev:0.4.5
 
 jobs:
   prehold:
@@ -22,8 +22,7 @@ jobs:
 workflows:
   wf:
     jobs:
-      - end-of-the-jobs/execute_on_end:
-          pipeline_id: << pipeline.id >>
+      - end-of-the-jobs/execute_on_end_workflow:
           run_command: echo "done!"
 
       - prehold:
