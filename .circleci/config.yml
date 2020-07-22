@@ -24,9 +24,7 @@ workflows:
     jobs:
       - end-of-the-jobs/execute_on_end:
           pipeline_id: << pipeline.id >>
-          run_command: |
-            echo 123
-            echo "done!"
+          run_command: echo "done!"
 
       - prehold:
           context: org-test
