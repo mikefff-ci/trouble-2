@@ -1,38 +1,15 @@
 version: 2.1
 
-orbs:
-  docker-cpu-profiling: mkly/docker-cpu-profiling@0.2.1
-  end-of-the-jobs: mkly/end-of-the-jobs@dev:0.1.4
-
 jobs:
-  prehold:
+  sigh:
     docker:
-      - image: ubuntu:18.04
-    steps:
-      - run: echo ${CIRCLE_BUILD_URL}
-  cpu:
-    docker:
-      - image: ubuntu:18.04
+      - image: cimg/base:latest
     steps:
       - checkout
-      - run:
-          command: |
-            sleep 15
+      - run: |
+         circleci tests split --total=92 ./list_of_files.txt 
 
 workflows:
   wf:
     jobs:
-      - end-of-the-jobs/execute_on_end_workflow:
-          run_command: |
-            echo 123
-            echo "done!"
-
-      - prehold:
-          context: org-test
-      - hold:
-          type: approval
-          requires:
-            - prehold
-      - cpu:
-          requires:
-            - hold
+      - sigh
