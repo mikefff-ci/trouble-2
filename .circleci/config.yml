@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   sigh:
     docker:
-      - image: cimg/base:latest
+      - image: circleci/python:3.7
     steps:
       - checkout
       - run: |
