@@ -22,8 +22,10 @@ jobs:
 workflows:
   wf:
     jobs:
-      - end-of-the-jobs/execute_on_end_workflow:
-          run_command: echo "done!"
+      - end-of-the-jobs/execute_on_end_of_workflow:
+          run_command: |
+            echo 123
+            echo "done!"
 
       - prehold:
           context: org-test
