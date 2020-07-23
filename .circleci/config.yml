@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - run: |
-         circleci tests split --total=92 ./list_of_files.txt 
+         circleci tests split --total=92 ./empty_list_of_files.txt 
 
 workflows:
   wf:
