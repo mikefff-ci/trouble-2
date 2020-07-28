@@ -11,7 +11,7 @@ jobs:
           command: |
             while true ; do
               sleep 2
-              ps -o %cpu,%mem,cmd
+              ps --forest -o %cpu,%mem,pid,cmd
             done
       - run: |
           echo 123
