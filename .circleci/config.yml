@@ -10,7 +10,7 @@ jobs:
           background: true
           command: |
             while true ; do
-              sleep
+              sleep 2
               ps -o %cpu,%mem,cmd
             done
       - run: |
