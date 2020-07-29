@@ -5,7 +5,14 @@ jobs:
     docker:
       - image: cimg/bash:stable
     steps:
-      - run: "Its a test"
+      - run: |
+          (
+            exit 1;
+          ) || {
+            if [ $? -ne 0 ]; then
+              echo 123;
+            fi
+          }
 workflows:
   wf:
     jobs:
