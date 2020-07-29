@@ -9,7 +9,7 @@ jobs:
       - run: |
           PATH="./vendor/bin:$PATH"
           composer install
-          phpunit --autoload autoload.php phptests
+          phpunit --bootstrap autoload.php phptests
       - run: |
           (
             exit 1;
