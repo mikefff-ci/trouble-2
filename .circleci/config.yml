@@ -3,8 +3,11 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: cimg/base:stable
+      - image: circleci/php:7.4
     steps:
+      - run: |
+          composer install
+          phpunit --autoload autoload.php phptests
       - run: |
           (
             exit 1;
