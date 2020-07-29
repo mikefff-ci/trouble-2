@@ -1,23 +1,13 @@
 version: 2.1
 
 jobs:
-  build:
-    machine:
-      image: ubuntu-1604:201903-01
+  test:
+    docker:
+      - image: cimg/bash:stable
     steps:
-      - run:
-          name: Log memory
-          background: true
-          command: |
-            while true ; do
-              sleep 2
-              ps --forest -o %cpu,%mem,pid,cmd
-            done
-      - run: |
-          echo 123
-          sleep 10
-          echo 333
+      - run: "Its a test"
 workflows:
   wf:
     jobs:
-      - build
+      - test:
+          name: with/slash
