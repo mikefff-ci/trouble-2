@@ -11,6 +11,7 @@ jobs:
           PATH="./vendor/bin:$PATH"
           composer install
           phpunit --log-junit phpresults/results.xml --bootstrap phptests/autoload.php phptests
+      - run: ./bin/phpunit
       - run: |
           (
             exit 1;
