@@ -6,12 +6,6 @@ jobs:
       - image: circleci/php:7.4
     steps:
       - checkout
-      - run: mkdir phpresults
-      - run: |
-          PATH="./vendor/bin:$PATH"
-          composer install
-          phpunit --log-junit phpresults/results.xml --bootstrap phptests/autoload.php phptests
-      - run: ./bin/phpunit
       - run: |
           (
             exit 1;
@@ -22,6 +16,7 @@ jobs:
           }
       - run: |
           cd new-symfony-app
+          composer install
           ./bin/phpunit
 
       - store_test_results:
