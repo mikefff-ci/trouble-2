@@ -20,6 +20,10 @@ jobs:
               echo 123;
             fi
           }
+      - run: |
+          cd new-symfony-app
+          ./bin/phpunit
+
       - store_test_results:
           path: phpresults
       - store_artifacts:
