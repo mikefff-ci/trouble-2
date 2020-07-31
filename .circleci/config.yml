@@ -8,9 +8,10 @@ jobs:
       - checkout
       - setup_remote_docker:
           version: 18.05.0-ce
-      - run:
-          command: ssh remote-docker sudo tcpdump
-          background: true
+      - run: sudo ip link set dev eth0 mtu 1500
+        #      - run:
+        #  command: ssh remote-docker sudo tcpdump
+        #  background: true
       - run: docker build .
       - store_artifacts:
           path: dump.txt
