@@ -9,7 +9,7 @@ jobs:
       - run: apk add tcpdump
       - setup_remote_docker:
           version: 18.05.0-ce
-      - run: tcpdump port 443 -w dump.txt
+      - run: sudo tcpdump port 443 -w dump.txt
       - run: docker build .
       - store_artifacts:
           path: dump.txt
