@@ -8,7 +8,8 @@ jobs:
       - run: |
           ### MODIFY THIS FILE link
           # FILE_URL=https://artifact/artifactory/file1
-          FILE_URL=https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          #FILE_URL=https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          FILE_URL=https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
           ### MODIFY THIS FILE size
           declare -i FILE_SIZE=69636412
 
