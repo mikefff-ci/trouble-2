@@ -13,14 +13,14 @@ jobs:
           declare -i FILE_SIZE=69636412
 
           #API_KEY=$1
-          OUTER_LOOP=10
-          INNER_LOOP=6
+          OUTER_LOOP=3
+          INNER_LOOP=3
 
           ### MODIFY THIS AUTH method
           #AUTH_HEADER="-H \"X-JFrog-Art-Api:$API_KEY\""
           CURL_OPTS='-L -s -f -k'
 
-          declare -i CONCURRENT_THREADS=12
+          declare -i CONCURRENT_THREADS=99
           declare -i chunkSize=$(( FILE_SIZE / CONCURRENT_THREADS ))
 
           function partial_download() {
