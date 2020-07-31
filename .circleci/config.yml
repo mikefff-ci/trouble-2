@@ -9,9 +9,13 @@ jobs:
       - setup_remote_docker:
           version: 18.05.0-ce
       - run: ssh remote-docker sudo ip link set dev ens4 mtu 1500
-        #      - run:
-        #  command: ssh remote-docker sudo tcpdump
-        #  background: true
+      - run: ssh remote-docker sudo ifconfig
+      - run:
+          command: ssh remote-docker sudo tcpdump -i docker0
+          background: true
+      - run:
+          command: ssh remote-docker sudo tcpdump -i ens4
+          background: true
       - run: docker build .
       - store_artifacts:
           path: dump.txt
