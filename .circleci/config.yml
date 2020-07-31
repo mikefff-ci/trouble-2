@@ -6,10 +6,11 @@ jobs:
       - image: docker:18.05.0-ce-git
     steps:
       - checkout
-      - run: apk add tcpdump
       - setup_remote_docker:
           version: 18.05.0-ce
-      - run: sudo tcpdump port 443 -w dump.txt
+      - run:
+          command: ssh remote-docker sudo tcpdump
+          background: true
       - run: docker build .
       - store_artifacts:
           path: dump.txt
