@@ -1,4 +1,4 @@
-FROM curlimages/curl:7.47.0
+FROM curlimages/curl:7.65.3
 
 USER root
 RUN mkdir -p /downloads
