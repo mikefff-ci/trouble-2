@@ -13,8 +13,8 @@ jobs:
           declare -i FILE_SIZE=69636412
 
           #API_KEY=$1
-          OUTER_LOOP=3
-          INNER_LOOP=3
+          OUTER_LOOP=10
+          INNER_LOOP=6
 
           ### MODIFY THIS AUTH method
           #AUTH_HEADER="-H \"X-JFrog-Art-Api:$API_KEY\""
