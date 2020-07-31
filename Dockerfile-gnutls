@@ -1,6 +1,7 @@
 FROM mkly/curl-gnutls:latest
 
 USER root
+RUN curl --version
 RUN mkdir -p /downloads
 RUN curl -v -o /downloads/out.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
 RUN curl -v -o /downloads/out.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
