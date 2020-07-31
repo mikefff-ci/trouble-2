@@ -1,27 +1,25 @@
 version: 2.1
 
 jobs:
-  test:
+  wget:
     docker:
       - image: docker:18.05.0-ce-git
     steps:
       - checkout
       - setup_remote_docker:
           version: 18.05.0-ce
-          #- run: ssh remote-docker sudo ip link set dev ens4 mtu 1500
-          #- run: ssh remote-docker sudo ifconfig
-        #      - run:
-        #  command: ssh remote-docker sudo tcpdump -i docker0
-        #  background: true
-        #      - run:
-        #  command: ssh remote-docker sudo tcpdump -i ens4
-        #  background: true
       - run: docker build -f Dockerfile-wget .
-      - store_artifacts:
-          path: dump.txt
+  curl:
+    docker:
+      - image: docker:18.05.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 18.05.0-ce
+      - run: docker build -f Dockerfile .
 
 workflows:
   wf:
     jobs:
-      - test:
-          name: with/slash
+      - wget
+      - curl
