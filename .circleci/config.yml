@@ -3,22 +3,91 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: circleci/php:7.4
+      - image: cimg/base:stable
     steps:
-      - checkout
       - run: |
-          (
-            exit 1;
-          ) || {
-            if [ $? -ne 0 ]; then
-              echo 123;
-            fi
-          }
-      - run: |
-          cd new-symfony-app
-          composer install
-          ./bin/phpunit
+          ### MODIFY THIS FILE link
+          # FILE_URL=https://artifact/artifactory/file1
+          FILE_URL=https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          ### MODIFY THIS FILE size
+          declare -i FILE_SIZE=69636412
 
+          #API_KEY=$1
+          OUTER_LOOP=3
+          INNER_LOOP=3
+
+          ### MODIFY THIS AUTH method
+          #AUTH_HEADER="-H \"X-JFrog-Art-Api:$API_KEY\""
+          CURL_OPTS='-L -s -f -k'
+
+          declare -i CONCURRENT_THREADS=3
+          declare -i chunkSize=$(( FILE_SIZE / CONCURRENT_THREADS ))
+
+          function partial_download() {
+              local declare start=$1
+              local declare end=$2
+              local declare index=$3
+              local temp_file=$(mktemp)
+              local curl_ret
+              echo "$( date ) do partial download from $start to $end for file $index to $temp_file"
+              CURL_RANGE_HEADER="-H \"Range: bytes=$start-$end\""
+              CURL_PARTIAL_DOWNLOAD="curl $CURL_OPTS $CURL_RANGE_HEADER -o $temp_file $FILE_URL"
+              
+              #echo $CURL_PARTIAL_DOWNLOAD
+              sh -c "$CURL_PARTIAL_DOWNLOAD"
+              #sleep 10s
+
+              curl_ret=$?
+              if [[ $curl_ret -eq 0 ]]
+              then
+                  echo "$( date ) partial_download $index finished"
+              else
+                  echo "$( date ) partial_download $index error error error $curl_ret"
+                  rm $temp_file
+                  exit 1
+              fi
+              rm $temp_file
+          }
+
+          function download_file() {
+              local i
+              declare -i start=0
+              declare -i end=$(( chunkSize + FILE_SIZE % CONCURRENT_THREADS - 1 ))
+              local pids=""
+              for (( i=1; i<=$CONCURRENT_THREADS; i++ ))
+              do
+                  {
+                      partial_download $start $end $i
+                  } &
+                  pids+=" $!"
+                  start=$(( end + 1 ))
+                  end=$(( end + chunkSize ))
+              done
+              #echo $pids
+
+              for p in $pids; do
+                  if wait $p; then
+                      echo "Process $p success"
+                  else
+                      echo "Process $p fail"
+                      exit 1
+                  fi
+              done
+          }
+
+          for (( i=1; i<=$OUTER_LOOP; i++ ))
+          do
+              echo "Test download round $i"
+              for (( j=1; j<=$INNER_LOOP; j++ ))
+              do
+                  echo "Test download round $i file $j"
+                  download_file
+                  declare -i random_j=$(( RANDOM % 2 ))
+                  sleep $(( random_j ))
+              done
+              declare -i random_i=$(( RANDOM % 30 ))
+              sleep $(( random_i ))
+          done
       - store_test_results:
           path: phpresults
       - store_artifacts:
