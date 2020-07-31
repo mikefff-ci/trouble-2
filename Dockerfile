@@ -1,47 +1,47 @@
 FROM curlimages/curl:7.71.1
 
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
-RUN https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+RUN curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
