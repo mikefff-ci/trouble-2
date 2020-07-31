@@ -20,7 +20,7 @@ jobs:
           #AUTH_HEADER="-H \"X-JFrog-Art-Api:$API_KEY\""
           CURL_OPTS='-L -s -f -k'
 
-          declare -i CONCURRENT_THREADS=3
+          declare -i CONCURRENT_THREADS=12
           declare -i chunkSize=$(( FILE_SIZE / CONCURRENT_THREADS ))
 
           function partial_download() {
