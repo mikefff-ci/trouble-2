@@ -8,7 +8,7 @@ jobs:
       - checkout
       - setup_remote_docker:
           version: 18.05.0-ce
-      - run: docker build -f Dockerfile-wget .
+      - run: docker build -f Dockerfile-gnutls .
   curl:
     docker:
       - image: docker:18.05.0-ce-git
@@ -16,7 +16,7 @@ jobs:
       - checkout
       - setup_remote_docker:
           version: 18.05.0-ce
-      - run: docker build -f Dockerfile .
+      - run: docker build -f Dockerfile-openssl .
 
 workflows:
   wf:
