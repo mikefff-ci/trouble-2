@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 
 USER root
 RUN mkdir -p /downloads
-RUN apt-get update && apt-get install -y wget
+RUN apt-get update && apt-get install -y wget -v
 RUN wget -o /downloads/out.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
 RUN wget -o /downloads/out.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
 RUN wget -o /downloads/out.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
