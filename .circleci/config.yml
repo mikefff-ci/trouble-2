@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   makecache:
     docker:
-      image: cimg/base:stable
+      - image: cimg/base:stable
     steps:
       - run: |
           mkdir cache
@@ -13,14 +13,15 @@ jobs:
           path: cache
   usecache:
     docker:
-      image: google/cloud-sdk
-    - restore_cache:
-        key: v1
+      - image: google/cloud-sdk
+    steps:
+      - restore_cache:
+          key: v1
 
 workflows:
   wf:
     jobs:
       - makecache
-      - restorecache:
+      - usecache:
           requires:
             - makecache
