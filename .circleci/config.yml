@@ -16,6 +16,7 @@ jobs:
     docker:
       - image: google/cloud-sdk
     steps:
+      - run: whoami
       - restore_cache:
           key: v1
 
