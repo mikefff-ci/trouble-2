@@ -17,7 +17,7 @@ jobs:
       - image: google/cloud-sdk
     steps:
       - run: whoami
-      - run: su circle
+      - run: chmod -R a+rwx ./
       - restore_cache:
           key: v1
 
