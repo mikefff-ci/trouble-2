@@ -8,8 +8,8 @@ jobs:
       - run: |
           mkdir cache
           echo "test" > cache/file.txt
-      - save_cache:
-          key: v1
+      - persist_to_workspace:
+          root: /home/circleci
           paths:
             - cache
   usecache:
@@ -18,8 +18,8 @@ jobs:
     steps:
       - run: whoami
       - run: pwd
-      - restore_cache:
-          key: v1
+      - attach_workspace:
+          at: cache
 
 workflows:
   wf:
