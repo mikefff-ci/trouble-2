@@ -10,7 +10,8 @@ jobs:
           echo "test" > cache/file.txt
       - save_cache:
           key: v1
-          path: cache
+          paths:
+            - cache
   usecache:
     docker:
       - image: google/cloud-sdk
