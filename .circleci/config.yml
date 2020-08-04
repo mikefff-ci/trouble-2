@@ -1,34 +1,26 @@
 version: 2.1
 
 jobs:
-  wget:
+  makecache:
     docker:
-      - image: docker:18.05.0-ce-git
+      image: cimg/base:stable
     steps:
-      - checkout
-      - setup_remote_docker:
-          version: 18.05.0-ce
-      - run: docker build -f Dockerfile-wget .
-  gnutls:
+      - run: |
+          mkdir cache
+          echo "test" > cache/file.txt
+      - save_cache:
+          key: v1
+          path: cache
+  usecache:
     docker:
-      - image: docker:18.05.0-ce-git
-    steps:
-      - checkout
-      - setup_remote_docker:
-          version: 18.05.0-ce
-      - run: docker build -f Dockerfile-gnutls .
-  openssl:
-    docker:
-      - image: docker:18.05.0-ce-git
-    steps:
-      - checkout
-      - setup_remote_docker:
-          version: 18.05.0-ce
-      - run: docker build -f Dockerfile-openssl .
+      image: google/cloud-sdk
+    - restore_cache:
+        key: v1
 
 workflows:
   wf:
     jobs:
-      - wget
-      - gnutls
-      - openssl
+      - makecache
+      - restorecache:
+          requires:
+            - makecache
