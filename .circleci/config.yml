@@ -15,7 +15,7 @@ jobs:
           echo "test" > cache/file.txt
           if [ "<< pipeline.parameters.second >>" = "false" ]
           then
-        curl -X POST "https://circleci.com/api/v2/project/gh/mkly/trouble/pipeline" -d "{ \"parameters\": { \"second\": \"true\" }}" -H "Circle-Token: ${CIRCLE_TOKEN}" -H "Content-Type: application/json"
+            curl -X POST "https://circleci.com/api/v2/project/gh/mkly/trouble/pipeline" -d "{ \"parameters\": { \"second\": \"true\" }}" -H "Circle-Token: ${CIRCLE_TOKEN}" -H "Content-Type: application/json"
           fi
       - persist_to_workspace:
           root: /home/circleci/project
