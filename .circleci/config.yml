@@ -31,7 +31,6 @@ jobs:
           at: cache
 
 workflows:
-  version: 2
   wf:
     when:
       equal: [ "true", << pipeline.parameters.second >> ]
