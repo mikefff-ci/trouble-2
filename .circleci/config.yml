@@ -32,16 +32,16 @@ jobs:
 
 workflows:
   wf:
-    when:
-      equal: [ "true", << pipeline.parameters.second >> ]
+    #    when:
+    #  equal: [ "true", << pipeline.parameters.second >> ]
     jobs:
       - makecache
       - usecache:
           requires:
             - makecache
   two:
-    when:
-      equal: [ "false", << pipeline.parameters.second >> ]
+    #when:
+    #  equal: [ "false", << pipeline.parameters.second >> ]
     jobs:
       - makecache
 
