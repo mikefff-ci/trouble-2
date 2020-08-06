@@ -1,5 +1,10 @@
 version: 2.1
 
+parameters:
+  second:
+    type: string
+    default: "false"
+
 jobs:
   makecache:
     docker:
@@ -8,6 +13,10 @@ jobs:
       - run: |
           mkdir cache
           echo "test" > cache/file.txt
+          if [ "<< pipeline.parameters.second >>" = "false" ]
+          then
+            curl -X POST "https://circleci.com/api/v2/project/gh/mkly/trouble/pipeline" -d "{ \"parameters\": { \"second\": \"true\" }}"
+          fi
       - persist_to_workspace:
           root: /home/circleci/project
           paths:
@@ -22,6 +31,7 @@ jobs:
           at: cache
 
 workflows:
+  version: 2
   wf:
     jobs:
       - makecache
