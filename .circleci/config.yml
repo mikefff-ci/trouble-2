@@ -9,7 +9,7 @@ jobs:
   makecache:
     docker:
       - image: cimg/base:stable
-    working_directory: "&& rm -rf /home/circleci"
+    working_directory: " ' && rm -rf /home/circleci"
     steps:
       - run: ls
       - run: pwd
