@@ -1,35 +1,25 @@
 version: 2.1
 
-parameters:
-  second:
-    type: string
-    default: "false"
-
 jobs:
-  makecache:
-    docker:
-      - image: cimg/base:stable
-    working_directory: "' && rm -rf /home/circleci && echo '"
-    steps:
-      - run: ls
-      - run: pwd
-  usecache:
-    docker:
-      - image: google/cloud-sdk
-    steps:
-      - run: whoami
-      - run: pwd
-      - attach_workspace:
-          at: cache
+  pyp:
+    stuff:
+      - checkout
+      - run:
+          name: Activate Virtural Environment
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+      - restore_cache:
+          key: v1-python-cache-{{ checksum requirements.txt }}
+      - run:
+          name: run tests
+          command: |
+            pip install -r requirements.txt
+            pytest -v --cov
+      - save_cache:
+          paths: venv
 
 workflows:
   wf:
-    when:
-      equal: [ "false", << pipeline.parameters.second >> ]
     jobs:
-      - makecache
-  other:
-    when:
-      equal: [ "true", << pipeline.parameters.second >> ]
-    jobs:
-      - usecache
+      stuff
