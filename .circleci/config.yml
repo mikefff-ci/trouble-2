@@ -12,7 +12,7 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
       - restore_cache:
-          key: v1-python-cache-{{ checksum requirements.txt }}
+          key: v1-python-cache-{{ checksum "requirements.txt" }}
       - run:
           name: run tests
           command: |
@@ -21,7 +21,7 @@ jobs:
       - save_cache:
           paths:
             - venv
-          key: v1-python-cache-{{ checksum requirements.txt }}
+          key: v1-python-cache-{{ checksum "requirements.txt" }}
 
 workflows:
   wf:
