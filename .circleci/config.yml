@@ -19,7 +19,8 @@ jobs:
             pip install -r requirements.txt
             pytest -v --cov
       - save_cache:
-          path: venv
+          paths:
+            - venv
           key: v1-python-cache-{{ checksum requirements.txt }}
 
 workflows:
