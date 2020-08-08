@@ -10,20 +10,21 @@ jobs:
           name: Activate Virtural Environment
           command: |
             python3 -m venv venv
-            . venv/bin/activate
       - restore_cache:
-          key: v1-python-cache-{{ checksum "requirements.txt" }}
+          key: v2-python-cache-{{ checksum "requirements.txt" }}
       - run:
           name: Install Dependencies
           command: |
+            . venv/bin/activate
             pip install -r requirements.txt
       - save_cache:
           paths:
             - venv
-          key: v1-python-cache-{{ checksum "requirements.txt" }}
+          key: v2-python-cache-{{ checksum "requirements.txt" }}
       - run:
           name: Run Tests
           command: |
+            . venv/bin/activate
             pytest
 
 workflows:
