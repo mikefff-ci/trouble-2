@@ -24,4 +24,4 @@ jobs:
 workflows:
   wf:
     jobs:
-      stuff
+      - stuff
