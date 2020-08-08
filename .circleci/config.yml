@@ -1,8 +1,10 @@
 version: 2.1
 
 jobs:
-  pyp:
-    stuff:
+  stuff:
+    docker:
+      - image: circleci/python:3.7
+    steps:
       - checkout
       - run:
           name: Activate Virtural Environment
