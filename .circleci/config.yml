@@ -6,26 +6,22 @@ jobs:
       - image: circleci/python:3.7
     steps:
       - checkout
-      - run:
-          name: Activate Virtural Environment
-          command: |
-            python3 -m venv venv
       - restore_cache:
           key: v2-python-cache-{{ checksum "requirements.txt" }}
       - run:
+          name: Create Virtual Environment
+          command: |
+      - run:
           name: Install Dependencies
           command: |
+            python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
+            pytest
       - save_cache:
           paths:
             - venv
           key: v2-python-cache-{{ checksum "requirements.txt" }}
-      - run:
-          name: Run Tests
-          command: |
-            . venv/bin/activate
-            pytest
 
 workflows:
   wf:
