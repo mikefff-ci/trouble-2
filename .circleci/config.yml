@@ -13,7 +13,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: sleep 12
+      - run: sleep 44
 
 workflows:
   wf:
