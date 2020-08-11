@@ -24,6 +24,6 @@ workflows:
             - run: echo 123
             - run: echo "test"
             - slack/notify:
-                message: This is a test
+                message: This is a test just work
       - morestuff
       - stuff
