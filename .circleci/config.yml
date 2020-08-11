@@ -1,12 +1,7 @@
 version: 2.1
 
-parameters:
-  testingfalse:
-    type: boolean
-    default: false
-  testingtrue:
-    type: boolean
-    default: true
+orbs:
+  end-of-the-jobs: mkly/end-of-the-jobs@dev:0.2.0
 
 jobs:
   stuff:
@@ -15,8 +10,18 @@ jobs:
     steps:
       - run: echo "this is invert <<^ pipeline.parameters.testingfalse >> INVERT <</ pipeline.parameters.testingfalse >>"
       - run: echo "this is regular <<# pipeline.parameters.testingtrue >> HERE <</ pipeline.parameters.testingtrue >>"
+  morestuff:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run: sleep 12
 
 workflows:
   wf:
     jobs:
+      - end-of-the-jobs/execute_on_end_workflow:
+          on_complete_steps:
+            - run: echo 123
+            - run: echo "done"
+      - morestuff
       - stuff
