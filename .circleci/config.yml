@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   end-of-the-jobs: mkly/end-of-the-jobs@dev:0.2.1
+  slack: circleci/slack@3.4.2
 
 jobs:
   stuff:
@@ -21,6 +22,8 @@ workflows:
       - end-of-the-jobs/execute_on_end_workflow:
           on_complete_steps:
             - run: echo 123
-            - run: echo "done"
+            - run: echo "test"
+            - slack/notify:
+                message: This is a test
       - morestuff
       - stuff
