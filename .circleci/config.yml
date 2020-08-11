@@ -25,5 +25,8 @@ workflows:
             - run: echo "test"
             - slack/notify:
                 message: This is a test just work
-      - morestuff
+      - morestuff:
+          filters:
+            branches:
+              only: /BRANCH_test/i
       - stuff
