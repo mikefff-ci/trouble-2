@@ -6,7 +6,7 @@ parameters:
     default: false
   testingtrue:
     type: boolean
-    default: false
+    default: true
 
 jobs:
   stuff:
