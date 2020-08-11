@@ -24,7 +24,7 @@ workflows:
             - run: echo 123
             - run: echo "test"
             - slack/notify:
-                message: This is a test just work
+                message: This is a test: $EOTJ_JOB_STATUSES
       - morestuff:
           filters:
             branches:
