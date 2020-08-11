@@ -28,5 +28,5 @@ workflows:
       - morestuff:
           filters:
             branches:
-              only: /BRANCH_test/i
+              only: /branch_test/i
       - stuff
