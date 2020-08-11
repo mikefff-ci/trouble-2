@@ -8,7 +8,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: echo "test 1id23 1dddsdfsdfsdd"
+      - run: echo "test 1id23 1dddsdfsdfssdfsddd"
   morestuff:
     docker:
       - image: cimg/base:stable
