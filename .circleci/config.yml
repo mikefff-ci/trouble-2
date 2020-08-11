@@ -15,6 +15,9 @@ jobs:
       - image: cimg/base:stable
     steps:
       - run: sleep 60
+  evenmorestuff:
+      - run: sleep 24
+      - run: exit 99
 
 workflows:
   wf:
