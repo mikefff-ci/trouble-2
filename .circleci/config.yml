@@ -1,7 +1,10 @@
 version: 2.1
 
 parameters:
-  testing:
+  testingfalse:
+    type: boolean
+    default: false
+  testingtrue:
     type: boolean
     default: false
 
@@ -10,8 +13,8 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: echo "this is invert <<^ pipeline.parameters.testing >> INVERT <</ pipeline.parameters.testing >>"
-      - run: echo "this is regular <<# pipeline.parameters.testing >> HERE <</ pipeline.parameters.testing >>"
+      - run: echo "this is invert <<^ pipeline.parameters.testingfalse >> INVERT <</ pipeline.parameters.testingfalse >>"
+      - run: echo "this is regular <<# pipeline.parameters.testingtrue >> HERE <</ pipeline.parameters.testingtrue >>"
 
 workflows:
   wf:
