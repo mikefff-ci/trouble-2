@@ -8,8 +8,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: echo "this is invert <<^ pipeline.parameters.testingfalse >> INVERT <</ pipeline.parameters.testingfalse >>"
-      - run: echo "this is regular <<# pipeline.parameters.testingtrue >> HERE <</ pipeline.parameters.testingtrue >>"
+      - run: echo "test"
   morestuff:
     docker:
       - image: cimg/base:stable
