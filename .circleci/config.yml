@@ -1,24 +1,17 @@
 version: 2.1
 
+parameters:
+  testing:
+    type: boolean
+    default: false
+
 jobs:
   stuff:
     docker:
-      - image: circleci/python:3.7
+      - image: cimg/base:stable
     steps:
-      - checkout
-      - restore_cache:
-          key: v2-python-cache-{{ checksum "requirements.txt" }}
-      - run:
-          name: Install Dependencies and Run Tests
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r requirements.txt
-            pytest
-      - save_cache:
-          paths:
-            - venv
-          key: v2-python-cache-{{ checksum "requirements.txt" }}
+      - run: echo "this is invert <<^ pipeline.parameters >> INVERT <</ pipeline.parameters.testing >>"
+      - run: echo "this is regular <<# pipeline.parameters >> INVERT <</ pipeline.parameters.testing >>"
 
 workflows:
   wf:
