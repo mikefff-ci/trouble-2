@@ -10,8 +10,8 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: echo "this is invert <<^ pipeline.parameters >> INVERT <</ pipeline.parameters.testing >>"
-      - run: echo "this is regular <<# pipeline.parameters >> INVERT <</ pipeline.parameters.testing >>"
+      - run: echo "this is invert <<^ pipeline.parameters.testing >> INVERT <</ pipeline.parameters.testing >>"
+      - run: echo "this is regular <<# pipeline.parameters.testing >> HERE <</ pipeline.parameters.testing >>"
 
 workflows:
   wf:
