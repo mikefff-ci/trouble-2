@@ -14,12 +14,12 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: sleep 60
+      - run: sleep 12
   evenmorestuff:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: sleep 24
+      - run: sleep 10
       - run: exit 99
 
 workflows:
