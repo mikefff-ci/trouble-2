@@ -32,8 +32,11 @@ workflows:
             - run: echo 123
             - run: echo "test"
             - slack/notify:
+                include_visit_job_action: false
+                include_job_number_field: false
                 color: "$EOTJ_COLOR"
-                message: "$EOTJ_JOB_MESSAGE $EOTJ_WORKFLOW_URL"
+                message: "$EOTJ_JOB_MESSAGE"
+                footer: "$EOTJ_WORKFLOW_URL"
       - evenmorestuff
       - morestuff:
           filters:
