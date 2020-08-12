@@ -3,7 +3,7 @@ version: 2.1
 parameters:
   thefunc:
     type: string
-    default: '(fn [content ctx render] (str "Hi " content))'
+    default: '(fn (fn [content ctx render] (str "Hi " content)))'
   yourname:
     type: string
     default: "Mike"
@@ -19,7 +19,9 @@ jobs:
           <<! We can also do comments >>
           echo "below"
           echo $SOME_ENV
-          <<# pipeline.parameters.thefunc >><< pipeline.parameters.yourname >><</ pipeline.parameters.thefunc >>
+          <<#pipeline.parameters.thefunc>>
+            << pipeline.parameters.yourname >>
+          <</pipeline.parameters.thefunc>>
 workflows:
   comments:
     jobs:
