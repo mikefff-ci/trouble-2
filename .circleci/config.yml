@@ -11,6 +11,7 @@ jobs:
           echo "above"
           <<! We can also do comments >>
           echo "below"
+          echo $SOME_ENV
 
 workflows:
   comments:
