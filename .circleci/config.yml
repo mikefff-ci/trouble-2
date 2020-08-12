@@ -3,7 +3,7 @@ version: 2.1
 parameters:
   thefunc:
     type: string
-    default: '(fn [content ctx render] (str "Hi " content))'
+    default: '(fn [content ctx render] false)'
   yourname:
     type: string
     default: "Mike"
