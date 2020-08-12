@@ -4,13 +4,13 @@ jobs:
   comment:
     docker:
       - image: cimg/base:stable
+    environment:
+      SOME_ENV: <<! another comment >>Testing
     steps:
       - run: |
           echo "above"
           <<! We can also do comments >>
           echo "below"
-          environment:
-            SOME_ENV: <<! another comment >>Testing
 
 workflows:
   comments:
