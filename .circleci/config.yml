@@ -26,6 +26,8 @@ workflows:
   wf:
     jobs:
       - end-of-the-jobs/execute_on_end_workflow:
+          pipeline_number: << pipeline.number >>
+          pipeline_project_type: << pipeline.project.type >>
           on_complete_steps:
             - run: echo 123
             - run: echo "test"
