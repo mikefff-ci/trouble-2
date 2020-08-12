@@ -31,7 +31,7 @@ workflows:
             - run: echo "test"
             - slack/notify:
                 color: "$EOTJ_COLOR"
-                message: "This is a test: $EOTJ_JOB_STATUSES"
+                message: "$EOTJ_JOB_MESSAGE"
       - evenmorestuff
       - morestuff:
           filters:
