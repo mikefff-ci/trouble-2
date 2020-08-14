@@ -6,8 +6,8 @@ jobs:
       - image: ${IMAGE_TEST}:stable
     steps:
       - setup_remote_docker
-      - run: sudo df
-      - run: ssh remote-docker "sudo df"
+          docker_layer_caching: true
+      - run: SPACE_USED_IN_KILOBYETS=$(ssh remote-docker "sudo df | grep '/var/lib/docker' | awk '{print $4}'")
 
 workflows:
   comments:
