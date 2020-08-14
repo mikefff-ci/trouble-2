@@ -1,27 +1,13 @@
 version: 2.1
 
-parameters:
-  thefunc:
-    type: string
-    default: '(func [] "test")'
-  yourname:
-    type: string
-    default: "Mike"
 jobs:
   comment:
     docker:
       - image: cimg/base:stable
-    environment:
-      SOME_ENV: <<! another comment >>Testing
     steps:
-      - run: |
-          echo "above"
-          <<! We can also do comments >>
-          echo "below"
-          echo $SOME_ENV
-          <<#pipeline.parameters.thefunc>>
-            echo "<< pipeline.parameters.yourname >>"
-          <</pipeline.parameters.thefunc>>
+      - setup_remote_docker
+      - run: ssh remote-docker df | grep '/var/lib/docker' | awk '{print $4}'
+
 workflows:
   comments:
     jobs:
