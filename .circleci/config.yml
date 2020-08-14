@@ -6,7 +6,7 @@ jobs:
       - image: ${IMAGE_TEST}:stable
     steps:
       - setup_remote_docker
-      - run: ssh remote-docker "df | grep '/var/lib/docker' | awk '{print $4}'"
+      - run: ssh remote-docker "sudo df"
 
 workflows:
   comments:
