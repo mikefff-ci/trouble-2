@@ -11,6 +11,7 @@ jobs:
       - run: docker build .
       - run: ssh remote-docker "sudo mount"
       - run: |
+          docker system df
           ssh remote-docker "sudo df" | grep '/var/lib/docker' | awk '{print $4}'
 
 workflows:
