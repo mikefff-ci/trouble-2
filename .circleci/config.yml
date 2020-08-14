@@ -6,6 +6,7 @@ jobs:
       - image: ${IMAGE_TEST}:stable
     steps:
       - setup_remote_docker
+      - run: sudo df
       - run: ssh remote-docker "sudo df"
 
 workflows:
