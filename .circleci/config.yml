@@ -8,6 +8,9 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: true
+      - run: |
+          docker system df
+          ssh remote-docker "sudo df" | grep '/var/lib/docker' | awk '{print $4}'
       - run: docker build .
       - run: ssh remote-docker "sudo mount"
       - run: |
