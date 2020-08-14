@@ -9,7 +9,8 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - run: docker build .
-      - run: SPACE_USED_IN_KILOBYETS=$(ssh remote-docker "sudo df | grep '/var/lib/docker' | awk '{print $4}'")
+      - run: ssh remote-docker "sudo mount"
+      - run: ssh remote-docker "sudo df | grep '/var/lib/docker' | awk '{print $4}'"
 
 workflows:
   comments:
