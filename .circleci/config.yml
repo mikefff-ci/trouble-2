@@ -1,23 +1,15 @@
 version: 2.1
 
 jobs:
-  comment:
-    docker:
-      - image: ${IMAGE_TEST}:stable
+  test:
+    machine:
+      image: windows-server-2019-vs2019:canary
+      resource_class: windows.large
+      shell: powershell.exe -ExecutionPolicy Bypass
     steps:
-      - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
-      - run: |
-          docker system df
-          ssh remote-docker "sudo df" | grep '/var/lib/docker' | awk '{print $4}'
-      - run: docker build .
-      - run: ssh remote-docker "sudo mount"
-      - run: |
-          docker system df
-          ssh remote-docker "sudo df" | grep '/var/lib/docker' | awk '{print $4}'
+      - run: dir
 
 workflows:
   comments:
     jobs:
-      - comment
+      - test
