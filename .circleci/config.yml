@@ -1,11 +1,12 @@
 version: 2.1
 
+orbs:
+  windows: circleci/windows@2.4.0
+
 jobs:
   test:
-    machine:
-      image: windows-server-2019-vs2019:canary
-      resource_class: windows.large
-      shell: powershell.exe -ExecutionPolicy Bypass
+    executor:
+      name: canary
     steps:
       - run: dir
 
