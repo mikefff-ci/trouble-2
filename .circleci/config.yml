@@ -6,7 +6,9 @@ orbs:
 jobs:
   test:
     executor:
-      name: canary
+      name: windows/default
+      version: canary
+      size: large
     steps:
       - run: dir
 
