@@ -1,9 +1,14 @@
 version: 2.1
 
 jobs:
-  bashenv:
+  android:
     docker:
       - image: circleci/android:api-29-node
+    steps:
+      - run: cat $BASH_ENV
+  python:
+    docker:
+      - image: circleci/python:3.7
     steps:
       - run: cat $BASH_ENV
 workflows:
