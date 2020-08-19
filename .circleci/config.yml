@@ -6,6 +6,9 @@ jobs:
       - image: mkly/go-version-test:latest
     steps:
       - checkout
+      - setup_remote_docker:
+          version: 17.11.0-ce
+      - run: ssh remote-docker 'uname -a'
       - run: go run test.go
 
 workflows:
