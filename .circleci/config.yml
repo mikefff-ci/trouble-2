@@ -7,10 +7,10 @@ jobs:
   test:
     executor:
       name: windows/default
-      version: canary
+      #version: canary
       size: large
     steps:
-      - run: dir
+      - run: java -version
 
 workflows:
   comments:
