@@ -1,16 +1,12 @@
 version: 2.1
 
-orbs:
-  windows: circleci/windows@2.4.0
-
 jobs:
   test:
-    executor:
-      name: windows/default
-      #version: canary
-      size: large
+    docker:
+      - image: mkly/go-version-test
     steps:
-      - run: java -version
+      - checkout
+      - run: go run test.go
 
 workflows:
   comments:
