@@ -1,17 +1,40 @@
 version: 2.1
 
 jobs:
-  test:
+  oneyear:
     docker:
-      - image: mkly/go-version-test:latest
+      - image: google/cloud-sdk@sha256:1bd0351db8746b188904e86a0140fccbbee2f82571917163ad441128786595f4 # 1yr ago
     steps:
-      - checkout
-      - setup_remote_docker:
-          version: 18.06.0-ce
-      - run: ssh remote-docker 'uname -a'
-      - run: go run test.go
-
+      - run: |
+          echo "export EXAMPLE=exmplae" >> $BASH_ENV
+          echo "export EXAMPLE=exmplae" >> $BASH_ENV
+          echo "export EXAMPLE=exmplae" >> $BASH_ENV
+          echo "export EXAMPLE=exmplae" >> $BASH_ENV
+          echo "export EXAMPLE=exmplae" >> $BASH_ENV
+          echo "export EXAMPLE=exmplae" >> $BASH_ENV
+          echo "export EXAMPLE=exmplae" >> $BASH_ENV
+          echo "export EXAMPLE=exmplae" >> $BASH_ENV
+          echo "export EXAMPLE=exmplae" >> $BASH_ENV
+          echo "export EXAMPLE=exmplae" >> $BASH_ENV
+          echo "export EXAMPLE=exmplae" >> $BASH_ENV
+  now:
+    docker:
+      - image: google/cloud-sdk@sha256:88d07968b35b0525427955fcb0c4f01185a7a71ce7f9b48e8de72be90a97d469
+    steps:
+      - run: |
+          echo "export EXAMPLE=exmplae" >> $BASH_ENV
+          echo "export EXAMPLE=exmplae" >> $BASH_ENV
+          echo "export EXAMPLE=exmplae" >> $BASH_ENV
+          echo "export EXAMPLE=exmplae" >> $BASH_ENV
+          echo "export EXAMPLE=exmplae" >> $BASH_ENV
+          echo "export EXAMPLE=exmplae" >> $BASH_ENV
+          echo "export EXAMPLE=exmplae" >> $BASH_ENV
+          echo "export EXAMPLE=exmplae" >> $BASH_ENV
+          echo "export EXAMPLE=exmplae" >> $BASH_ENV
+          echo "export EXAMPLE=exmplae" >> $BASH_ENV
+          echo "export EXAMPLE=exmplae" >> $BASH_ENV
 workflows:
   comments:
     jobs:
-      - test
+      - oneyear
+      - now
