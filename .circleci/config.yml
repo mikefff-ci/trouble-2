@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: mkly/go-version-test
+      - image: mkly/go-version-test:latest
     steps:
       - checkout
       - run: go run test.go
