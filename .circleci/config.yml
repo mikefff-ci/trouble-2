@@ -9,7 +9,7 @@ jobs:
       - add_ssh_keys
       - run: cat ~/.ssh/config
       - run: |
-          sed -i 's/Host ramp\-util\.github\.com/Host ramp\-util\.github\.com\nHostName github\.com/g' ~/.ssh/config
+          sed -i 's/Host ramp\-util\.github\.com/Host ramp\-util\.github\.com\n  HostName github\.com/g' ~/.ssh/config
       - run: cat ~/.ssh/config
 workflows:
   comments:
