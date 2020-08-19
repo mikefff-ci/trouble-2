@@ -1,22 +1,15 @@
 version: 2.1
 
 jobs:
-  android:
-    docker:
-      - image: circleci/android:api-29-node
-    steps:
-      - checkout
-      - run: touch $BASH_ENV
-      - run: cat $BASH_ENV
   python:
     docker:
       - image: circleci/python:3.7
     steps:
       - checkout
+      - add_ssh_keys
       - run: touch $BASH_ENV
       - run: cat $BASH_ENV
 workflows:
   comments:
     jobs:
-      - android
       - python
