@@ -1,40 +1,12 @@
 version: 2.1
 
 jobs:
-  oneyear:
+  bashenv:
     docker:
-      - image: google/cloud-sdk@sha256:1bd0351db8746b188904e86a0140fccbbee2f82571917163ad441128786595f4 # 1yr ago
+      - image: circleci/android:api-29-node
     steps:
-      - run: |
-          echo "export EXAMPLE=exmplae" >> $BASH_ENV
-          echo "export EXAMPLE=exmplae" >> $BASH_ENV
-          echo "export EXAMPLE=exmplae" >> $BASH_ENV
-          echo "export EXAMPLE=exmplae" >> $BASH_ENV
-          echo "export EXAMPLE=exmplae" >> $BASH_ENV
-          echo "export EXAMPLE=exmplae" >> $BASH_ENV
-          echo "export EXAMPLE=exmplae" >> $BASH_ENV
-          echo "export EXAMPLE=exmplae" >> $BASH_ENV
-          echo "export EXAMPLE=exmplae" >> $BASH_ENV
-          echo "export EXAMPLE=exmplae" >> $BASH_ENV
-          echo "export EXAMPLE=exmplae" >> $BASH_ENV
-  now:
-    docker:
-      - image: google/cloud-sdk@sha256:88d07968b35b0525427955fcb0c4f01185a7a71ce7f9b48e8de72be90a97d469
-    steps:
-      - run: |
-          echo "export EXAMPLE=exmplae" >> $BASH_ENV
-          echo "export EXAMPLE=exmplae" >> $BASH_ENV
-          echo "export EXAMPLE=exmplae" >> $BASH_ENV
-          echo "export EXAMPLE=exmplae" >> $BASH_ENV
-          echo "export EXAMPLE=exmplae" >> $BASH_ENV
-          echo "export EXAMPLE=exmplae" >> $BASH_ENV
-          echo "export EXAMPLE=exmplae" >> $BASH_ENV
-          echo "export EXAMPLE=exmplae" >> $BASH_ENV
-          echo "export EXAMPLE=exmplae" >> $BASH_ENV
-          echo "export EXAMPLE=exmplae" >> $BASH_ENV
-          echo "export EXAMPLE=exmplae" >> $BASH_ENV
+      - run: cat @BASH_ENV
 workflows:
   comments:
     jobs:
-      - oneyear
-      - now
+      - bashenv
