@@ -8,6 +8,7 @@ jobs:
     docker:
       - image: circleci/android:api-29-node
     steps:
+      - run: sudo su
       - ruby/install:
           version: '2.7'
       - run: ruby --version
