@@ -27,11 +27,11 @@ jobs:
     machine:
       image: ubuntu-1604:201903-01
     steps:
+      - run: sudo apt-get install pip3
       - run: |
           pyenv global 3.7.0
           python --version
           pip install pip3
-          sudo pip3 install awscli
           aws --version
 
 workflows:
