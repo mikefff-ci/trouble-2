@@ -11,6 +11,8 @@ jobs:
       - run: |
           sudo chown -R circleci.circleci ~/.gnupg
           sudo chmod -R a+rwx ~/.gnupg
+          sudo rm -f ~/.gnupg/pubring.kbx~
+          sudo rm -f ~/.gnupg/pubring.kbx.lock
       - ruby/install:
           version: '2.7'
       - run: ruby --version
