@@ -27,7 +27,10 @@ jobs:
     machine:
       image: ubuntu-1604:201903-01
     steps:
-      - run: echo 234
+      - run: |
+          pyenv global '3.7.0'
+          pip install awscli
+          aws --version
 
 workflows:
   wf:
