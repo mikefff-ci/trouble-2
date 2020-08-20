@@ -13,6 +13,7 @@ jobs:
           sudo chmod -R a+rwx ~/.gnupg
           sudo rm -f ~/.gnupg/pubring.kbx~
           sudo rm -f ~/.gnupg/*.lock
+          sudo gpgconf --kill gpg-agent
       - ruby/install:
           version: '2.7'
       - run: ruby --version
