@@ -1,17 +1,18 @@
 version: 2.1
 
+orbs:
+  win: circleci/windows@2.2.0
+
 jobs:
-  python:
-    docker:
-      - image: circleci/python:3.7
+  build:
+    executor:
+      name: win/default
+      shell: powershell.exe
     steps:
-      - checkout
-      - add_ssh_keys
-      - run: cat ~/.ssh/config
-      - run: |
-          sed -i 's/Host ramp\-util\.github\.com/Host ramp\-util\.github\.com\n  HostName github\.com/g' ~/.ssh/config
-      - run: cat ~/.ssh/config
+      - run: systeminfo
+      - run: docker --version
+
 workflows:
   comments:
     jobs:
-      - python
+      - build
