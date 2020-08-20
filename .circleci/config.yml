@@ -9,7 +9,7 @@ jobs:
       - image: circleci/android:api-29-node
     steps:
       - run: |
-          sudo chown circleci.circleci ~/.gnupg
+          sudo chown -R circleci.circleci ~/.gnupg
       - ruby/install:
           version: '2.7'
       - run: ruby --version
