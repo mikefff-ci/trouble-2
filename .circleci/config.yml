@@ -27,11 +27,10 @@ jobs:
     machine:
       image: ubuntu-1604:201903-01
     steps:
-      - run: sudo apt-get install pip3
+      - run: sudo apt-get install python3-pip
       - run: |
           pyenv global 3.7.0
           python --version
-          pip install pip3
           aws --version
 
 workflows:
