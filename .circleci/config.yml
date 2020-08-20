@@ -30,7 +30,7 @@ jobs:
       - run: |
           pyenv global 3.7.0
           python --version
-          sudo pip install awscli
+          sudo pip3 install awscli
           aws --version
 
 workflows:
