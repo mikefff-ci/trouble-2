@@ -10,7 +10,7 @@ jobs:
     steps:
       - run: |
           sudo chown -R circleci.circleci ~/.gnupg
-          sudo rm ~/.gnupg/*.gpg.lock
+          sudo chmod -R a+rwx ~/.gnupg
       - ruby/install:
           version: '2.7'
       - run: ruby --version
