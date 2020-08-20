@@ -27,10 +27,7 @@ jobs:
     machine:
       image: ubuntu-1604:201903-01
     steps:
-      - run: |
-          sudo apt-get update && sudo apt-get install -y python3-pip
-          pip3 install awscli
-          aws --version
+      - run: echo 234
 
 workflows:
   wf:
