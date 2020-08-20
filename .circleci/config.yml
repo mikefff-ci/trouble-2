@@ -28,10 +28,8 @@ jobs:
       image: ubuntu-1604:201903-01
     steps:
       - run: |
-          pyenv global 3.7.0
-          curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-          unzip awscli-bundle.zip
-          sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+          sudo apt-get update && apt-get install -y python3-pip
+          pip3 install awscli
           aws --version
 
 workflows:
