@@ -1,24 +1,38 @@
 version: 2.1
 
 orbs:
-  ruby: circleci/ruby@1.1.1
+  win: circleci/windows@1.0.0
 
 jobs:
   build:
-    docker:
-      - image: circleci/android:api-29-node
+    machine:
+      image: windows-server-2019-vs2019:stable
+      resource_class: windows.medium
+      shell: powershell.exe
+    working_directory: ~/rss-velociraptor
+    parameters:
+      version:
+        type: string
+        default: "0.4.5"
+    steps:
+      - run:
+          name: Install Wix
+          command: choco install wixtoolset
+          shell: powershell.exe
+          no_output_timeout: 1m
+      - store_artifacts:
+          path: C:\ProgramData\chocolatey\logs
+          destination: chocolatey_logs
+  loonix:
+    machine:
+      image: ubuntu-1604:201903-01
     steps:
       - run: |
-          sudo chown -R circleci.circleci ~/.gnupg
-          sudo chmod -R a+rwx ~/.gnupg
-          sudo rm -f ~/.gnupg/pubring.kbx~
-          sudo rm -f ~/.gnupg/*.lock
-          sudo gpgconf --kill gpg-agent
-      - ruby/install:
-          version: '2.7'
-      - run: ruby --version
+          pyenv global 3.7.0
+          python --version
 
 workflows:
-  comments:
+  wf:
     jobs:
       - build
+      - loonix
