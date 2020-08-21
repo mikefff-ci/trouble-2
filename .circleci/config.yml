@@ -13,5 +13,4 @@ jobs:
 workflows:
   wf:
     jobs:
-      - build
       - loonix
