@@ -4,34 +4,12 @@ orbs:
   win: circleci/windows@1.0.0
 
 jobs:
-  build:
-    machine:
-      image: windows-server-2019-vs2019:stable
-      resource_class: windows.medium
-      shell: powershell.exe
-    working_directory: ~/rss-velociraptor
-    parameters:
-      version:
-        type: string
-        default: "0.4.5"
-    steps:
-      - run:
-          name: Install Wix
-          command: choco install --nosilent wixtoolset
-          shell: powershell.exe
-          no_output_timeout: 1m
-      - store_artifacts:
-          path: C:\ProgramData\chocolatey\logs
-          destination: chocolatey_logs
   loonix:
     machine:
       image: ubuntu-1604:201903-01
     steps:
       - run: |
-          pyenv global '3.7.0'
-          pip install awscli
-          aws --version
-
+        echo '<< pipeline.git.base_revision >>'
 workflows:
   wf:
     jobs:
