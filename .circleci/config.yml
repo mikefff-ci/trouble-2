@@ -9,7 +9,7 @@ jobs:
       image: ubuntu-1604:201903-01
     steps:
       - run: |
-        echo '<< pipeline.git.base_revision >>'
+          echo '<< pipeline.git.base_revision >>'
 workflows:
   wf:
     jobs:
