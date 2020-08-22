@@ -8,11 +8,16 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - setup_remote_docker
-      - run: sudo apt-get update && sudo apt-get -y install sshfs
-      - run: mkdir ~/mnt
-      - run: sudo sshfs -o allow_other,default_permissions `whoami`@remote-docker:/ ~/mnt
-      - run: ls ~/mnt
+      - run: 
+          command: trap "echo SIGTERM" SIGTERM
+          background: true
+      - run:
+          command: trap "echo SIGINT" SIGINT
+          background: true
+      - run:
+          command: trap "echo SIGKILL" SIGKILL
+          background: true
+
 workflows:
   wf:
     jobs:
