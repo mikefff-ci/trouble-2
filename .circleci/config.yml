@@ -17,7 +17,7 @@ jobs:
       - run:
           command: trap "echo SIGKILL" SIGKILL
           background: true
-
+      - run: sleep 60
 workflows:
   wf:
     jobs:
