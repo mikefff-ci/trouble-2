@@ -8,20 +8,9 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: 
-          command: |
-            trap "echo SIGTERM" SIGTERM
-            sleep 60
-          background: true
+      - checkout
       - run:
-          command: |
-            trap "echo SIGINT" SIGINT
-            sleep 60
-          background: true
-      - run:
-          command: |
-            trap "echo SIGKILL" SIGKILL
-            sleep 60
+          command: ./trap.sh
           background: true
       - run: sleep 60
 workflows:
