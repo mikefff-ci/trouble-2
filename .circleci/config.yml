@@ -1,10 +1,7 @@
 version: 2.1
 
-orbs:
-  win: circleci/windows@1.0.0
-
 jobs:
-  loonix:
+  trap:
     docker:
       - image: cimg/base:stable
     steps:
@@ -15,5 +12,5 @@ jobs:
       - run: sleep 60
 workflows:
   wf:
-    jobs:
+    trap:
       - loonix
