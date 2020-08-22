@@ -5,11 +5,14 @@ orbs:
 
 jobs:
   loonix:
-    machine:
-      image: ubuntu-1604:201903-01
+    docker:
+      - image: cimg/base:stable
     steps:
-      - run: |
-          echo '<< pipeline.git.base_revision >>'
+      - setup-remote-docker
+      - run: sudo apt-get update && sudo apt-get -y install sshfs
+      - run: mkdir ~/mnt
+      - run: sudo sshfs -o allow_other,default_permissions `whoami`@remote-docker:/ ~/mnt
+      - run: ls ~/mnt
 workflows:
   wf:
     jobs:
