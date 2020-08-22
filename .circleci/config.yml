@@ -8,9 +8,9 @@ jobs:
       - checkout
       - run:
           command: |
-            trap "echo SIGINT" SIGINT
-            trap "echo SIGTERM" SIGTERM
-            trap "echo SIGKILL" SIGKILL
+            trap "date && echo SIGINT" SIGINT
+            trap "date && echo SIGTERM" SIGTERM
+            trap "data && echo SIGKILL" SIGKILL
 
             while :
             do
