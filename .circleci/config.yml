@@ -7,10 +7,19 @@ jobs:
     steps:
       - checkout
       - run:
-          command: ./trap.sh
+          command: |
+            trap "echo SIGINT" SIGINT
+            trap "echo SIGTERM" SIGTERM
+            trap "echo SIGKILL" SIGKILL
+
+            while :
+            do
+              echo "trapping"
+              sleep 1
+            done
           background: true
       - run: sleep 60
 workflows:
   wf:
     trap:
-      - loonix
+      - trap
