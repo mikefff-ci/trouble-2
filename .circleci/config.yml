@@ -8,7 +8,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - setup-remote-docker
+      - setup_remote_docker
       - run: sudo apt-get update && sudo apt-get -y install sshfs
       - run: mkdir ~/mnt
       - run: sudo sshfs -o allow_other,default_permissions `whoami`@remote-docker:/ ~/mnt
