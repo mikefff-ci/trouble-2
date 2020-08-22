@@ -19,7 +19,8 @@ jobs:
             done
           background: true
       - run: sleep 60
+
 workflows:
   wf:
-    trap:
+    jobs:
       - trap
