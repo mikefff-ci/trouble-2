@@ -9,13 +9,19 @@ jobs:
       - image: cimg/base:stable
     steps:
       - run: 
-          command: trap "echo SIGTERM" SIGTERM
+          command: |
+            trap "echo SIGTERM" SIGTERM
+            sleep 60
           background: true
       - run:
-          command: trap "echo SIGINT" SIGINT
+          command: |
+            trap "echo SIGINT" SIGINT
+            sleep 60
           background: true
       - run:
-          command: trap "echo SIGKILL" SIGKILL
+          command: |
+            trap "echo SIGKILL" SIGKILL
+            sleep 60
           background: true
       - run: sleep 60
 workflows:
