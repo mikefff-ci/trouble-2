@@ -3,21 +3,15 @@ version: 2.1
 jobs:
   trap:
     docker:
-      - image: cimg/base:stable
+      - image: quay.io/pantheon-public/build-tools-ci:1.x
     steps:
-      - checkout
       - run:
           command: |
-            trap "date && echo SIGINT" SIGINT
-            trap "date && echo SIGTERM" SIGTERM
-            trap "data && echo SIGKILL" SIGKILL
-
-            while :
-            do
-              echo "trapping"
-              sleep 1
+            while true; do
+              sleep 5
+              ps auxwf
+              echo "======"
             done
-          background: true
       - run: sleep 60
 
 workflows:
