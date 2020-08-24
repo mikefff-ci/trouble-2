@@ -3,17 +3,11 @@ version: 2.1
 jobs:
   trap:
     docker:
-      - image: quay.io/pantheon-public/build-tools-ci:1.x
+      - image: circleci/android:api-29-node
     steps:
-      - run:
-          command: |
-            whoami
-            apt-get update && apt-get install -y procps
-            while true; do
-              sleep 5
-              ps auxwf
-              echo "======"
-            done
+      - run: echo $PATH
+      - run: echo $JAVA_HOME
+      - run: java -version
       - run: sleep 60
 
 workflows:
