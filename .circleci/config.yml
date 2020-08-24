@@ -8,7 +8,7 @@ jobs:
       - run: echo $PATH
       - run: echo $JAVA_HOME
       - run: java -version
-      - run: sleep 60
+      - run: javac -version
 
 workflows:
   wf:
