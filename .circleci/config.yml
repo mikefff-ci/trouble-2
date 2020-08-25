@@ -5,7 +5,7 @@ orbs:
 jobs:
   trap:
     docker:
-      - image: circleci/python:3
+      - image: rotterdamlogisticslab/pronto-orb:master
     steps:
       - aws-cli/install
 
