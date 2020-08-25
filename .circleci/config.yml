@@ -1,16 +1,13 @@
 version: 2.1
+orbs:
+  aws-cli: circleci/aws-cli@0.1.13
 
 jobs:
   trap:
     docker:
-      - image: circleci/android:api-29-node
+      - image: circleci/python:3
     steps:
-      - add_ssh_keys
-      - checkout
-      - run: echo $PATH
-      - run: echo $JAVA_HOME
-      - run: java -version
-      - run: javac -version
+      - aws-cli/install
 
 workflows:
   wf:
