@@ -5,6 +5,7 @@ jobs:
     docker:
       - image: circleci/android:api-29-node
     steps:
+      - checkout
       - run: echo $PATH
       - run: echo $JAVA_HOME
       - run: java -version
