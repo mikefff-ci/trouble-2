@@ -1,15 +1,18 @@
 version: 2.1
-orbs:
-  aws-cli: circleci/aws-cli@0.1.13
 
 jobs:
   trap:
     docker:
-      - image: rotterdamlogisticslab/pronto-orb:master
+      - image: circleci/python:3.7
     steps:
-      - aws-cli/install
+      - run: echo 123
 
 workflows:
   wf:
     jobs:
-      - trap
+      - trap:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              only: /.*/
