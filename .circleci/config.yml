@@ -6,7 +6,7 @@ jobs:
       image: ubuntu-1604:202007-01
     steps:
       - checkout
-      - git clone https://not:correct@bitbucket.org/humancaresystems/hcs-resilix-pipelines.git/
+      - run: git clone https://not:correct@bitbucket.org/humancaresystems/hcs-resilix-pipelines.git/
       - run: echo 123
 
 workflows:
