@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/ruby:2.7
     steps:
-      - run: 'ruby -e "require \"io/console\"; STDIN.raw!;" || exit 0'
+      - run: 'ruby -e "require \"io/console\"; STDIN.raw!; puts STDIN.read_nonblock(1000).inspect" || exit 0'
   python:
     docker:
       - image: circleci/python:3.7
