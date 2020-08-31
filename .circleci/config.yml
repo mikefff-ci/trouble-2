@@ -10,7 +10,7 @@ jobs:
     docker:
       - image: circleci/python:3.7
     steps:
-      - run: 'python -e "print(input())"'
+      - run: 'python -c "print(input())"'
 
 workflows:
   default-ci-workflow:
