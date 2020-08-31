@@ -1,15 +1,15 @@
 version: 2.1
 
 jobs:
-  trap:
-    machine:
-      image: ubuntu-1604:202007-01
+  build:
+    docker:
+      - image: circleci/ruby:2.7
     steps:
-      - checkout
-      - run: git clone https://bitbucket.org/fbenbrahim/test-test-test.git
-      - run: echo 123
+      - run: 'ruby -e "require \"io/console\"; STDIN.raw!; puts STDIN.read_nonblock(1000).inspect" || exit 0'
+      - run: 'ruby -e "require \"io/console\"; STDIN.raw!; puts STDIN.read_nonblock(1000).inspect" || exit 0'
+      - run: 'ruby -e "require \"io/console\"; STDIN.raw!; puts STDIN.read_nonblock(1000).inspect" || exit 0'
 
 workflows:
-  wf:
+  default-ci-workflow:
     jobs:
-      - trap
+      - build
