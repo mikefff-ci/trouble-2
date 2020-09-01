@@ -7,12 +7,13 @@ jobs:
     steps:
       - restore_cache:
           key: v1-packages+datasets-U3h5YwdTXfPsjYsVouLcVkFBnD0wYM_jIjjA+pc_eqM1=
-      - run: |
+      - run:  |
           mkdir ~/test/
           truncate -s 5 ~/test/bigfile.txt
       - save_cache:
           key: v1-packages+datasets-U3h5YwdTXfPsjYsVouLcVkFBnD0wYM_jIjjA+pc_eqM1=
-          path: ~/test/
+          paths:
+            - ~/test/
     
 workflows:
   default-ci-workflow:
