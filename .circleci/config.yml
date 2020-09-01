@@ -8,7 +8,7 @@ jobs:
       - restore_cache:
           key: v1-packages+datasets-U3h5YwdTXfPsjYsVouLcVkFBnD0wYM_jIjjA+pc_eqM1=
       - run:  |
-          mkdir ~/test/
+          mkdir -p ~/test/
           truncate -s 5 ~/test/bigfile.txt
       - save_cache:
           key: v1-packages+datasets-U3h5YwdTXfPsjYsVouLcVkFBnD0wYM_jIjjA+pc_eqM1=
