@@ -6,14 +6,14 @@ jobs:
       - image: circleci/python:3.7
     steps:
       - restore_cache:
-          key: v1-packages+datasets-U3h5YwdTXfPsjYsVouLcVkFBnD0wYM_jIjjA+pc_eq8=
+          key: v1-packages+datasets-U3h5YwdTXfPsjYsVouLcVkFBnD0wYM_jIjjA+pc_eq9=
       - run:  |
           mkdir -p ~/test/
-          ls -ln ~/test/
-          truncate -s 10G ~/test/bigfile.txt
+          ls -lh ~/test/
+          truncate -s 9G ~/test/bigfile.txt
           ls -lh ~/test/
       - save_cache:
-          key: v1-packages+datasets-U3h5YwdTXfPsjYsVouLcVkFBnD0wYM_jIjjA+pc_eq8=
+          key: v1-packages+datasets-U3h5YwdTXfPsjYsVouLcVkFBnD0wYM_jIjjA+pc_eq9=
           paths:
             - ~/test/
     
