@@ -6,7 +6,7 @@ jobs:
       - image: circleci/python:3.7
     steps:
       - restore_cache:
-          key: v1-packages+datasets-U3h5YwdTXfPsjYsVouLcVkFBnD0wYM_jIjjA+pc_ex9=
+          key: v1-packages+datasets-U3h5YwdTXfPsjYsVouLcVkFBnD0wYM_jIjjA+pc_jx9=
       - run:  |
           mkdir -p ~/test/
           ls -lh ~/test/
@@ -15,7 +15,7 @@ jobs:
           cat ~/bigfile1.txt ~/bigfile2.txt > ~/test/bigfile.txt
           ls -lh ~/test/
       - save_cache:
-          key: v1-packages+datasets-U3h5YwdTXfPsjYsVouLcVkFBnD0wYM_jIjjA+pc_ex9=
+          key: v1-packages+datasets-U3h5YwdTXfPsjYsVouLcVkFBnD0wYM_jIjjA+pc_jx9=
           paths:
             - ~/test/
     
