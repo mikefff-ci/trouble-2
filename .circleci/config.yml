@@ -7,15 +7,15 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - v1-packages+datasets-U3h5YwdTXfPsjYsVouLcVkFBnD0wYM_jIjjA+pc11x9=
+            - v1-packages+datasets-U3hfPsVouLcVkFBnD0wYM_jIjjA+pc11x9=
             - v1-packages+datasets-
       - run:  |
           mkdir -p ~/test/
           ls -l ~/test/
-          head -c 5G </dev/urandom > ~/bigfile1.txt
-          truncate -s 5G ~/bigfile2.txt
-          cat ~/bigfile1.txt ~/bigfile2.txt > ~/test/bigfile.txt
-          gzip -9 -c ~/test/bigfile.txt > ~/bigfile.txt.gz
+          #head -c 5G </dev/urandom > ~/bigfile1.txt
+          #truncate -s 5G ~/bigfile2.txt
+          #cat ~/bigfile1.txt ~/bigfile2.txt > ~/test/bigfile.txt
+          #gzip -9 -c ~/test/bigfile.txt > ~/bigfile.txt.gz
           ls -lh ~/
           ls -l ~/test/
       - save_cache:
