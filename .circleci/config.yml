@@ -7,6 +7,8 @@ jobs:
   testcache:
     executor: aws-serverless/default
     steps:
+      - run: python --version
+      - run: python3 --version
       - aws-serverless/install:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-region: AWS_REGION
