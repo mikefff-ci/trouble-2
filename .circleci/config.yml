@@ -7,7 +7,10 @@ jobs:
   testcache:
     executor: aws-serverless/default
     steps:
-      - aws-serverless/install
+      - aws-serverless/install:
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-region: AWS_REGION
+          aws-secret-access-key: AWS_SECRET_KEY
 
 workflows:
   default-ci-workflow:
