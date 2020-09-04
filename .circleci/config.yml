@@ -3,10 +3,10 @@ version: 2.1
 jobs:
   testcache:
     docker:
-      - image: circleci:python:3.7
-      - image: circleci:python:3.7
+      - image: circleci/python:3.7
+      - image: circleci/python:3.7
         command: ls -l
-      - image: circleci:python:3.7
+      - image: circleci/python:3.7
         entrypoint: pwd
     steps:
       - run: python --version
