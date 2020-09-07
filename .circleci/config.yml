@@ -8,7 +8,7 @@ jobs:
       - run: mkdir uuu
       - run: echo "test" > uuu/test.txt
       - store_artifacts:
-          - path: uuu/
+          path: uuu/
 
 workflows:
   default-ci-workflow:
