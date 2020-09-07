@@ -4,12 +4,11 @@ jobs:
   testcache:
     docker:
       - image: circleci/python:3.7
-      - image: circleci/python:3.7
-        command: ls -l
-      - image: circleci/python:3.7
-        entrypoint: pwd
     steps:
-      - run: python --version
+      - run: mkdir uuu
+      - run: echo "test" > uuu/test.txt
+    store_artifacts:
+      - path: uuu/
 
 workflows:
   default-ci-workflow:
