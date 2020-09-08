@@ -1,16 +1,15 @@
-version: 2.1
+version: 2.0
 
 jobs:
-  testcache:
+  test:
+    name: test
     docker:
-      - image: circleci/python:3.7
+      - image: cimg/base:stable
     steps:
-      - run: mkdir uuu
-      - run: echo "test" > uuu/test.txt
-      - store_artifacts:
-          path: uuu/
+      - status:
+          noop: noop
 
 workflows:
-  default-ci-workflow:
+  wf:
     jobs:
-      - testcache
+      - test
