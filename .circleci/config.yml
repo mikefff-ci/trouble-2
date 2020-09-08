@@ -2,12 +2,10 @@ version: 2.0
 
 jobs:
   test:
-    name: test
     docker:
       - image: cimg/base:stable
     steps:
-      - status:
-          noop: noop
+      - run: echo 123
 
 workflows:
   version: 2
