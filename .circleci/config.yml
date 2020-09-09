@@ -2,10 +2,11 @@ version: 2.1
 
 jobs:
   test:
-    docker:
-      - image: indigoag/circleci-image-test:3.7-stretch-indigo-development
+    machine:
+      image: ubuntu-1604:201903-01
     steps:
-      - run: ls -la /usr/local/lib/python3.7/site-packages/cryptography/hazmat/primitives
+      - run: |
+          docker run --rm indigoag/circleci-image-test:3.7-stretch-indigo-development sudo /bin/sh -c 'ls /usr/local/lib/python3.7/site-packages/cryptography/hazmat/primitives/'
 
 workflows:
   wf:
