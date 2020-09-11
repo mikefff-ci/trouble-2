@@ -13,7 +13,16 @@ jobs:
       - image: blacktop/elasticsearch:7.4.2
       - image: adobe/s3mock:latest
     steps:
-      - run: netstat -plnt
+      - run: |
+          while ! nc -z localhost 9090 ; do   
+            sleep 1
+          done
+
+          while ! nc -z localhost 9090 ; do   
+            sleep 1
+          done
+
+          netstat -plnt
 
 workflows:
   wf:
