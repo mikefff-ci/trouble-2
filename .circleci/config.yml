@@ -3,11 +3,10 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: indigoag/circleci-image-test:3.7-stretch-indigo-development
+      - image: adobe/s3mock:latest
     steps:
-      - run: |
-          ls /usr/local/lib/python3.7/site-packages/cryptography/hazmat/primitives/
-      - run: sudo find /usr -user root -perm -4000 -exec ls -ldb {} \;
+      - run: nc -zv 127.0.0.1 9191
+      - run: nc -zv 127.0.0.1 9090
 
 workflows:
   wf:
