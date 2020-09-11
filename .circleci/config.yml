@@ -3,10 +3,10 @@ version: 2.1
 jobs:
   test:
     docker:
+      - image: cimg/base:stable
       - image: adobe/s3mock:latest
     steps:
-      - run: nc -zv 127.0.0.1 9191
-      - run: nc -zv 127.0.0.1 9090
+      - run: echo 123
 
 workflows:
   wf:
