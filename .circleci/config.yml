@@ -13,7 +13,7 @@ jobs:
       - image: blacktop/elasticsearch:7.4.2
       - image: adobe/s3mock:latest
     steps:
-      - run: echo 123
+      - run: netstat -plnt
 
 workflows:
   wf:
