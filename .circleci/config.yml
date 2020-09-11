@@ -3,7 +3,14 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: cimg/base:stable
+      - image: circleci/python:2.7.16-stretch
+      - image: circleci/mariadb:10.0
+        environment:
+          - MYSQL_USER=root
+          - MYSQL_ROOT_PASSWORD=root
+      - image: memcached:alpine
+      - image: redis:alpine
+      - image: blacktop/elasticsearch:7.4.2
       - image: adobe/s3mock:latest
     steps:
       - run: echo 123
