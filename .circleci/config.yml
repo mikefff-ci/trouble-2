@@ -2,7 +2,7 @@ version: 2.1
 
 parameters:
   one:
-    default: "pizza"
+    default: ${PIPELINESSS}
     type: string
 jobs:
   test:
