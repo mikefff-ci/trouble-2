@@ -5,18 +5,18 @@ orbs:
 
 jobs:
   test:
-    executor:
-      name: win/default
-      shell: bash.exe
+    docker:
+      - image: cimg/base:stable
     steps:
-      - run: mkdir /c/testing
-      - run: dir
-      - run: docker run -d --rm --volume='C:\testing:C:\windows' winamd64/golang touch C:\testing\test
       - run: |
-          while [ ! -f C:\testing\test ] ; do
+          n=0
+          until [ "$n" -ge 5 ]
+          do
+            echo "running"
+            exit 2 && break  # substitute your command here
+            n=$((n+1)) 
             sleep 1
           done
-          echo "test"
 
 workflows:
   wf:
