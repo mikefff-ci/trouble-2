@@ -1,24 +1,16 @@
 version: 2.1
 
-orbs:
-  win: circleci/windows@2.4.0
-
 jobs:
   test:
     docker:
-      - image: cimg/base:stable
+      - image: adobe/s3mock:latest
+        name: s3mock
+
     steps:
-      - run: |
-          n=1
-          until [ "$n" -ge 5 ]
-          do
-            echo "running"
-            bin/ci-verify-node "14.10.1" "linux-x64" && break
-            n=$((n+1)) 
-            sleep $(($n * 2))
-          done
+      - run: while ! nc -z localhost 9090 ; do sleep 1; done; while ! nc -z localhost 9191 ; do sleep 1; done; netstat -plnt
 
 workflows:
-  wf:
+  version: 2
+  test:
     jobs:
       - test
