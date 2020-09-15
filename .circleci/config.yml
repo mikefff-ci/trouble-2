@@ -14,7 +14,7 @@ jobs:
           until [ "$n" -ge 5 ]
           do
             echo "running"
-            exit 2 && break  # substitute your command here
+            curl "asdfads" && break  # substitute your command here
             n=$((n+1)) 
             sleep 1
           done
