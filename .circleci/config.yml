@@ -9,12 +9,7 @@ jobs:
       name: win/default
       shell: bash.exe
     steps:
-      - run: mkdir ~/test
-      - run: docker run --rm -v /home/circleci/test:/ -d mcr.microsoft.com/windows:2004 /bin/bash -c 'sleep 20 && echo "test" > test.txt"'
-      - run: |
-          while [ -f /app/test.txt ] ; do
-            sleep 1
-          done
+      - run: docker run --rm winamd64/golang go
 
 workflows:
   wf:
