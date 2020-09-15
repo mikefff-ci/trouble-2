@@ -9,7 +9,11 @@ jobs:
       name: win/default
       shell: bash.exe
     steps:
-      - run: docker run --rm winamd64/golang go
+      - run: docker run -d --rm --volume=C:\idk:C:\windows winamd64/golang touch C:\idk\test
+      - run: |
+          while [ ! -f C:\idk\test ] ; do
+            sleep 1
+          done
 
 workflows:
   wf:
