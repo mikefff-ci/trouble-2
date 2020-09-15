@@ -3,6 +3,7 @@ version: 2.1
 jobs:
   test:
     docker:
+      - image: cimg/base:stable
       - image: adobe/s3mock:latest
         name: s3mock
 
