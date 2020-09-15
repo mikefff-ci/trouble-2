@@ -6,16 +6,7 @@ jobs:
       - image: adobe/s3mock:latest
 
     steps:
-      - run: |
-          while ! nc -z 127.0.0.1 9090 ; do
-            sleep 1
-          done
-
-          while ! nc -z 127.0.0.1 9191 ; do
-            sleep 1
-          done
-
-          netstat -plnt
+      - run: while ! nc -z localhost 9090 ; do sleep 1; done; while ! nc -z localhost 9191 ; do sleep 1; done; netstat -plnt
 
 workflows:
   version: 2
