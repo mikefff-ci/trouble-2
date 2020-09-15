@@ -15,7 +15,7 @@ jobs:
             echo "running"
             curl "asdfads" && break  # substitute your command here
             n=$((n+1)) 
-            sleep 1
+            sleep $(($n * 2))
           done
 
 workflows:
