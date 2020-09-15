@@ -9,7 +9,7 @@ jobs:
       name: win/default
       shell: bash.exe
     steps:
-      - run: mkdir C:\testing
+      - run: mkdir /c/testing
       - run: dir
       - run: docker run -d --rm --volume='C:\testing:C:\windows' winamd64/golang touch C:\testing\test
       - run: |
