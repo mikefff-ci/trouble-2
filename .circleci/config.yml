@@ -8,11 +8,11 @@ jobs:
 
     steps:
       - run: |
-          while nc -z 127.0.0.1 9090 ; do
+          while ! nc -z 127.0.0.1 9090 ; do
             sleep 1
           done
 
-          while nc -z 127.0.0.1 9191 ; do
+          while ! nc -z 127.0.0.1 9191 ; do
             sleep 1
           done
 
