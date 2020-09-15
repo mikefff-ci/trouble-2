@@ -10,11 +10,13 @@ jobs:
       shell: bash.exe
     steps:
       - run: mkdir C:\testing
+      - run: dir
       - run: docker run -d --rm --volume='C:\testing:C:\windows' winamd64/golang touch C:\testing\test
       - run: |
           while [ ! -f C:\testing\test ] ; do
             sleep 1
           done
+          echo "test"
 
 workflows:
   wf:
