@@ -5,15 +5,14 @@ jobs:
     docker:
       - image: cimg/base:stable
       - image: adobe/s3mock:latest
-        name: s3mock
 
     steps:
       - run: |
-          while ! nc -z localhost 9090 ; do
+          while nc -z 127.0.0.1 9090 ; do
             sleep 1
           done
 
-          while ! nc -z localhost 9191 ; do
+          while nc -z 127.0.0.1 9191 ; do
             sleep 1
           done
 
