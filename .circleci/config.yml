@@ -9,11 +9,11 @@ jobs:
       - image: cimg/base:stable
     steps:
       - run: |
-          n=0
+          n=1
           until [ "$n" -ge 5 ]
           do
             echo "running"
-            curl "asdfads" && break  # substitute your command here
+            bin/ci-verify-node "14.10.1" "linux-x64" && break
             n=$((n+1)) 
             sleep $(($n * 2))
           done
