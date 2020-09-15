@@ -9,14 +9,14 @@ jobs:
       name: win/default
       shell: bash.exe
     steps:
-      - run: mkdir /c/testing
-      - run: dir
-      - run: docker run -d --rm --volume='C:\testing:C:\windows' winamd64/golang touch C:\testing\test
+      - run: mkdir C:\\testing
+      - run: docker run --rm --volume='C:/testing:C:/Users/circleci' winamd64/python python -c 'import time; time.sleep(5); open("C:\\Users\\circleci\\test.txt", "a").write("test"); print("done")'
       - run: |
-          while [ ! -f C:\testing\test ] ; do
+          while [ ! -f C:\testing\test.txt ] ; do
             sleep 1
           done
-          echo "test"
+          echo "complete"
+      - run: echo "next step"
 
 workflows:
   wf:
