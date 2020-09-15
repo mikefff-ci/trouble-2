@@ -9,9 +9,10 @@ jobs:
       name: win/default
       shell: bash.exe
     steps:
-      - run: docker run -d --rm --volume='C:\idk:C:\windows' winamd64/golang touch C:\idk\test
+      - run: mkdir C:\testing
+      - run: docker run -d --rm --volume='C:\testing:C:\windows' winamd64/golang touch C:\testing\test
       - run: |
-          while [ ! -f C:\idk\test ] ; do
+          while [ ! -f C:\testing\test ] ; do
             sleep 1
           done
 
