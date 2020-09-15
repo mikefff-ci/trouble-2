@@ -9,7 +9,6 @@ jobs:
       - image: cimg/base:stable
     steps:
       - run: |
-          set +o pipefail
           n=0
           until [ "$n" -ge 5 ]
           do
