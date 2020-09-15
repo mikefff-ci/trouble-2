@@ -18,8 +18,8 @@ jobs:
             sleep 1
           done
           echo "complete"
-      - run:
-          | echo "next step"
+      - run: |
+          echo "next step"
 
 workflows:
   wf:
