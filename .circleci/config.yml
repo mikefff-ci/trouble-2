@@ -14,7 +14,7 @@ jobs:
       - run: |
           docker run --rm --volume='C:\testing:C:\Users\circleci' winamd64/python python -c 'import time; time.sleep(5); open("C:\\\\Users\\\\circleci\\\\test.txt", "a").write("test"); print("done")'
       - run: |
-          while [ ! -f C:\\testing\\test.txt ] ; do
+          while [ ! -f /c/testing/test.txt ] ; do
             sleep 1
           done
           echo "complete"
