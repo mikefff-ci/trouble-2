@@ -1,17 +1,20 @@
 version: 2.1
 
-parameters:
-  one:
-    default: ${PIPELINESSS}
-    type: string
+orbs:
+  win: circleci/windows@2.4.0
+
 jobs:
   test:
-    docker:
-      - image: circleci/python:2.7.16-stretch
+    executor:
+      name: win/default
+      shell: bash.exe
     steps:
-      - run:
-          name: Name << pipeline.parameters.one >>
-          command: echo "this << pipeline.parameters.one >>"
+      - run: mkdir ~/test
+      - run: docker -v /home/circleci/test:/ -d run --rm bash:latest /bin/bash -c 'sleep 20 && echo "test" > test.txt"'
+      - run: |
+          while [ -f /app/test.txt ] ; do
+            sleep 1
+          done
 
 workflows:
   wf:
