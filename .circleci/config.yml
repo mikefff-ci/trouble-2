@@ -1,19 +1,11 @@
-version: 2.1
-
 jobs:
   test:
     docker:
       - image: cimg/base:stable
-    working_directory: /home/circleci/project/workdir
-
     steps:
-      - run: pwd
-      - run: echo $CIRCLE_WORKING_DIRECTORY
-        #      - run: rmdir $CIRCLE_WORKING_DIRECTORY
-      - checkout
-      - run: ls $CIRCLE_WORKING_DIRECTORY
+      - run: echo "Hello, world."
+
 workflows:
-  version: 2
   test:
     jobs:
       - test
