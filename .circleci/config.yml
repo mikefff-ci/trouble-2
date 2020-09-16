@@ -4,10 +4,10 @@ jobs:
   test:
     docker:
       - image: cimg/base:stable
-      - image: adobe/s3mock:latest
-    steps:
-      - run: while ! nc -z localhost 9090 ; do sleep 1; done; while ! nc -z localhost 9191 ; do sleep 1; done; netstat -plnt
+    working_directory: /home/circleci/project/src
 
+    steps:
+      - checkout
 workflows:
   version: 2
   test:
