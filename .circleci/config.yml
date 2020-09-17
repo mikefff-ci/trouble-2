@@ -1,43 +1,18 @@
 version: 2.1
 
-orbs:
-  end-of-the-jobs: mkly/end-of-the-jobs@1.0.0
-  slack: circleci/slack@3.4.2
-
 jobs:
-  stuff:
+  testdir:
     docker:
       - image: cimg/base:stable
+    working_directory: /var/www/html
     steps:
-      - run: echo "testing"
-  morestuff:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - run: sleep 40
-  evenmorestuff:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - run: sleep 24
-      - run: exit 99
-
+      - checkout
+      - run: echo 123
+      - persist_to_workspace:
+          root: /var/www/html
+          paths:
+            - .
 workflows:
   wf:
     jobs:
-      - end-of-the-jobs/execute_on_end_workflow:
-          pipeline_number: << pipeline.number >>
-          pipeline_project_type: << pipeline.project.type >>
-          on_complete_steps:
-            - run: echo 123
-            - run: echo "test"
-            - slack/notify:
-                include_visit_job_action: false
-                include_job_number_field: false
-                color: "$EOTJ_COLOR"
-                message: "$EOTJ_JOB_MESSAGE $EOTJ_WORKFLOW_URL"
-      - evenmorestuff
-      - morestuff
-      - stuff:
-          requires:
-            - evenmorestuff
+      - testdir
