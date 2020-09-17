@@ -4,14 +4,15 @@ jobs:
   testdir:
     docker:
       - image: cimg/base:stable
-    working_directory: /var/www/html
+    working_directory: /home/circleci/project/src
     steps:
       - checkout
       - run: echo 123
       - persist_to_workspace:
-          root: /var/www/html
+          root: /home/circleci/project/src
           paths:
             - .
+
 workflows:
   wf:
     jobs:
