@@ -6,9 +6,9 @@ orbs:
 jobs:
   build:
     executor:
-      name: win/default:
-        version: previous
+      name: win/default
       shell: powershell.exe
+      version: previous
     steps:
       - run: systeminfo
       - run:
