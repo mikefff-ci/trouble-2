@@ -9,7 +9,7 @@ jobs:
       - setup_remote_docker
       - run: echo "export REMOTE_DOCKER=$(cat ~/.ssh/config | grep -A1 remote-docker | grep Hostname | awk '{print $2}')" >> $BASH_ENV
       - run: |
-          ssh remote-docker 'iptables -F && iptables -P INPUT ACCEPT'
+          ssh remote-docker 'sudo iptables -F && sudo iptables -P INPUT ACCEPT'
       - run: docker run --rm --name remote_postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
       - run:
           command: docker logs --follow remote_postgres
