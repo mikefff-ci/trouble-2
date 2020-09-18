@@ -7,9 +7,10 @@ jobs:
     working_directory: /home/circleci/project/src
     steps:
       - setup_remote_docker
+      - run: echo "export REMOTE_DOCKER=$(cat ~/.ssh/config | grep -A1 remote-docker | grep Hostname | awk '{print $2}')" >> $BASH_ENV
       - run: docker run --rm -e POSTGRES_PASSWORD=mysecretpassword -d postgres
       - run: |
-          while ! nc -z remote-docker 5432; do
+          while ! nc -z $REMOTE_DOCKER 5432; do
             sleep 1
             echo "checking"
           done
