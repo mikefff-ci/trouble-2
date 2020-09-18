@@ -9,7 +9,7 @@ jobs:
       - setup_remote_docker
       - run: docker run --rm -e POSTGRES_PASSWORD=mysecretpassword -d postgres
       - run: |
-          while ! nc -z remote-docker 8080; do
+          while ! nc -z remote-docker 5432; do
             sleep 1
             echo "checking"
           done
