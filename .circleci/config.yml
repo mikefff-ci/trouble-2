@@ -12,7 +12,7 @@ jobs:
           command: ssh -i /home/circleci/.ssh/id_rsa_circleci_remote_docker_engine -L 5432:127.0.0.1:5432 $REMOTE_DOCKER
           background: true
       - run:
-          command: docker run --rm --name remote_postgres -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+          command: docker run --rm --name remote_postgres -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword postgres
           background: true
       - run: |
           while ! nc -z 127.0.0.1 5432; do
