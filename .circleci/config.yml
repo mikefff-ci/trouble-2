@@ -1,26 +1,15 @@
 version: 2.1
 
 jobs:
-  testdir:
+  test:
     docker:
-      - image: cimg/base:stable
+      - image: circleci/python:3.7
+      - image: adobe/s3mock:latest
     steps:
-      - setup_remote_docker
-      - run: echo "export REMOTE_DOCKER=$(cat ~/.ssh/config | grep -A1 remote-docker | grep Hostname | awk '{print $2}')" >> $BASH_ENV
-      - run: ssh-keyscan -H $REMOTE_DOCKER >> ~/.ssh/known_hosts
-      - run:
-          command: ssh -i /home/circleci/.ssh/id_rsa_circleci_remote_docker_engine -L 5432:127.0.0.1:5432 $REMOTE_DOCKER
-          background: true
-      - run: docker run --rm --name remote_postgres -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword -d postgres
-      - run:
-          command: docker logs --follow remote_postgres
-          background: true
-      - run: |
-          while ! nc -z 127.0.0.1 5432; do
-            sleep 1
-            echo "checking"
-          done
+      - run: while ! nc -z localhost 9090 ; do sleep 1; done; while ! nc -z localhost 9191 ; do sleep 1; done; netstat -plnt
+
 workflows:
-  wf:
+  version: 2
+  test:
     jobs:
-      - testdir
+      - test
