@@ -16,7 +16,7 @@ jobs:
           command: docker logs --follow remote_postgres
           background: true
       - run: |
-          while ! nc -z $REMOTE_DOCKER 5432; do
+          while ! nc -z localhost 5432; do
             sleep 1
             echo "checking"
           done
