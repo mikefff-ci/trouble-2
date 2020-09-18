@@ -6,13 +6,13 @@ jobs:
       - image: cimg/base:stable
     working_directory: /home/circleci/project/src
     steps:
-      - checkout
-      - run: echo 123
-      - persist_to_workspace:
-          root: /home/circleci/project/src
-          paths:
-            - .
-
+      - setup_remote_docker
+      - run: docker run --rm -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+      - run: |
+          while ! nc -z remote-docker 8080; do
+            sleep 1
+            echo "checking"
+          done
 workflows:
   wf:
     jobs:
