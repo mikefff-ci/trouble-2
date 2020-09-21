@@ -4,15 +4,11 @@ jobs:
   build-test:
     docker:
       - image: cimg/base:stable
+    working_directory: src/test
     steps:
-      - run: echo 123
+      - run: checkout
 
 workflows:
   main:
     jobs:
-      - build-test:
-          context: a
-      - build-test:
-          context:
-            - a
-            - b
+      - build-test
