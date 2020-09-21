@@ -1,18 +1,18 @@
 version: 2.1
 
-orbs:
-  win: circleci/windows@2.2.0
-
 jobs:
-  build:
-    executor:
-      name: win/default
-      shell: powershell.exe
-      version: previous
+  build-test:
+    docker:
+      - image: cimg/base:stable
     steps:
-      - run: systeminfo
-      - run:
-          name: "Check docker"
-          shell: powershell.exe
-          command: dir
+      - run: echo 123
 
+workflows:
+  main:
+    jobs:
+      - build-test:
+          context: a
+      - build-test:
+          context:
+            - a
+            - b
