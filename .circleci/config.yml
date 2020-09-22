@@ -4,6 +4,9 @@ parameters:
   run_workflow:
     type: boolean
     default: false
+  master_test:
+    type: string
+    default: master
 
 workflows:
   version: 2
@@ -22,3 +25,8 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
+  noop:
+    docker:
+      - image: alpine
+    steps:
+      - run: echo "Skipped"
