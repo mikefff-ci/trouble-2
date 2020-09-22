@@ -10,7 +10,7 @@ workflows:
   maven_test:
     jobs:
       - maven/test:  # checkout, build, test, and upload test results
-          parameters: '-U -X'
+          maven_command: 'mvn -U -X'
           app_src_directory: appf-salesforce-sys
           name: salesforce_test
           executor: jdk8
