@@ -18,6 +18,9 @@ workflows:
     when: << pipeline.parameters.run_workflow >>
     jobs:
       - my_job
+  noop:
+    jobs:
+      - noop
 
 jobs:
   my_job:
