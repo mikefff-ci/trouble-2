@@ -1,15 +1,24 @@
 version: 2.1
 
-orbs:
-  maven: circleci/maven@1.0.2
-executors:
-  jdk8:
-    docker:
-      - image: cimg/openjdk:8.0.265
+parameters:
+  run_workflow:
+    type: boolean
+    default: false
+
 workflows:
-  maven_test:
+  version: 2
+  filtered_workflow:
+    when: << pipeline.parameters.run_workflow >>
     jobs:
-      - maven/test:  # checkout, build, test, and upload test results
-          maven_command: 'mvn -U'
-          name: testing
-          executor: jdk8
+      - my_job
+  another_filtered_workflow:
+    when: << pipeline.parameters.run_workflow >>
+    jobs:
+      - my_job
+
+jobs:
+  my_job:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
