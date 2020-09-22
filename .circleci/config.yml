@@ -1,14 +1,16 @@
 version: 2.1
 
-jobs:
-  build-test:
+orbs:
+  maven: circleci/maven@1.0.2
+executors:
+  jdk8:
     docker:
-      - image: cimg/base:stable
-    working_directory: /home/circleci/project/src
-    steps:
-      - checkout
-
+      - image: cimg/openjdk:8.0.265
 workflows:
-  main:
+  maven_test:
     jobs:
-      - build-test
+      - maven/test:  # checkout, build, test, and upload test results
+          parameters: '-U -X'
+          app_src_directory: appf-salesforce-sys
+          name: salesforce_test
+          executor: jdk8
