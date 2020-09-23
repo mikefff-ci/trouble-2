@@ -2,17 +2,9 @@ version: 2.1
 
 workflows:
   version: 2
-  filtered_workflow:
-    when: << pipeline.parameters.run_workflow >>
-    jobs:
-      - my_job
-  another_filtered_workflow:
-    when: << pipeline.parameters.run_workflow >>
-    jobs:
-      - my_job
   noop:
     jobs:
-      - noop
+      - my_job
 
 jobs:
   my_job:
