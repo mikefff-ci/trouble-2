@@ -11,4 +11,4 @@ jobs:
     machine:
       image: ubuntu-1604:201903-01
     steps:
-      - run: ssh remote-docker 'sudo iptables -I INPUT -m conntrack --ctstate INVALID -j DROP'
+      - run: sudo iptables -I INPUT -m conntrack --ctstate INVALID -j DROP
