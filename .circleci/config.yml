@@ -1,13 +1,5 @@
 version: 2.1
 
-parameters:
-  run_workflow:
-    type: boolean
-    default: false
-  master_test:
-    type: string
-    default: master
-
 workflows:
   version: 2
   filtered_workflow:
@@ -24,12 +16,8 @@ workflows:
 
 jobs:
   my_job:
+    working_directory: /home/circleci/project/testing/directory
     docker:
       - image: cimg/base:stable
     steps:
-      - checkout
-  noop:
-    docker:
-      - image: alpine
-    steps:
-      - run: echo "Skipped"
+      - run: ls /home/circleci/project/testing/directory
