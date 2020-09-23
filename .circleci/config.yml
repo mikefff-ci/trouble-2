@@ -2,14 +2,14 @@ version: 2.1
 
 workflows:
   version: 2
-  noop:
+  wf:
     jobs:
-      - my_job
+      - myjob
 
 jobs:
-  my_job:
+  myjob:
     working_directory: /home/circleci/project/testing/directory
-    docker:
-      - image: cimg/base:stable
+    machine:
+      image: ubuntu-1604:201903-01
     steps:
-      - run: ls /home/circleci/project/testing/directory
+      - run: stat /home/circleci/project/testing/directory
