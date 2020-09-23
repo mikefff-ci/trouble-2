@@ -12,4 +12,4 @@ jobs:
       - image: cimg/base:stable
     steps:
       - run: which pkill
-      - run: pkill echo
+      - run: pkill -USR1 echo || true
