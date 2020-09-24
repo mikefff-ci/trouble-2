@@ -12,16 +12,3 @@ jobs:
       - image: cimg/base:stable
     steps:
       - run: which pkill
-      - run: |
-          command: |
-            while 1 ; do
-              sleep 0.1
-              pkill -USR1 echo || true
-            done
-          background: true
-      - run: |
-          sleep 5
-          echo 1
-          echo 2
-          echo 3
-          echo 4
