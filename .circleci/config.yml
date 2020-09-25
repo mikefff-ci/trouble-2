@@ -10,7 +10,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: echo "<< parameters.testing >>"
+      - run: echo "<< pipeline.parameters.testing >>"
 workflows:
   wf:
     jobs:
