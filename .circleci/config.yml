@@ -9,6 +9,7 @@ workflows:
 jobs:
   myjob:
     docker:
-      - image: cimg/base:stable
+      - image: circle/python:3.8
     steps:
+      - run: sudo apt-get install -y default-jdk
       - run: which pkill
