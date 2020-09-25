@@ -15,12 +15,12 @@ jobs:
           command: sleep 10
           background: true
       - run:
-          command: ping -c 10 google.com
+          command: wget https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central/firefox-82.0a1.en-US.linux-x86_64.tar.bz2
           background: true
       - run:
           name: Wait for parllel command
           command: |
-            while [[ $(pgrep sleep) && $(pgrep ping) ]] ; do
+            while [[ $(pgrep sleep) && $(pgrep wget) ]] ; do
               echo "Waiting for parallel steps"
               sleep 1
             done
