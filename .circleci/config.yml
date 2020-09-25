@@ -20,7 +20,7 @@ jobs:
           tar xvjf firefox-83.0a1.en-US.linux-x86_64.tar.bz2
           sudo apt-get install -y libdbus-glib-1-2
           ./firefox/firefox --version
-          sudo ln -s ./firefox/firefox /usr/local/bin/firefox
+          sudo ln -s /home/circleci/project/firefox/firefox /usr/local/bin/firefox
           ls -l /usr/local/bin
       - run: geckodriver --version
       - run: firefox --version
