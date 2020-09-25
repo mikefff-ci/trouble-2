@@ -11,6 +11,7 @@ jobs:
     docker:
       - image: circleci/python:3.8
     steps:
+      - checkout
       - run: |
           sudo apt-get install -y default-jdk
           wget https://github.com/mozilla/geckodriver/releases/download/v0.27.0/geckodriver-v0.27.0-linux64.tar.gz
@@ -24,3 +25,8 @@ jobs:
           ls -l /usr/local/bin
       - run: geckodriver --version
       - run: firefox --version
+      - run: |
+          python -m venv env
+          source ./env/bin/activate
+          pip install -r requirements.txt
+          pytest test/selenium_1.py
