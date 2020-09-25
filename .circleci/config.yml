@@ -11,5 +11,10 @@ jobs:
     docker:
       - image: circle/python:3.8
     steps:
-      - run: sudo apt-get install -y default-jdk
+      - run: |
+          sudo apt-get install -y default-jdk
+          wget https://github.com/mozilla/geckodriver/releases/download/v0.27.0/geckodriver-v0.27.0-linux64.tar.gz
+          tar xvzf geckodriver-v0.27.0-linux64.tar.gz
+          cd geckodriver-v0.27.0-linux64
+          ls
       - run: which pkill
