@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Wait for parllel command
           command: |
-            while [[ $(pgrep sleep) && $(pgrep wget) ]] ; do
+            while [[ $(pgrep sleep) || $(pgrep wget) ]] ; do
               echo "Waiting for parallel steps"
               sleep 1
             done
