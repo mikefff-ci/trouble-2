@@ -15,7 +15,7 @@ jobs:
     steps:
       - run: sudo apt-get update && sudo apt-get install -y stress
       - docker-cpu-profiling/profile
-      - run: stress --cpu 8 --timeout 10
+      - run: stress --cpu 64 --timeout 10
 workflows:
   wf:
     jobs:
