@@ -13,7 +13,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - docker-cpu-proiling/profile
+      - docker-cpu-profiling/profile
       - run: 
           command: |
             export HEDGEHOG_COLOR=0
