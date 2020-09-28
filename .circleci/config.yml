@@ -12,7 +12,7 @@ jobs:
   testdir:
     docker:
       - image: cimg/base:stable
-    resource_class: large
+    resource_class: small
     steps:
       - run: sudo apt-get update && sudo apt-get install -y stress
       - run: cat /sys/fs/cgroup/cpuset/cpuset.cpus
