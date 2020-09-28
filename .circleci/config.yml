@@ -14,12 +14,11 @@ jobs:
     steps:
       - docker-cpu-proiling/profile
       - run: 
-          no_output_timeout: 10s
           command: |
             export HEDGEHOG_COLOR=0
             mkdir -p /tmp/test
 
-            sleep 30
+            sleep 40
       - run: echo "<< pipeline.parameters.testing >>"
 workflows:
   wf:
