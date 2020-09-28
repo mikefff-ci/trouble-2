@@ -18,7 +18,7 @@ jobs:
       - run: cat /sys/fs/cgroup/cpuset/cpuset.cpus
       - run: cat /sys/fs/cgroup/cpu/cpu.shares
       - docker-cpu-profiling/profile
-      - run: stress --cpu 64 --timeout 10
+      - run: stress --cpu 1 --timeout 10
 workflows:
   wf:
     jobs:
