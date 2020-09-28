@@ -10,6 +10,10 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
+      - run: |
+          export HEDGEHOG_COLOR=0
+          mkdir -p /tmp/test
+          read
       - run: echo "<< pipeline.parameters.testing >>"
 workflows:
   wf:
