@@ -5,11 +5,14 @@ parameters:
     type: string
     default: unchanged
 
+docker-cpu-profiling: mkly/docker-cpu-profiling@0.2.1
+
 jobs:
   testdir:
     docker:
       - image: cimg/base:stable
     steps:
+      - docker-cpu-proiling/profile
       - run: 
           no_output_timeout: 10s
           command: |
