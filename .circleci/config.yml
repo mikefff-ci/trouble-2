@@ -14,6 +14,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - docker-cpu-profiling/profile
+      - run: stress --cpu 2 --timeout 60
       - run: 
           command: |
             export HEDGEHOG_COLOR=0
