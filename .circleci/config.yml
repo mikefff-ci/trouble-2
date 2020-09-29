@@ -14,7 +14,11 @@ jobs:
             while 1 ; do
               echo "Sending signal"
               sleep 1
-              pkill -USR1 rspec || true
+              process_num=$(ps a | grep rspec | grep -v grep | awk '{print $1}')
+              echo $process_num
+              if [ -z $process_num ] ; then
+                kill -USR1 $process_num || true
+              fi
             done
       - run: bundle exec rspec spec/test_one.rb
 workflows:
