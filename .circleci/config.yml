@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   testdir:
     docker:
-      - image: cimg/ruby:2.7.2
+      - image: cimg/ruby:2.7
     resource_class: small
     steps:
       - checkout
