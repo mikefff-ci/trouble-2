@@ -18,7 +18,7 @@ jobs:
               num=$(ps a | grep rspec | grep -v grep | awk '{print $1}')
               echo "Process num: $num"
               echo "Sending signal"
-              kill -USR1 rspec || true
+              kill -USR1 ${num} || true
             done
       - run: bundle exec rspec spec/test_one.rb
 workflows:
