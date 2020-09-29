@@ -10,6 +10,7 @@ jobs:
       - run: bundle install --path vendor/bundle
       - run: echo "sending loop"
       - run:
+          background: true
           command: |
             while true ; do
               sleep 1
