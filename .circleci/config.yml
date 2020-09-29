@@ -1,24 +1,22 @@
 version: 2.1
 
-parameters:
-  testing:
-    type: string
-    default: unchanged
-
-orbs:
-  docker-cpu-profiling: mkly/docker-cpu-profiling@0.2.1
-
 jobs:
   testdir:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/ruby:2.7.2
     resource_class: small
     steps:
-      - run: sudo apt-get update && sudo apt-get install -y stress
-      - run: cat /sys/fs/cgroup/cpuset/cpuset.cpus
-      - run: cat /sys/fs/cgroup/cpu/cpu.shares
-      - docker-cpu-profiling/profile
-      - run: stress --cpu 1 --timeout 10
+      - checkout
+      - run: bundle install --path vendor/bundle
+      - run: echo "sending loop"
+      - run:
+          command: |
+            while 1 ; do
+              echo "Sending signal"
+              sleep 1
+              pkill -USR1 rspec || true
+            done
+      - run: bundle exec rspec spec/test_one.rb
 workflows:
   wf:
     jobs:
