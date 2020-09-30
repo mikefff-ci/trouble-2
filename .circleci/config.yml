@@ -14,9 +14,14 @@ jobs:
       - run:
           name: "build vm"
           command: |
-            wget https://raw.githubusercontent.com/alpinelinux/alpine-make-vm-image/v0.6.0/alpine-make-vm-image
-            chmod +x alpine-make-vm-image
-            ./alpine-make-vm-image -f qcow2
+            chmod a+x alpine-make-vm-image
+            ./alpine-make-vm-image \
+              --image-format qcow2 \
+              --image-size 2G \
+              --repositories-file example/repositories \
+              --packages "$(cat example/packages)" \
+              --script-chroot \
+              alpine-virthardened-$(date +%Y-%m-%d).qcow2 -- ./example/configure.sh
 
 workflows:
   wf:
