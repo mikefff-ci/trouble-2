@@ -1,27 +1,26 @@
 version: 2.1
 
 jobs:
-  testdir:
-    docker:
-      - image: cimg/ruby:2.7
-    resource_class: small
+  vm:
+    machine:
+      image: ubuntu-1604:202007-01
     steps:
       - checkout
-      - run: bundle install --path vendor/bundle
-      - run: echo "sending loop"
       - run:
-          background: true
+          name: "install deps"
           command: |
-            while true ; do
-              sleep 1
-              ps a
-              num=$(ps a | grep rspec | grep -v grep | awk '{print $1}')
-              echo "Process num: $num"
-              echo "Sending signal"
-              kill -USR1 ${num} || true
-            done
-      - run: bundle exec rspec spec/test_one.rb
+            sudo apt-get update
+            sudo DEBIAN_FRONTEND=noninteractive apt-get install -y qemu-utils awscli
+      - run:
+          name: "build vm"
+          command: |
+            wget https://raw.githubusercontent.com/alpinelinux/alpine-make-vm-image/v0.6.0/alpine-make-vm-image \
+    && echo 'a0fc0b4886b541bb4dd7b91b4e1e99719a1700da  alpine-make-vm-image' | sha1sum -c \
+    || exit 1
+            chmod +x alpine-make-vm-image
+            ./alpine-make-vm-image -f qcow2
+
 workflows:
   wf:
     jobs:
-      - testdir
+      - vm
