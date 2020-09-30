@@ -15,7 +15,7 @@ jobs:
           name: "build vm"
           command: |
             chmod a+x alpine-make-vm-image
-            ./alpine-make-vm-image \
+            sudo ./alpine-make-vm-image \
               --image-format qcow2 \
               --image-size 2G \
               --repositories-file example/repositories \
