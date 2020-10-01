@@ -13,6 +13,7 @@ jobs:
           ssh remote-docker \<<EOF
           sudo bash -c 'echo "{\"experimental\": true}" > /etc/docker/daemon.json'
             sudo cat /etc/docker/daemon.json
+            sudo docker info
             sudo systemctl restart docker
           EOF
       - run: |
