@@ -11,6 +11,7 @@ jobs:
       - checkout
       - run: |
           ssh remote-docker 'sudo bash -c "echo \{\"experimental\": true\} > /etc/docker/daemon.json"'
+          ssh remote-docker 'sudo cat /etc/docker/daemon.json'
           ssh remote-docker 'sudo systemctl restart docker'
       - run: |
           cd docker
