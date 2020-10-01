@@ -6,8 +6,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - setup_remote_docker:
-          experimental: true
-          verion: 19.03.12
+          version: 18.09.3
       - checkout
       - run: |
           ssh remote-docker \<<EOF
