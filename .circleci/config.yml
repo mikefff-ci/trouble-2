@@ -5,22 +5,8 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - setup_remote_docker:
-          version: 18.09.3
-          experimental: true
-      - checkout
-      - run: |
-          ssh remote-docker \<<EOF
-          sudo bash -c 'echo "{\"experimental\": true}" > /etc/docker/daemon.json'
-            sudo cat /etc/docker/daemon.json
-            sudo systemctl restart docker
-            sudo docker system prune -f
-            sudo docker info
-          EOF
-      - run: |
-          cd docker
-          echo $DOCKER_HOST
-          DOCKER_BUILDKIT=1 docker build .
+      - add_ssh_keys
+      - run: echo "test"
 workflows:
   wf:
     jobs:
