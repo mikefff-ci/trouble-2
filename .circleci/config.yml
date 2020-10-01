@@ -19,7 +19,7 @@ jobs:
           EOF
       - run: |
           cd docker
-          echo DOCKER_HOST
+          echo $DOCKER_HOST
           DOCKER_BUILDKIT=1 docker build .
 workflows:
   wf:
