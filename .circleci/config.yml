@@ -5,9 +5,17 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - add_ssh_keys
       - run: echo "test"
+  gg:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run: echo "gg"
 workflows:
   wf:
     jobs:
-      - vm
+      - gg:
+          name: something-else
+      - vm:
+          requires:
+            - something-else
