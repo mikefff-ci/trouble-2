@@ -8,6 +8,7 @@ jobs:
       - setup_remote_docker:
           experimental: true
           verion: 19.03.12
+      - checkout
       - run: |
           cd docker
           DOCKER_BUILDKIT=1 docker build .
