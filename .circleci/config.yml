@@ -2,27 +2,15 @@ version: 2.1
 
 jobs:
   vm:
-    machine:
-      image: ubuntu-1604:202007-01
+    docker:
+      - image: cimg/base:stable
     steps:
-      - checkout
-      - run:
-          name: "install deps"
-          command: |
-            sudo apt-get update
-            sudo DEBIAN_FRONTEND=noninteractive apt-get install -y qemu-utils awscli
-      - run:
-          name: "build vm"
-          command: |
-            chmod a+x alpine-make-vm-image
-            sudo ./alpine-make-vm-image \
-              --image-format qcow2 \
-              --image-size 2G \
-              --repositories-file example/repositories \
-              --packages "$(cat example/packages)" \
-              --script-chroot \
-              alpine-virthardened-$(date +%Y-%m-%d).qcow2 -- ./example/configure.sh
-
+      - setup_remote_docker:
+          experimental: true
+          verion: 19.03.12
+      - run: |
+          cd docker
+          DOCKER_BUILDKIT=1 docker build .
 workflows:
   wf:
     jobs:
