@@ -9,7 +9,7 @@ jobs:
           background: true
           command: |
             while true ; do
-              ssh remote-docker 'sudo df -h'
+              sudo df -h
               sleep 5
             done
       - run: sleep 20
