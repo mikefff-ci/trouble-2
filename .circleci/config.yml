@@ -21,10 +21,20 @@ workflows:
             branches:
               ignore: /.*/
       - hold-for-approval:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
           type: approval
           requires:
             - gg
       - vm:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
           requires:
             - hold-for-approval
             - gg
