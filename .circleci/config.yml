@@ -15,7 +15,16 @@ workflows:
   wf:
     jobs:
       - gg:
-          name: something-else
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
+      - hold-for-approval:
+          type: approval
+          requires:
+            - gg
       - vm:
           requires:
-            - something-else
+            - hold-for-approval
+            - gg
