@@ -2,39 +2,19 @@ version: 2.1
 
 jobs:
   vm:
-    docker:
-      - image: cimg/base:stable
+    machine:
+      image: ubuntu-1604:201903-01
+      docker_layer_caching: true
     steps:
-      - run: echo "test"
-  gg:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - run: echo "gg"
+      - run:
+          background: true
+          command: |
+            while true ; do
+              ssh remote-docker 'sudo df -h'
+              sleep 5
+            done
+      - run: sleep 20
 workflows:
   wf:
     jobs:
-      - gg:
-          filters:
-            tags:
-              only: /.*/
-            branches:
-              ignore: /.*/
-      - hold-for-approval:
-          filters:
-            tags:
-              only: /.*/
-            branches:
-              ignore: /.*/
-          type: approval
-          requires:
-            - gg
-      - vm:
-          filters:
-            tags:
-              only: /.*/
-            branches:
-              ignore: /.*/
-          requires:
-            - hold-for-approval
-            - gg
+      - vm
