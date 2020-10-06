@@ -8,8 +8,8 @@ jobs:
     steps:
       - run: which nope || true
       - run: echo $PATH
-      - run: ls /usr/local/bin ||
-      - run: ls /usr/local/dsofji
+      - run: ls /usr/local/bin || true
+      - run: ls /usr/local/dsofji || true
 
 workflows:
   wf:
