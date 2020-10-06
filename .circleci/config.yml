@@ -12,9 +12,9 @@ jobs:
           echo '-------------'
           docker images -q
           echo '-------------'
-          tail -n +2 \<<< $(docker images -q)
+          sed 1d \<<< $(docker images -q)
           echo '-------------'
-          docker rmi $(tail -n +2 \<<< $(docker images -q)) || true
+          docker rmi $(set 1d \<<< $(docker images -q)) || true
           docker system df
       - run: |
           docker build .
