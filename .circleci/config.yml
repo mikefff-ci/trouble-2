@@ -11,10 +11,15 @@ jobs:
           docker system df
           echo '-------------'
           docker images -q
+          echo '**************'
+          docker images -q > /tmp/docker_images
+          echo '##################'
+          sed -i 1d /tmp/docker_images
           echo '-------------'
-          sed 1d \<<< $(docker images -q)
+          echo /tmp/docker_images
+          echo '==============='
+          docker rmi $(cat /tmp/docker_images) || true
           echo '-------------'
-          docker rmi $(set 1d \<<< $(docker images -q)) || true
           docker system df
       - run: |
           docker build .
