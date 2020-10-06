@@ -9,7 +9,11 @@ jobs:
       - checkout
       - run: |
           docker system df
+          echo '-------------'
           docker images -q
+          echo '-------------'
+          tail -n +2 \<<< $(docker images -q)
+          echo '-------------'
           docker rmi $(tail -n +2 \<<< $(docker images -q)) || true
           docker system df
       - run: |
