@@ -2,17 +2,14 @@ version: 2.1
 
 jobs:
   vm:
-    machine:
-      image: ubuntu-1604:201903-01
+    docker:
+      - image: cimg/base:stable
+    resource_class: small
     steps:
-      - run:
-          background: true
-          command: |
-            while true ; do
-              sudo df -h
-              sleep 5
-            done
-      - run: sleep 20
+      - run: which nope || true
+      - run: echo $PATH
+      - run: ls /usr/local/bin
+
 workflows:
   wf:
     jobs:
