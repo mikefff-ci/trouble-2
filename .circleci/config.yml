@@ -9,17 +9,11 @@ jobs:
       - checkout
       - run: |
           docker system df
-          echo '-------------'
           docker images -q
-          echo '**************'
           docker images -q > /tmp/docker_images
-          echo '##################'
           sed -i 1d /tmp/docker_images
-          echo '-------------'
-          echo /tmp/docker_images
-          echo '==============='
+          cat /tmp/docker_images
           docker rmi $(cat /tmp/docker_images) || true
-          echo '-------------'
           docker system df
       - run: |
           docker build .
