@@ -2,14 +2,17 @@ version: 2.1
 
 jobs:
   vm:
-    docker:
-      - image: cimg/base:stable
-    resource_class: small
+    machine:
+      image: ubuntu-1604:201903-01
+      docker_layer_caching: true
     steps:
-      - run: which nope || true
-      - run: echo $PATH
-      - run: ls /usr/local/bin || true
-      - run: ls /usr/local/dsofji || true
+      - checkout
+      - run: |
+          docker system df
+          docker rmi $(tail -n +2 \<<< $(docker images -q)) || true
+          docker system df
+      - run: |
+          docker build .
 
 workflows:
   wf:
