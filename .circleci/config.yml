@@ -32,8 +32,4 @@ jobs:
 workflows:
   wf:
     jobs:
-      - vm:
-          filters:
-            branches:
-              only:
-                /pull\/.*/
+      - vm
