@@ -6,7 +6,7 @@ orbs:
 jobs:
   vm:
     docker:
-      - image: amazon/aws-cli
+      - image: cimg/base:stable
     steps:
       - run: echo $TERM
 workflows:
