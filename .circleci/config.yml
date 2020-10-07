@@ -9,12 +9,23 @@ jobs:
       - checkout
       - run: |
           docker system df
-          docker images -q
-          docker images -q > /tmp/docker_images
-          sed -i 1d /tmp/docker_images
-          cat /tmp/docker_images
-          docker rmi $(cat /tmp/docker_images) || true
+
+          df -h /var/lib/docker
+
+          count=120
+          TARGET_PERCENT=5
+          while [[ $(df /var/lib/docker | awk 'NR>1{print substr($5, 1, length($5)-1)}') -gt  && $count > 0 ]] ; do
+            df /var/lib/docker | awk 'NR>1{print substr($5, 1, length($5)-1)}'
+            docker image prune -a -f --filter "until=${count}h"
+            docker container prune -f --filter "until=${count}h"
+            count=$(($count-1))
+            echo $count
+            echo "test"
+          done
+
           docker system df
+
+          df -h /var/lib/docker
       - run: |
           docker build .
 
