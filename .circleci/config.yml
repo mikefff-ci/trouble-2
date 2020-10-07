@@ -1,34 +1,18 @@
 version: 2.1
 
+orbs:
+  aws-ecs: circleci/aws-ecs@1.1.0
+
 jobs:
   vm:
-    machine:
-      image: ubuntu-1604:201903-01
-      docker_layer_caching: true
+    docker:
+      - image: cimg/base:stable
     steps:
-      - checkout
       - run: |
-          docker system df
-
-          df -h /var/lib/docker
-
-          count=120
-          TARGET_PERCENT=1
-          while [[ $(df /var/lib/docker | awk 'NR>1{print substr($5, 1, length($5)-1)}') -gt $TARGET_PERCENT && $count -ge 0 ]] ; do
-            docker image prune -a -f --filter "until=${count}h"
-            count=$(($count-1))
-            echo '--------------'
-            df /var/lib/docker
-            #df /var/lib/docker | awk 'NR>1{print substr($5, 1, length($5)-1)}'
-            echo $count
-          done
-
-          docker system df
-
-          df -h /var/lib/docker
-      - run: |
-          docker build .
-
+          aws elasticbeanstalk create-application-version \
+          --application-name "noop"\
+          --version-label noop \
+          --source-bundle S3Bucket="noop",S3Key="noop"
 workflows:
   wf:
     jobs:
