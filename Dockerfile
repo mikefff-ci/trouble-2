@@ -1,5 +1,6 @@
-FROM curlimages/curl:7.65.3
+FROM cimg/base:stable
 
 USER root
 RUN mkdir -p /downloads
+RUN touch /downloads/two
 RUN touch /downloads/test
