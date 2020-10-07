@@ -14,7 +14,7 @@ jobs:
 
           count=120
           TARGET_PERCENT=1
-          while [[ $(df /var/lib/docker | awk 'NR>1{print substr($5, 1, length($5)-1)}') -gt $TARGET_PERCENT && $count >= 0 ]] ; do
+          while [[ $(df /var/lib/docker | awk 'NR>1{print substr($5, 1, length($5)-1)}') -gt $TARGET_PERCENT && $count -ge 0 ]] ; do
             docker image prune -a -f --filter "until=${count}h"
             count=$(($count-1))
             echo '--------------'
