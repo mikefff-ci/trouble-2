@@ -8,7 +8,9 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: readline
+      - setup_remote_docker:
+          version: 19.03.12
+      - run: docker system df
 workflows:
   wf:
     jobs:
