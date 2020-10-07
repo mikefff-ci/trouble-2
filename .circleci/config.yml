@@ -13,7 +13,7 @@ jobs:
           df -h /var/lib/docker
 
           count=7200
-          TARGET_PERCENT=5
+          TARGET_PERCENT=1
           while [[ $(df /var/lib/docker | awk 'NR>1{print substr($5, 1, length($5)-1)}') -gt $TARGET_PERCENT && $count > 0 ]] ; do
             docker image prune -a -f --filter "until=${count}m"
             count=$(($count-1))
