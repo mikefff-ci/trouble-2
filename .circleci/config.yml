@@ -18,7 +18,8 @@ jobs:
             docker image prune -a -f --filter "until=${count}h"
             count=$(($count-1))
             echo '--------------'
-            df /var/lib/docker | awk 'NR>1{print substr($5, 1, length($5)-1)}'
+            df /var/lib/docker
+            #df /var/lib/docker | awk 'NR>1{print substr($5, 1, length($5)-1)}'
             echo $count
           done
 
