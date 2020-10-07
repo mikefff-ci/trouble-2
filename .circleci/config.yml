@@ -10,8 +10,8 @@ jobs:
     steps:
       - run: |
           aws elasticbeanstalk create-application-version \
-          --application-name "noop"\
-          --version-label noop \
+          --application-name "noop" \
+          --version-label "noop" \
           --source-bundle S3Bucket="noop",S3Key="noop"
 workflows:
   wf:
