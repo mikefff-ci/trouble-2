@@ -2,13 +2,18 @@ version: 2.1
 
 jobs:
   vm:
-    machine:
-      image: ubuntu-1604:201903-01
-      docker_layer_caching: true
+    docker:
+      - image: cimg/base:stable
     steps:
       - run: echo "test"
+  ttt:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run: echo "eweorijwer"
 
 workflows:
   wf:
     jobs:
       - vm
+      - ttt
