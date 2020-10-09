@@ -6,20 +6,11 @@ jobs:
       - image: cimg/base:stable
     resource_class: small
     steps:
-      - run: mkdir ~/testcache
-      - restore_cache:
-          keys:
-            - v2-packages+datasets
-      - run: |
-          if [ ! -f ~/testcache/test.img ] ; then
-            echo "Recreating file"
-            dd if=/dev/random iflag=fullblock of=~/testcase/test.img bs=1M count=5000
-          fi
-      - save_cache:
-          paths:
-            - ~/testcache
-          key: v2-packages+datasets-ZzZQ+TbLOwovk84J2BvhB0ixsgPBnoF2tO78GWSgzzo=-zNhBuK6Hv6q+C2+vCBVfnooOpl_hLSCzQFh8mgpWiss=
-
+      - checkout
+      - setup_remote_docker:
+          experimental: true
+          version: 19.03.12
+      - run: DOCKER_BUILDKIT=1 docker build .
 workflows:
   wf:
     jobs:
