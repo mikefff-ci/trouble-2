@@ -4,16 +4,23 @@ jobs:
   vm:
     docker:
       - image: cimg/base:stable
+    resource_class: small
     steps:
-      - run: echo "test"
-  ttt:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - run: echo "eweorijwer"
+      - run: mkdir ~/testcache
+      - restore_cache:
+          keys:
+            - v1-packages+datasets
+      - run: |
+          if [ ! -f ~/testcache/test.img ] ; then
+            echo "Recreating file"
+            fallocate -l 5G ~/testcache/test.img
+          fi
+      - save_cache:
+          paths:
+            - ~/testcache
+          key: v1-packages+datasets-ZzZQ+TbLOwovk84J2BvhB0ixsgPBnoF2tO78GWSgzzo=-zNhBuK6Hv6q+C2+vCBVfnooOpl_hLSCzQFh8mgpWiss=
 
 workflows:
   wf:
     jobs:
       - vm
-      - ttt
