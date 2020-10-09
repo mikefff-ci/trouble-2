@@ -9,16 +9,16 @@ jobs:
       - run: mkdir ~/testcache
       - restore_cache:
           keys:
-            - v1-packages+datasets
+            - v2-packages+datasets
       - run: |
           if [ ! -f ~/testcache/test.img ] ; then
             echo "Recreating file"
-            fallocate -l 5G ~/testcache/test.img
+            dd if=/dev/random iflag=fullblock of=~/testcase/test.img bs=1M count=5000
           fi
       - save_cache:
           paths:
             - ~/testcache
-          key: v1-packages+datasets-ZzZQ+TbLOwovk84J2BvhB0ixsgPBnoF2tO78GWSgzzo=-zNhBuK6Hv6q+C2+vCBVfnooOpl_hLSCzQFh8mgpWiss=
+          key: v2-packages+datasets-ZzZQ+TbLOwovk84J2BvhB0ixsgPBnoF2tO78GWSgzzo=-zNhBuK6Hv6q+C2+vCBVfnooOpl_hLSCzQFh8mgpWiss=
 
 workflows:
   wf:
