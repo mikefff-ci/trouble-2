@@ -13,4 +13,8 @@ jobs:
 workflows:
   wf:
     jobs:
-      - vm
+      - hold:
+          type: approval
+      - vm:
+          requires:
+            - hold
