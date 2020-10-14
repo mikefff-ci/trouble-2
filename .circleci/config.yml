@@ -4,8 +4,9 @@ jobs:
   vm:
     docker:
       - image: cimg/base:stable
-          username: mkly
-          password: noooooo
+          auth:
+            username: mkly
+            password: noooooo
     steps:
       - run: echo "test"
   ttt:
