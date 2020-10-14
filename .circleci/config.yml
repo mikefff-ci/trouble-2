@@ -4,16 +4,15 @@ jobs:
   vm:
     docker:
       - image: cimg/base:stable
+          username: mkly
+          password: noooooo
     steps:
       - run: echo "test"
   ttt:
     docker:
       - image: cimg/base:stable
-    steps:
-      - run: echo "eweorijwer"
 
 workflows:
   wf:
     jobs:
       - vm
-      - ttt
