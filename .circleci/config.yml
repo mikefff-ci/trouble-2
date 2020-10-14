@@ -4,14 +4,11 @@ jobs:
   vm:
     docker:
       - image: cimg/base:stable
-      auth:
-        username: mkly
-        password: noooooo
+        auth:
+          username: mkly
+          password: testing123
     steps:
       - run: echo "test"
-  ttt:
-    docker:
-      - image: cimg/base:stable
 
 workflows:
   wf:
