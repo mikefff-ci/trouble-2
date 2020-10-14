@@ -3,9 +3,9 @@ version: 2.1
 jobs:
   vm:
     docker:
-      - image: cimg/base:stable
+      - image: mkly/curl-gnutls
         auth:
-          username: mkly
+          username: testing
           password: ""
     steps:
       - run: echo "test"
