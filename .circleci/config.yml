@@ -6,7 +6,7 @@ jobs:
       - image: cimg/base:stable
         auth:
           username: mkly
-          password: testing123
+          password: ""
     steps:
       - run: echo "test"
 
