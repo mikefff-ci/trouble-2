@@ -9,12 +9,30 @@ jobs:
           password: ""
     steps:
       - run: echo "test"
+  test:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run: echo "123"
 
 workflows:
   wf:
     jobs:
-      - hold:
-          type: approval
+      - test:
+          filters:
+            tags:
+              only:
+                - /.*/
+            branches:
+              only:
+                - /.*/
       - vm:
+          filters:
+            tags:
+              only:
+                - /.*/
+            branches:
+              ignore:
+                - /.*/
           requires:
-            - hold
+            - test
