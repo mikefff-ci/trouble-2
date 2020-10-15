@@ -1,14 +1,6 @@
 version: 2.1
 
 jobs:
-  vm:
-    docker:
-      - image: mkly/curl-gnutls
-        auth:
-          username: testing
-          password: ""
-    steps:
-      - run: echo "test"
   test:
     docker:
       - image: cimg/base:stable
@@ -16,23 +8,7 @@ jobs:
       - run: echo "123"
 
 workflows:
+  version: 2
   wf:
     jobs:
-      - test:
-          filters:
-            tags:
-              only:
-                - /.*/
-            branches:
-              only:
-                - /.*/
-      - vm:
-          filters:
-            tags:
-              only:
-                - /.*/
-            branches:
-              ignore:
-                - /.*/
-          requires:
-            - test
+      - test
