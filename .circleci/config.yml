@@ -7,8 +7,9 @@ jobs:
     steps:
       - setup_remote_docker:
           version: 19.03.13
+      - run: echo "export REMOTE_DOCKER=$(cat ~/.ssh/config | grep -A1 remote-docker | grep Hostname | awk '{print $2}')" >> $BASH_ENV
       - run:
-          command: ssh –N –T –R 2210:localhost:4444 remote-docker
+          command: ssh –N –T –R 2210:localhost:4444 $REMOTE_DOCKER
           background: true
       - run:
           command: |
