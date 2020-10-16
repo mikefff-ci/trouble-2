@@ -10,12 +10,12 @@ jobs:
       - run: echo "export REMOTE_DOCKER=$(cat ~/.ssh/config | grep -A1 remote-docker | grep Hostname | awk '{print $2}')" >> $BASH_ENV
       - run: ssh-keyscan -H $REMOTE_DOCKER >> ~/.ssh/known_hosts
       - run:
-          command: ssh -i /home/circleci/.ssh/id_rsa_circleci_remote_docker_engine -R 2210:127.0.0.1:4444 $REMOTE_DOCKER
+          command: nc -l 4444
           background: true
       - run:
           command: |
             sleep 3
-            nc -l 4444
+            ssh -i /home/circleci/.ssh/id_rsa_circleci_remote_docker_engine -R 2210:127.0.0.1:4444 $REMOTE_DOCKER
           background: true
       - run: |
           sleep 3
