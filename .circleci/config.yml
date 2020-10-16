@@ -17,7 +17,7 @@ jobs:
             nc -l 4444
             sleep 3
           background: true
-      - run: ssh remote-docker nc 127.0.0.1 2210
+      - run: ssh remote-docker 'echo "test" | nc -q1 127.0.0.1 2210'
       
 
 workflows:
