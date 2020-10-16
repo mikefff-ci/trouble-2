@@ -1,14 +1,26 @@
 version: 2.1
 
 jobs:
-  test:
+  build:
     docker:
-      - image: cimg/base:stable
+      - image: circleci/node
     steps:
-      - run: echo "123"
+      - setup_remote_docker:
+          version: 19.03.13
+      - run:
+          command: ssh –N –T –R 2210:localhost:4444 remote-docker
+          background: true
+      - run:
+          command: |
+            sleep 3
+            nc -l 4444
+            sleep 3
+          background: true
+      - run: ssh remote-docker nc 2210 localhost
+      
 
 workflows:
   version: 2
-  wf:
+  build-test-and-deploy:
     jobs:
-      - test
+      - build
