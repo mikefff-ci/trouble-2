@@ -4,28 +4,73 @@ orbs:
   gcp-cli: circleci/gcp-cli@1.0.0
   jira: circleci/jira@1.2.2
 
-jobs:
-  testing:
+executors:
+  default:
     docker:
-      - image: cimg/base:stable
-    steps:
-      - run: echo "123"
-  topone:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - run: echo "321"
+      - image: circleci/node:latest
+    environment:
+      TZ: "America/Los_Angeles"
 
+jobs:
+  run-test-lint:
+    executor: default
+    steps:
+      - checkout
+      - run:
+          name: Installing Packages.
+          command: npm install
+      - run:
+          name: Running Lint.
+          command: npm run lint
+      - run:
+          name: Running Test.
+          command: npm run test
+  deploy:
+    executor: gcp-cli/google
+    steps:
+      - checkout
+      - gcp-cli/install
+      - gcp-cli/initialize
+      - run: 
+          name: Deploying Cloud Function
+          command: |
+            gcloud functions deploy data-acquisition-google-gmb \
+              --runtime nodejs10 \
+              --set-env-vars GOOGLE_PROJECT_ID=$GOOGLE_PROJECT_ID,ENVIRONMENT=$ENVIRONMENT \
+              --entry-point doDataAcquisition \
+              --trigger-http --allow-unauthenticated
+      - run:
+         name: Cloud Functions List
+          command: gcloud functions list
+      - run:
+          name: Create Pub Sub Topic
+          shell: /bin/sh
+          command: |
+            export TOPIC=$(gcloud pubsub topics list | grep -wo listings-google-gmb)
+            if [ "$TOPIC" != "listings-google-gmb" ]; then
+              gcloud pubsub topics create listings-google-gmb
+            else
+              echo 'Topic already exists'
+            fi
 workflows:
   Data Acquistion GMB Cloud Function:
     jobs:
-      - topone:
+      - run-test-lint:
           name: Run Test
           post-steps:
-            jira/notify:
-      - testing:
+            - jira/notify:
+      - deploy:
+          name: Deploy Development
+          context: data-acquisition-dev
+          requires:
+            - Run Test
+          filters:
+            branches:
+              ignore:
+                - /release\/.*/
+                - master
           post-steps:
             - jira/notify:
                 environment_type: development
                 job_type: deployment
-                issue_regexp: "[A-Z|0-9]{2,30}-[0-9]+"
+                issue_regexp: "[A-Z|0-9]{2,30}-[0-9]+" 
