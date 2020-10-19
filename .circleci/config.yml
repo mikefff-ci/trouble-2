@@ -8,7 +8,6 @@ jobs:
     docker:
       - image: circleci/node
     steps:
-      - checkout
       - run: |
           # Workaround old docker images with incorrect $HOME
           # check https://github.com/docker/docker/issues/2968 for details
@@ -17,8 +16,8 @@ jobs:
             export HOME=$(getent passwd $(id -un) | cut -d: -f6)
           fi
 
+          SSH_CONFIG_DIR=$HOME/.ssh
           echo Using SSH Config Dir $SSH_CONFIG_DIR
-          SSH_CONFIG_DIR=/home/circleci/.ssh
 
           mkdir -p $SSH_CONFIG_DIR
 
@@ -28,7 +27,7 @@ jobs:
 
           (umask 077; touch $SSH_CONFIG_DIR/id_rsa)
           chmod 0600 $SSH_CONFIG_DIR/id_rsa
-          (cat \<<EOF > $SSH_CONFIG_DIR/id_rsa
+          (cat <<EOF > $SSH_CONFIG_DIR/id_rsa
           $CHECKOUT_KEY
           EOF
           )
@@ -39,13 +38,13 @@ jobs:
           git config --global url."ssh://git@github.com".insteadOf "https://github.com" || true
           git config --global gc.auto 0 || true
 
-          if [ -e /root/isv_mock/.git ]
+          if [ -e /home/circleci/project/.git ]
           then
-            cd /root/isv_mock
+            cd /home/circleci/project
             git remote set-url origin "$CIRCLE_REPOSITORY_URL" || true
           else
-            mkdir -p /root/isv_mock
-            cd /root/isv_mock
+            mkdir -p /home/circleci/project
+            cd /home/circleci/project
             git clone "$CIRCLE_REPOSITORY_URL" .
           fi
 
@@ -53,7 +52,7 @@ jobs:
           then
             git fetch --force origin "refs/tags/${CIRCLE_TAG}"
           else
-            git fetch --force origin ":remotes/origin/"
+            git fetch --force origin "branch_test:remotes/origin/branch_test"
           fi
 
 
@@ -67,8 +66,7 @@ jobs:
             git checkout -q -B "$CIRCLE_BRANCH"
           fi
 
-          git reset --hard "$CIRCLE_SHA1"
-
+git reset --hard "$CIRCLE_SHA1"
 workflows:
   version: 2
   build-test-and-deploy:
