@@ -1,3 +1,5 @@
 FROM cimg/base:stable
 
-RUN DOCKER_HOST=$docker_host docker info
+ARG docker_host
+
+RUN docker --host=$docker_host info
