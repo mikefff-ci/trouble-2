@@ -10,10 +10,18 @@ jobs:
       - image: cimg/base:stable
     steps:
       - run: echo "123"
+  topone:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run: echo "321"
 
 workflows:
   Data Acquistion GMB Cloud Function:
     jobs:
+      - topone:
+          post-steps:
+            jira/notify:
       - testing:
           post-steps:
             - jira/notify:
