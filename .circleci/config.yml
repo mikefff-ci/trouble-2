@@ -40,7 +40,7 @@ jobs:
               --entry-point doDataAcquisition \
               --trigger-http --allow-unauthenticated
       - run:
-         name: Cloud Functions List
+          name: Cloud Functions List
           command: gcloud functions list
       - run:
           name: Create Pub Sub Topic
