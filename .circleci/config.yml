@@ -18,7 +18,7 @@ jobs:
       # Wait for Postgres connection to open.
       - run: dockerize -wait tcp://localhost:5432 -timeout 1m
       # Run tests.
-      - run: echo "123"
+      - run: nc -zv 127.0.0.1
 
 workflows:
   version: 2
