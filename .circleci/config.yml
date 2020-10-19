@@ -58,7 +58,7 @@ workflows:
       - run-test-lint:
           name: Run Test
           post-steps:
-            - jira/notify:
+            - jira/notify
       - deploy:
           name: Deploy Development
           context: data-acquisition-dev
