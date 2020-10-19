@@ -8,6 +8,7 @@ jobs:
     docker:
       - image: circleci/node
     steps:
+      - add_ssh_keys
       - run: |
           # Workaround old docker images with incorrect $HOME
           # check https://github.com/docker/docker/issues/2968 for details
@@ -50,7 +51,8 @@ jobs:
 
           if [ -n "$CIRCLE_TAG" ]
           then
-            git fetch --force origin "refs/tags/${CIRCLE_TAG}"
+            #git fetch --force origin "refs/tags/${CIRCLE_TAG}"
+            git fetch --force origin tag "$\{CIRCLE_TAG\}" --no-tags
           else
             git fetch --force origin "branch_test:remotes/origin/branch_test"
           fi
