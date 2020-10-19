@@ -20,6 +20,7 @@ workflows:
   Data Acquistion GMB Cloud Function:
     jobs:
       - topone:
+          name: Run Test
           post-steps:
             jira/notify:
       - testing:
