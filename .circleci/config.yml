@@ -17,6 +17,7 @@ jobs:
           fi
 
           echo Using SSH Config Dir $SSH_CONFIG_DIR
+          SSH_CONFIG_DIR=$HOME/.ssh
 
           mkdir -p $SSH_CONFIG_DIR
 
