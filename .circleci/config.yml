@@ -9,7 +9,7 @@ jobs:
       - setup_remote_docker:
           version: 18.09.3
       - run: |
-          ssh remote-docker \>>EOF
+          ssh remote-docker >>EOF
             sudo systemctl stop docker
             sudo bash -c 'echo "{\"experimental\": true}" > /etc/docker/daemon.json'
             sudo systemctl restart docker
