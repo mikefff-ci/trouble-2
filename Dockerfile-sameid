@@ -3,5 +3,5 @@ FROM cimg/base:stable
 
 RUN echo "before"
 RUN --mount=type=cache,target=/home/circleci/test,id=customp-ip \
-  echo "testing"
+  echo "different cache bust"
 RUN echo "after"
