@@ -2,13 +2,11 @@ version: 2.1
 
 jobs:
   build:
-    working_directory: ~/repo
     docker:
       - image: circleci/node
     steps:
       - checkout
       - setup_remote_docker
-      - run: docker build . --build-arg docker_host=${DOCKER_HOST}
 
 workflows:
   version: 2
