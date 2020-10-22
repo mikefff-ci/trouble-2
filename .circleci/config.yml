@@ -5,19 +5,9 @@ jobs:
     docker:
       - image: circleci/node
     steps:
-      - checkout
-      - setup_remote_docker:
-          version: 18.09.3
-      - run: |
-          ssh remote-docker \<<EOF
-            sudo systemctl stop docker
-            sudo bash -c 'echo "{\"experimental\": true}" > /etc/docker/daemon.json'
-            sudo systemctl restart docker
-          EOF
-      - run: DOCKER_BUILDKIT=1 docker build .
-      - run: DOCKER_BUILDKIT=1 docker build -f Dockerfile-sameid .
-      - run: DOCKER_BUILDKIT=1 docker build .
-
+      - run: echo 1 > /tmp/test.txt
+      - store_artifacts:
+          path: /tmp/test.txt
 workflows:
   version: 2
   build:
