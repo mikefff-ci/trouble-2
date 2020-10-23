@@ -9,5 +9,5 @@ jobs: # a basic unit of work in a run
 
 workflows:
   build:
-    macjob:
-      - build
+    jobs:
+      - macjob
