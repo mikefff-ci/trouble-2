@@ -1,13 +1,17 @@
 version: 2.1
 
 jobs: # a basic unit of work in a run
-  macjob: # runs not using `Workflows` must have a `build` job as entry point
-    macos:  # indicate that we are using the macOS executor
-      xcode: 11.3.0
+  test:
+    docker:
+      - image: cimg/base:stable
     steps:
       - run: echo 1
-
 workflows:
   build:
     jobs:
-      - macjob
+      - test
+      - wait:
+          type: approval
+          requires:
+            - test
+          
