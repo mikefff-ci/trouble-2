@@ -3,7 +3,7 @@ version: 2.1
 jobs: # a basic unit of work in a run
   test:
     docker:
-      - image: ubuntu:latest
+      - image: alpine/helm:3.2.4
     steps:
       - run: |
           mkdir -p ~/yyy
