@@ -6,10 +6,10 @@ jobs: # a basic unit of work in a run
       - image: alpine/helm:3.2.4
     steps:
       - run: |
-          mkdir -p ~/yyy
-          echo 'test' > ~/yyy/test.txt
+          mkdir -p /tmp/yyy
+          echo 'test' > /tmp/test.txt
       - persist_to_workspace:
-          root: /home/circleci/yyy
+          root: /tmp
           paths:
             - test.txt
   attach:
