@@ -3,7 +3,7 @@ version: 2.1
 jobs: # a basic unit of work in a run
   test:
     docker:
-      - image: ubuntu:20:04
+      - image: ubuntu:20.04
     steps:
       - run: |
           mkdir -p /tmp/yyy
