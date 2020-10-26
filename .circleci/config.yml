@@ -5,11 +5,20 @@ jobs: # a basic unit of work in a run
     docker:
       - image: cimg/base:stable
     steps:
-      - checkout
-      - setup_remote_docker:
-          version: 19.03.12
-      - run: docker build . --build-arg BUILD_NUMBER=123
-      - run: docker build . --build-arg BUILD_NUMBER=124
+      - run: |
+          mkdir -p ~/yyy
+          echo 'test' > yyy/test.txt
+      - persist_to_workspace:
+          root: /home/circleci/yyy
+          paths:
+            - test.txt
+  attach:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run: echo 123
+      - attach_workspace:
+          at: /tmp/workspace
 
 workflows:
   build:
