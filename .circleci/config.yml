@@ -24,3 +24,6 @@ workflows:
   build:
     jobs:
       - test
+      - attach:
+          requires:
+            - test
