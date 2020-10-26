@@ -5,13 +5,14 @@ jobs: # a basic unit of work in a run
     docker:
       - image: cimg/base:stable
     steps:
-      - run: echo 1
+      - checkout
+      - setup_remote_docker:
+          version: 19.03.12
+      - run: docker build .
+      - run: echo 123 > new_context.txt
+      - run: docker build .
+
 workflows:
   build:
     jobs:
       - test
-      - wait:
-          type: approval
-          requires:
-            - test
-          
