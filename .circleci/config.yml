@@ -3,7 +3,7 @@ version: 2.1
 jobs: # a basic unit of work in a run
   test:
     docker:
-      - image: cimg/base:stable
+      - image: ubuntu:latest
     steps:
       - run: |
           mkdir -p ~/yyy
@@ -14,7 +14,7 @@ jobs: # a basic unit of work in a run
             - test.txt
   attach:
     docker:
-      - image: cimg/base:stable
+      - image: ubuntu:latest
     steps:
       - run: echo 123
       - attach_workspace:
