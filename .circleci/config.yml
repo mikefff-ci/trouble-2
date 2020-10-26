@@ -9,8 +9,7 @@ jobs: # a basic unit of work in a run
       - setup_remote_docker:
           version: 19.03.12
       - run: docker build . --build-arg BUILD_NUMBER=123
-      - run: echo 123 > new_context.txt
-      - run: docker build .
+      - run: docker build . --build-arg BUILD_NUMBER=124
 
 workflows:
   build:
