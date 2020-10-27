@@ -1,28 +1,16 @@
 version: 2.1
 
-workflows:
-  version: 2
-  wf:
-    jobs:
-      - myjob
+orbs:
+  win: circleci/windows@2.2.0
 
 jobs:
-  myjob:
-    docker:
-      - image: circleci/python:3.8
+  build:
+    executor:
+      name: win/default
+      shell: powershell.exe
     steps:
+      - run: systeminfo
       - run:
-          command: sleep 10
-          background: true
-      - run:
-          command: wget https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central/firefox-82.0a1.en-US.linux-x86_64.tar.bz2
-          background: true
-      - run: ps aux
-      - run:
-          name: Wait for parllel command
-          command: |
-            while [[ $(pgrep sleep) || $(pgrep wget) ]] ; do
-              echo "Waiting for parallel steps"
-              sleep 1
-            done
-      - run: echo "Next step"
+          name: "Test display"
+          shell: powershell.exe
+          command: Set-DisplayResolution -Width 1280 -Height 1024 -Force
