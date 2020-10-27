@@ -1,16 +1,17 @@
 version: 2.1
 
-orbs:
-  win: circleci/windows@2.2.0
-
 jobs:
-  build:
-    executor:
-      name: win/default
-      shell: powershell.exe
+  test:
+    docker:
+      - image: cimg/base:stable
     steps:
-      - run: systeminfo
-      - run:
-          name: "Test display"
-          shell: powershell.exe
-          command: Set-DisplayResolution -Width 1280 -Height 1024 -Force
+      - run: echo 123
+
+workflows:
+  wf:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only:
+                - /pull\/.*/
