@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs: # a basic unit of work in a run
-  test:
+  build:
     docker:
       - image: ubuntu:latest
     steps:
@@ -24,7 +24,7 @@ jobs: # a basic unit of work in a run
 workflows:
   build:
     jobs:
-      - test
+      - build
       - attach:
           requires:
             - test
