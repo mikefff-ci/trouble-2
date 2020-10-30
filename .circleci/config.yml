@@ -10,12 +10,12 @@ jobs:
 workflows:
   wf:
     triggers:
-      schedule:
-        cron: '*/5 * * * *'
-        filters:
-          branches:
-            only:
-              - /.*/
+      - schedule:
+          cron: '*/1 * * * *'
+          filters:
+            branches:
+              only:
+                - /.*/
     jobs:
       - test
           
