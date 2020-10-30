@@ -5,13 +5,10 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: echo 123
+      - run: sudo su
+      - run: whoami
 
 workflows:
   wf:
     jobs:
-      - test:
-          filters:
-            branches:
-              only:
-                - /pull\/.*/
+      - test
