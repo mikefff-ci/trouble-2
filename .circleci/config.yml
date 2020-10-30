@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: sudo su
+      - run: sudo su -
       - run: whoami
 
 workflows:
