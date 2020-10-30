@@ -1,21 +1,28 @@
 version: 2.1
 
+parameters:
+  test:
+    type: string
+    default: testing
+
 jobs:
   test:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: whoami
+      - run: echo "<< pipeline.parameters.test >>"
 
 workflows:
-  wf:
+  version: 2
+  nightly:
     triggers:
       - schedule:
-          cron: '*/1 * * * *'
+          cron: '34 17 30 * *'
           filters:
             branches:
               only:
                 - /.*/
+
     jobs:
       - test
           
