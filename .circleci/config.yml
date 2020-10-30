@@ -5,10 +5,17 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: sudo su -
       - run: whoami
 
 workflows:
   wf:
+    triggers:
+      schedule:
+        cron: '*/5 * * * *'
+        filters:
+          branches:
+            only:
+              - /.*/
     jobs:
       - test
+          
