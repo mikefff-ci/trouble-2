@@ -7,6 +7,14 @@ jobs:
       resource_class: medium
     steps:
       - run:
+          command: |
+            while true; do
+              sleep 1
+              ps auxwwf
+              echo "======"
+            done
+          background: true
+      - run:
           name: Provider test
           command: |
             docker run -d --rm \
