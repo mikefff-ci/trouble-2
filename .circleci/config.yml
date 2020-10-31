@@ -11,6 +11,7 @@ jobs:
           command: |
             docker run -d --rm \
               --name nodeContainer \
+              --user $(id -u):$(id -g) \
               circleci/node:14.8.0 \
               sleep 20
 
