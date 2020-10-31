@@ -10,8 +10,8 @@ jobs:
           name: Provider test
           command: |
             docker run -d --rm \
-              --name nodeContainer
-              circleci/node:14.8.0
+              --name nodeContainer \
+              circleci/node:14.8.0 \
               sleep 20
 
             sleep 1
