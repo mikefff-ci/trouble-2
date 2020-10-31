@@ -15,7 +15,7 @@ jobs:
               sleep 20
 
             sleep 1
-            docker exec -it nodeContainer sleep 5
+            docker exec nodeContainer sleep 5
 
             docker stop nodeContainer
 workflows:
