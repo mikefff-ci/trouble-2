@@ -1,10 +1,11 @@
 version: 2.1
 jobs:
   test:
-    machine:
-      image: ubuntu-1604:202007-01
+    macos:
+      xcode: "11.6.0"
+    resource_class: small
     steps:
-      - run: sudo poweroff
+      - run: echo 123
 workflows:
   wf:
     jobs:
