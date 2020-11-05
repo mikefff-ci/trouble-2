@@ -2,8 +2,8 @@ version: 2.1
 jobs:
   test:
     macos:
-      xcode: "11.6.0"
-    resource_class: small
+      xcode: "11.1.0"
+    resource_class: medium
     steps:
       - run: echo 123
       - run:
