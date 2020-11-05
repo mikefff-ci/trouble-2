@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   test:
     macos:
-      xcode: "11.1.0"
+      xcode: "10.1.0"
     resource_class: medium
     steps:
       - run: echo 123
