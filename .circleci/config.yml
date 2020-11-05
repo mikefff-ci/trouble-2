@@ -1,18 +1,10 @@
 version: 2.1
 jobs:
   test:
-    macos:
-      xcode: "10.1.0"
-    resource_class: medium
+    machine:
+      image: ubuntu-1604:202007-01
     steps:
       - run: echo 123
-      - run:
-          name: Setup VNC for Debug
-          command: |
-            set +e
-            sudo defaults write /Library/Preferences/com.apple.RemoteManagement VNCAlwaysStartOnConsole -bool true
-            sudo /usr/sbin/sysadminctl -addUser slack -fullName "VNC User" -password pass -admim
-            sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -configure -clientopts -setvnclegacy -vnclegacy yes -setvncpw -vncpw pass
 
 workflows:
   wf:
