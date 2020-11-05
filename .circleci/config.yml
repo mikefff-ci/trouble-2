@@ -1,34 +1,10 @@
 version: 2.1
-
 jobs:
   test:
     machine:
-      image: ubuntu-1604:201903-01
-      resource_class: medium
+      image: ubuntu-1604:202007-01
     steps:
-      - run:
-          command: |
-            while true; do
-              sleep 1
-              ps auxwwf
-              echo "======"
-            done
-          background: true
-      - run: echo ${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}
-      - run: id -u
-      - run:
-          name: Provider test
-          command: |
-            docker run -d --rm \
-              --name nodeContainer \
-              --user $(id -u):$(id -g) \
-              circleci/node:14.8.0 \
-              sleep 20
-
-            sleep 1
-            docker exec nodeContainer sleep 5
-
-            docker stop nodeContainer
+      - run: sudo poweroff
 workflows:
   wf:
     jobs:
