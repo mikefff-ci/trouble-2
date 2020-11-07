@@ -1,10 +1,14 @@
 version: 2.1
+
+orbs:
+  node: circleci/node@1.1.6
 jobs:
   test:
-    machine:
-      image: ubuntu-1604:202007-01
+    executor:
+      name: node/default
+      tag: '14'
     steps:
-      - run: echo 123
+      - run: node --version
 
 workflows:
   wf:
