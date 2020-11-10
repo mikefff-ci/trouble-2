@@ -1,16 +1,20 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@1.1.6
+  node: circleci/node@4.1.0
+
 jobs:
-  test:
+  npm-example:
     executor:
       name: node/default
-      tag: '14'
+      tag: '12.9'
     steps:
+      - checkout
+      - node/install:
+          install-npm: true
       - run: node --version
 
 workflows:
   wf:
     jobs:
-      - test
+      - npm-example
