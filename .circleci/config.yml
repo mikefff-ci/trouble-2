@@ -5,9 +5,8 @@ orbs:
 
 jobs:
   npm-example:
-    executor:
-      name: node/default
-      tag: '12.9'
+    docker:
+      - image: circleci/android-29
     steps:
       - checkout
       - node/install:
