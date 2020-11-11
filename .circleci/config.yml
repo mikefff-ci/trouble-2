@@ -1,17 +1,11 @@
 version: 2.1
 
-orbs:
-  node: circleci/node@4.1.0
-
 jobs:
   npm-example:
     docker:
-      - image: circleci/android-29
+      - image: cimg/base:stable
     steps:
-      - checkout
-      - node/install:
-          install-npm: true
-      - run: node --version
+      - run: echo "<< pipeline.git.base_revision >>"
 
 workflows:
   wf:
