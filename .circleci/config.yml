@@ -5,6 +5,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
+      - checkout
       - add_ssh_keys
 
 workflows:
