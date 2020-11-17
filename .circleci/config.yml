@@ -5,7 +5,9 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - add_ssh_keys
+      - add_ssh_keys:
+          fingerprints:
+            - d2:53:35:6e:2a:c3:95:5b:ea:bc:b1:cd:5f:fa:dc:c6
       - run: echo "<< pipeline.git.base_revision >>"
       - run: echo "<< pipeline.git.revision >>"
 
