@@ -6,6 +6,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
+      - ls ~/.ssh
 
 workflows:
   wf:
