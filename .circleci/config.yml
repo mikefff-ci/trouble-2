@@ -1,12 +1,18 @@
 version: 2.1
 
+orbs:
+  win: circleci/windows@1.0.0
+
 jobs:
   npm-example:
-    docker:
-      - image: cimg/base:stable
+    executor: win/default
     steps:
-      - checkout
-      - run: checksum ~/.ssh/id_rsa
+      - run:
+          name: Preparing environment - system
+          command: |
+            choco install -y --no-progress miniconda3
+            C:\tools\miniconda3\Scripts\conda.exe init powershell
+            choco install -y --no-progress openssl javaruntime
 
 workflows:
   wf:
