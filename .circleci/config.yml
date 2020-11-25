@@ -1,21 +1,13 @@
 version: 2.1
 
-orbs:
-  win: circleci/windows@1.0.0
-
 jobs:
-  npm-example:
-    executor: win/default
+  testing:
+    docker:
+      - image: cimg/base
     steps:
-      - run:
-          name: Preparing environment - system
-          command: |
-            choco install -y --no-progress miniconda3
-            C:\tools\miniconda3\Scripts\conda.exe init powershell
-            $progressPreference = 'silentlyContinue'
-            choco install -y --no-progress openssl javaruntime
+      - run: echo 123
 
 workflows:
   wf:
     jobs:
-      - npm-example
+      - testing
