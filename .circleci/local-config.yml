@@ -1,0 +1,11 @@
+version: 2
+jobs:
+  testjob:
+    docker:
+      - image: cimg/base:stable
+
+workflows:
+  version: 2
+  wf:
+    jobs:
+      - testjob

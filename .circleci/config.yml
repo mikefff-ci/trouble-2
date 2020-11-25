@@ -6,18 +6,10 @@ jobs:
       image: ubuntu-1604:202007-01
     steps:
       - checkout
-      - run: echo 123
-  dockertest:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - run: echo 123
+      - run: curl -fLSs https://raw.githubusercontent.com/CircleCI-Public/circleci-cli/master/install.sh | DESTDIR=~/bin bash
+      - run: ~/bin/circleci local execute --job testjob --config .circleci/local-config.yml
 
 workflows:
   wf:
     jobs:
       - testing
-  second:
-    when: false
-    jobs:
-      - dockertest
