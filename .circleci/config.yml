@@ -5,6 +5,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
+      - checkout
       - run: echo 123
 
 workflows:
