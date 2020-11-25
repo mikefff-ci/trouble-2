@@ -17,3 +17,7 @@ workflows:
   wf:
     jobs:
       - testing
+  second:
+    when: false
+    jobs:
+      - dockertest
