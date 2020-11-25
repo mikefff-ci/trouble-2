@@ -3,6 +3,8 @@ jobs:
   testjob:
     docker:
       - image: cimg/base:stable
+    step:
+      - run: echo "test"
 
 workflows:
   version: 2
