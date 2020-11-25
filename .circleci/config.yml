@@ -2,8 +2,8 @@ version: 2.1
 
 jobs:
   testing:
-    machine:
-      image: ubuntu-1604:202007-01
+    docker:
+      - image: cimg/base:stable
     steps:
       - checkout
       - run: echo 123
