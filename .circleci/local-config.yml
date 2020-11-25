@@ -3,7 +3,7 @@ jobs:
   testjob:
     docker:
       - image: cimg/base:stable
-    step:
+    steps:
       - run: echo "test"
 
 workflows:
