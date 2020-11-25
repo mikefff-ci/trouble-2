@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   testing:
     docker:
-      - image: cimg/base
+      - image: cimg/base:stable
     steps:
       - run: echo 123
 
