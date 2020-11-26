@@ -2,8 +2,9 @@ version: 2.1
 
 jobs:
   testing:
-    docker:
-      - image: cimg/base:stable
+    machine:
+      docker_layer_caching: true
+      image: ubuntu-1604:202007-01
     steps:
       - checkout
       - setup_remote_docker:
