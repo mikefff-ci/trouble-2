@@ -3,11 +3,10 @@ version: 2.1
 jobs:
   testing:
     machine:
+      docker_layer_caching: true
       image: ubuntu-1604:202007-01
     steps:
-      - checkout
-      - run: curl -fLSs https://raw.githubusercontent.com/CircleCI-Public/circleci-cli/master/install.sh | DESTDIR=~/bin bash
-      - run: ~/bin/circleci local execute --job testjob --config .circleci/local-config.yml
+      - run: docker volume create test cache
 
 workflows:
   wf:
