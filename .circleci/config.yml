@@ -9,7 +9,6 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - run: docker volume ls
-      - run: docker volume create testcache
       - run: docker volume ls
 
 workflows:
