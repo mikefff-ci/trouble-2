@@ -8,6 +8,7 @@ jobs:
     steps:
       - checkout
       - run: docker volume ls
+      - run: docker volume create
       - run: docker build .
       - run: docker volume ls
 
