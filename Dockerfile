@@ -1,4 +1,4 @@
-FROM curlimages/curl:7.65.3
+FROM cimg/base:stable
 
 USER root
-RUN echo 123
+RUN sudo bash -c 'fallocate -l 1G /base/test.img'

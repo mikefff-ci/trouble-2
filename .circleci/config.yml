@@ -9,9 +9,12 @@ jobs:
       - checkout
       - run: echo "test"
       - run: docker volume ls
+      - run: docker system df
+      - run: docker build .
       - run: docker volume create test123
       - run: mkdir ~/test
       - run: docker run --rm -v test123:/base cimg/base:stable sudo bash -c 'fallocate -l 1G /base/test.img'
+      - run: docker system df
       - run: docker volume ls
 
 workflows:
