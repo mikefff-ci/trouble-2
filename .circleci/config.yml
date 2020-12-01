@@ -8,9 +8,11 @@ jobs:
     steps:
       - checkout
       - run: echo "test"
-      - run: docker image ls
-      - run: docker build .
-      - run: docker image ls
+      - run: docker volume ls
+      - run: docker volume create test123
+      - run: mkdir ~/test
+      - run: docker run --rm -v test123:/basr cimg/circleci:stable fallocate -l 1G /bar/test.img
+      - run: docker volume ls
 
 workflows:
   wf:
