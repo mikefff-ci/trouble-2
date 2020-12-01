@@ -7,10 +7,9 @@ jobs:
     steps:
       - checkout
       - run: echo "test"
-      - run: docker volume ls
-      - run: docker volume create
+      - run: docker image ls
       - run: docker build .
-      - run: docker volume ls
+      - run: docker image ls
 
 workflows:
   wf:
