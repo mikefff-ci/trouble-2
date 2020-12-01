@@ -1,23 +1,13 @@
 version: 2.1
 
-jobs:
-  testing:
-    machine:
-      docker_layer_caching: true
-      image: 'ubuntu-1604:201903-01'
-    steps:
-      - checkout
-      - run: echo "test"
-      - run: docker volume ls
-      - run: docker system df
-      - run: docker build .
-      - run: docker volume create test123
-      - run: mkdir ~/test
-      - run: docker run --rm -v test123:/base cimg/base:stable sudo bash -c 'fallocate -l 1G /base/test.img'
-      - run: docker system df
-      - run: docker volume ls
-
 workflows:
-  wf:
+  testing:
     jobs:
-      - testing
+      - runner
+
+jobs:
+  runner:
+    machine: true
+    resource_class: "mkly/mkly-one"
+    steps:
+      - run: echo "Hi I'm on Runners!"
