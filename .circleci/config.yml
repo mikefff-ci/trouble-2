@@ -3,16 +3,13 @@ version: 2.1
 workflows:
   testing:
     jobs:
-      - test_ubuntu_2004
+      - testing
 
 jobs:
-  test_ubuntu_2004:
+  testing:
 
-    machine:
-      image: ubuntu-2004:202010-01
+    docker:
+      - image: cimg/base:stable
 
     steps:
-      - run:
-          name: Build Docker image
-          command: | 
-             DOCKER_BUILDKIT=1 docker build -t test_image .  
+      - run: curl -L https://hqo.okta.com -o /tmp/okta.html
