@@ -7,8 +7,9 @@ workflows:
 
 jobs:
   runner:
-    machine: true
-    resource_class: "mkly/mkly-one"
+    docker:
+      - image: cimg/base:stable
     steps:
-      - run: sleep 4000
-      - run: echo "Hi I'm on Runners!"
+      - run: curl -L https://accounts.google.com -o /tmp/google.html
+      - store_artifacts:
+          path: /tmp/google.html
