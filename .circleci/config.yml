@@ -3,7 +3,7 @@ version: 2.1
 workflows:
   testing:
     jobs:
-      - runner
+      - test_ubuntu_2004
 
 jobs:
   test_ubuntu_2004:
