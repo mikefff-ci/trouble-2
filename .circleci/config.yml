@@ -6,13 +6,13 @@ workflows:
       - runner
 
 jobs:
-  runner:
-    docker:
-      - image: cimg/base:stable
+  test_ubuntu_2004:
+
+    machine:
+      image: ubuntu-2004:202010-01
+
     steps:
-      - run: curl -L https://accounts.google.com -o /tmp/google.html
-      - run: curl -L https://hqo.okta.com -o /tmp/okta.html
-      - store_artifacts:
-          path: /tmp/google.html
-      - store_artifacts:
-          path: /tmp/okta.html
+      - run:
+          name: Build Docker image
+          command: | 
+             DOCKER_BUILDKIT=1 docker build -t test_image .  
