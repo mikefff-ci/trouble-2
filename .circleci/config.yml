@@ -11,6 +11,6 @@ jobs:
       - image: circleci/node:latest
     steps:
       - checkout
-      - run: git fetch --all
+      - run: git pull --all
       - run: git tag
       - run: git branch
