@@ -5,13 +5,16 @@ workflows:
     jobs:
       - testing
 
-jobs:
-  testing:
-
-    docker:
-      - image: cimg/base:stable
-
-    steps:
-      - run: curl -L https://hqo.okta.com -o /tmp/okta.html
-      - store_artifacts:
-          path: /tmp/okta.html
+    deploy:
+        docker:
+            - image: circleci/node:latest
+        steps:
+            - run:
+                name: Install awsEBcli
+                command: |
+                    sudo apt-get -y -qq update
+                    sudo apt-get install -y python3-pip python3-dev python3-setuptools
+                    python --version
+                    python -m venv venv
+                    source. venv/bin/activate 
+                    python --version
