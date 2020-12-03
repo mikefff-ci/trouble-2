@@ -5,16 +5,17 @@ workflows:
     jobs:
       - testing
 
-    testing:
-        docker:
-            - image: circleci/node:latest
-        steps:
-            - run:
-                name: Install awsEBcli
-                command: |
-                    sudo apt-get -y -qq update
-                    sudo apt-get install -y python3-pip python3-dev python3-setuptools
-                    python --version
-                    python -m venv venv
-                    source. venv/bin/activate 
-                    python --version
+jobs:
+  testing:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - run:
+          name: Install awsEBcli
+          command: |
+              sudo apt-get -y -qq update
+              sudo apt-get install -y python3-pip python3-dev python3-setuptools
+              python --version
+              python -m venv venv
+              source. venv/bin/activate 
+              python --version
