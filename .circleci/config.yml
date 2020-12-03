@@ -5,7 +5,7 @@ workflows:
     jobs:
       - testing
 
-    deploy:
+    testing:
         docker:
             - image: circleci/node:latest
         steps:
