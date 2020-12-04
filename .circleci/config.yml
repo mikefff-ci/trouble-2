@@ -7,7 +7,7 @@ workflows:
 
 jobs:
   testing:
-    machine: true
-    resource_class: mkly/mkly-one
+    docker:
+      - image: cimg/base:stable
     steps:
       - run: echo "123"
