@@ -9,6 +9,7 @@ jobs:
   testing:
     docker:
       - image: circleci/node:latest
+    resource_class: 2xlarge+
     steps:
       - checkout
       - run: |
