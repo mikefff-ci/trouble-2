@@ -1,0 +1,15 @@
+<testsuites>
+<testsuite name="Events_Access_private_events" timestamp="2020-12-04T08:05:59" time="26.701" tests="1" failures="0" errors="0" skipped="0">
+<properties>
+<property name="specId" value="0"/>
+<property name="featureName" value="[Events] Access private events"/>
+<property name="capabilities" value="firefox.82_0.linux"/>
+<property name="featureFile" value="./src/features/events/access-private-events.feature"/>
+</properties>
+<testcase classname="CucumberJUnitReport-firefox.82_0.linux.Events_Access_private_events" name="Events_Access_private_events.As_a_CC_user_the_user_wants_to_see_a_private_event_page" time="26.623" file="./src/features/events/access-private-events.feature">
+<system-out>
+<![CDATA[ ✅ Given a "cc_student" user is logged to career center frontoffice✅ When the user goes to "events home" page✅ Then the user is on the "events home" page✅ And the user is redirected to the "events search" page✅ When the user selects the 1st "event"✅ Then the user is on the "event" page✅ And the user sees the event informations ]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>

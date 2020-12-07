@@ -10,4 +10,6 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: echo "123"
+      - checkout
+      - store_test_results:
+          path: /home/circleci/project/tr
