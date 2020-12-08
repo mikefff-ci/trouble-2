@@ -3,16 +3,21 @@ version: 2.1
 workflows:
   testing:
     jobs:
-      - test_ubuntu_2004
+      - testing
 
 jobs:
-  test_ubuntu_2004:
-
-    machine:
-      image: ubuntu-2004:202010-01
-
+  testing:
+    docker:
+      - image: cimg/base:stable
     steps:
-      - run:
-          name: Build Docker image
-          command: | 
-             DOCKER_BUILDKIT=1 docker build -t test_image .  
+      - run: netstat -ltpa
+      - run: |
+          echo $CIRCLE_PR_NUMBER
+          if [ -z "$CIRCLE_PR_NUMBER" ] ; then
+            echo "Inside"
+            resp=$(curl -Ls "https://api.github.com/repos/${CIRCLE_USERNAME}/${CIRCLE_REPO_NAME}/pulls/${CIRCLE_PR_NUMER}")
+            echo $resp
+            head_ref=$(jq -r .head.ref \<<< $resp)
+            echo $head_ref
+            git diff --name-only ${CIRCLE_BRANCH}..${head_ref}
+          fi
