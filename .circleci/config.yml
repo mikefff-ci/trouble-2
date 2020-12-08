@@ -16,7 +16,7 @@ jobs:
           echo $CIRCLE_PR_NUMBER
           if [ ! -z "$CIRCLE_PR_NUMBER" ] ; then
             echo "Inside"
-            resp=$(curl -Ls "https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/pulls/${CIRCLE_PR_NUMER}")
+            resp=$(curl -Ls "https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/pulls/${CIRCLE_PR_NUMBER}")
             echo $resp
             head_ref=$(jq -r .head.ref \<<< $resp)
             echo $head_ref
