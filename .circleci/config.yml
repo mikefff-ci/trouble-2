@@ -13,7 +13,7 @@ jobs:
       - run: netstat -ltpa
       - run: |
           echo $CIRCLE_PR_NUMBER
-          if [[ -v "$CIRCLE_PR_NUMBER" ]] ; then
+          if [ ! -z "$CIRCLE_PR_NUMBER" ] ; then
             echo "Inside"
             resp=$(curl -Ls "https://api.github.com/repos/${CIRCLE_USERNAME}/${CIRCLE_REPO_NAME}/pulls/${CIRCLE_PR_NUMER}")
             echo $resp
