@@ -10,4 +10,4 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - netstat -ltpa
+      - run: netstat -ltpa
