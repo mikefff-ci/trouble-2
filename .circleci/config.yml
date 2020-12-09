@@ -23,11 +23,12 @@ jobs:
             mkdir ../clone
             cd ../clone
             git clone "$CIRCLE_REPOSITORY_URL" .
-            git fetch --force origin "pull/${CIRCLE_PR_NUMBER}/head:remotes/origin/pull/${CIRCLE_PR_NUMBER}"
+            #git fetch --force origin "pull/${CIRCLE_PR_NUMBER}/head:remotes/origin/pull/${CIRCLE_PR_NUMBER}"
+            git fetch --all
             CHANGED=$(git --no-pager diff --name-only remotes/origin/${CIRCLE_BRANCH}..${head_ref})
           else
             git fetch --all
-            git --no-pager diff --name-only remotes/origin/${CIRCLE_BRANCH}..remotes/origin/${base_ref}
+            CHANGED=$(git --no-pager diff --name-only remotes/origin/${CIRCLE_BRANCH}..remotes/origin/test-rev-list)
           fi
           
           echo "\n==============="
