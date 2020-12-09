@@ -25,5 +25,5 @@ jobs:
             cd ../clone
             git clone "$CIRCLE_REPOSITORY_URL" .
             git fetch --force origin "pull/${CIRCLE_PR_NUMBER}/head:remotes/origin/pull/${CIRCLE_PR_NUMBER}"
-            git diff --name-only remotes/origin/${CIRCLE_BRANCH}..${head_ref}
+            git diff --no-pager --name-only remotes/origin/${CIRCLE_BRANCH}..${head_ref}
           fi
