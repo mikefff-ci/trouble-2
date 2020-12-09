@@ -13,17 +13,19 @@ jobs:
       - checkout
       - run: netstat -ltpa
       - run: |
-          echo "test"
           echo $CIRCLE_PR_NUMBER
           if [ ! -z "$CIRCLE_PR_NUMBER" ] ; then
-            echo "Inside"
+            # Get base ref from Github API
             resp=$(curl -Ls "https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/pulls/${CIRCLE_PR_NUMBER}")
-            echo $resp
             head_ref=$(jq -r .base.ref \<<< $resp)
-            echo $head_ref
+
+            # Create new directory and clone again
             mkdir ../clone
             cd ../clone
             git clone "$CIRCLE_REPOSITORY_URL" .
             git fetch --force origin "pull/${CIRCLE_PR_NUMBER}/head:remotes/origin/pull/${CIRCLE_PR_NUMBER}"
-            git --no-pager diff --name-only remotes/origin/${CIRCLE_BRANCH}..${head_ref}
+            CHANGED=$(git --no-pager diff --name-only remotes/origin/${CIRCLE_BRANCH}..${head_ref})
           fi
+          
+          echo "\n==============="
+          echo $CHANGED
