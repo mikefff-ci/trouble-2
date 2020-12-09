@@ -21,7 +21,8 @@ jobs:
             echo $resp
             head_ref=$(jq -r .base.ref \<<< $resp)
             echo $head_ref
-            cd ..
+            mkdir ../clone
+            cd ../clone
             git clone "$CIRCLE_REPOSITORY_URL" .
             git fetch --force origin "pull/${CIRCLE_PR_NUMBER}/head:remotes/origin/pull/${CIRCLE_PR_NUMBER}"
             git diff --name-only ${CIRCLE_BRANCH}..${head_ref}
