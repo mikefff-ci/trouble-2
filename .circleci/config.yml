@@ -13,12 +13,13 @@ jobs:
       - checkout
       - run: netstat -ltpa
       - run: |
+          echo "test"
           echo $CIRCLE_PR_NUMBER
           if [ ! -z "$CIRCLE_PR_NUMBER" ] ; then
             echo "Inside"
             resp=$(curl -Ls "https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/pulls/${CIRCLE_PR_NUMBER}")
             echo $resp
-            head_ref=$(jq -r .head.ref \<<< $resp)
+            head_ref=$(jq -r .base.ref \<<< $resp)
             echo $head_ref
             git diff --name-only ${CIRCLE_BRANCH}..${head_ref}
           fi
